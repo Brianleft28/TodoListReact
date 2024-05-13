@@ -7,7 +7,17 @@
     background-attachment: fixed;
     background-size: cover;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
+    /* Ajustado para que coincida con el viewport */
     overflow: hidden;
 }
 
+.content-container {
+    margin-top: 65px;
+    height: auto;
+    max-height: 100vh;
+    min-height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding-bottom: 20px;
+    /* Agregado para evitar el espacio en blanco en la parte inferior */
+}

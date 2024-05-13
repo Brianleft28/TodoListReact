@@ -7,9 +7,11 @@ const TaskForm = ({ onSubmit }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Llama a la función onSubmit pasando los datos de la nueva tarea
-        onSubmit({ title, description });
         setTitle('');
-        setDescription('');
+        setDescription(''); 
+        alert("Tarea Agregada");
+        onSubmit({ title, description });
+        alert({title, description});
       };
 
   return (
@@ -25,7 +27,8 @@ const TaskForm = ({ onSubmit }) => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         />
-        <button type="submit">Añadir Tarea</button>
+        <button type="submit" className='fixed bottom-16 right-10 w-52 justify-center bg-green-500 text-white px-4 py-2 rounded-md transition duration-300 ease-in-out hover:bg-green-600' 
+        >Añadir Tarea</button>
    </form>
   )
 }
