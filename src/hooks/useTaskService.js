@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
+import { saveTasks, getTasks } from "./localStorageService";
+
+
 
 export const useTaskService = () => {
     // Almacenamiento de tareas
-    const [tasks, setTasks] = useState([])
+    const [tasks, setTasks] = useState(getTasks())
+
+    useEffect(()=> {
+        saveTasks(tasks)
+    }, [tasks])
 
     // Definir la estructura de una tarea
     const initialTask = {
@@ -12,20 +19,7 @@ export const useTaskService = () => {
     completed: false
   };
 
-    // cargar tareas desde el local storage 
-    useEffect(()=>{
-        const storedTasks = JSON.parse(localStorage.getItem('tasks'))
-        if (storedTasks) {
-            setTasks(storedTasks)
-        }
-    
-    }, [])
 
-    // Función para guardar las tareas en el almacenamiento local al actualizarlas
-        useEffect(() => {
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
-  
     // Funcion para agregar nuevas tareas
     const addTask = (newTask) => {
         setTasks([...tasks, newTask ])

@@ -1,11 +1,13 @@
 import './TaskBoard.css'
 import TaskCard from '../TaskCard/TaskCard'
 import TaskAside from '../TaskAside/TaskAside';
+import { useTaskService } from '../../hooks/useTaskService';
 
+const Board = () => {
 
-const Board = ({ tasks }) => {
-  if (!tasks) {
-    return (
+const { tasks } = useTaskService();
+  if (tasks.length === 0) {
+    return (  
 <>
       <div 
       className='text-white flex justify-center min-h-full text-2xl'>
@@ -16,23 +18,24 @@ const Board = ({ tasks }) => {
       <TaskAside/>
     </>
     )
-
   }
 
   return (
-    
-    <div className="board">
+    <div className='w-92'>
+    <div className="flex max-w-100">
       {
-        tasks.map((task, index) => (
+        tasks.map((tasks, index) => (
           <TaskCard
           key={index}
-          title={task.title}
-          description={task.description}
+          title={tasks.title}
+          description={tasks.description}
           />
         ))
       }
-
     </div>
+      <TaskAside/>
+      </div>
+
   )
 }
 
