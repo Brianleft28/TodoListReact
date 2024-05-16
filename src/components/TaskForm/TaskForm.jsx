@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useTaskService } from '../../hooks/useTaskService.js'
 
+
 const TaskForm = ({  }) => {
   const { tasks, addTask, deleteTask, updateTask } = useTaskService();
-
 
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const handleSubmit = async (e) => {
       // Uso las funciones que defini en el hook taskService
         setTitle('');
         setDescription(''); 
-        console.log("Tarea Agregada");
-        addTask({title, description});
-
+        console.log("Tarea Agregada", title + ' ' + description);
+        await addTask(title, description);
 
       };
 
       useEffect(()=> {
         console.log("tareas: ", tasks)
-      }, [tasks])
+        }, [tasks]  )
 
   return (
    <form onSubmit={handleSubmit} className='flex flex-col gap-1 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
@@ -37,6 +35,7 @@ const TaskForm = ({  }) => {
         />
       <label className='block text-gray-500 font-bold md:text-left pr-4'>Descripción</label>
         <textarea  
+        required
         placeholder='Descripción'
         className='bg-gray-200 appearance-none border-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline focus:bg-white focus:border-green-500'
         value={description}

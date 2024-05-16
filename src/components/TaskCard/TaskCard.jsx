@@ -1,15 +1,17 @@
 import React from 'react'
-
+import { FaEdit } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 const TaskCard = ({title, description}) => {
   return (
-    <div className='m-4 w-64 flex flex-col flex-wrap p-2 text-white h-30 bg-green-500 shadow-md rounded-sm text-xl'>
-        <div className='bg-black p-2'>
-          <h4>Titulo: {title}</h4>
+<tr  className="bg-gradient-to-bl from-transparent to-black  border-y-2 border-green-500">
+    <td className="border text-white px-4 py-2">{title}</td>
+      <td className="border border-transparent flex items-center justify-between px-4 py-2 text-white">{description}
+        <div className='flex gap-3 items-center justify-center '>
+          <FaEdit className='ml-11 hover:text-green-500 transition-all duration-150 hover:cursor-pointer'/>
+          <FaRegTrashAlt className='hover:text-red-500 transition-all duration-150 hover:cursor-pointer'/>
         </div>
-        <div className='bg-white text-gray-900 p-2'>
-          <p>Descripcion: {description}</p>
-        </div>
-    </div>
+      </td>
+</tr>
   )
 }
 

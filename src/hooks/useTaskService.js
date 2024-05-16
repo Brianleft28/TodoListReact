@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { saveTasks, getTasks } from "./localStorageService";
+import nextId from "react-id-generator";
+const id = nextId();
 
 
 
@@ -9,6 +11,7 @@ export const useTaskService = () => {
 
     useEffect(()=> {
         saveTasks(tasks)
+  
     }, [tasks])
 
     // Definir la estructura de una tarea
@@ -17,12 +20,21 @@ export const useTaskService = () => {
     title: '',
     description: '',
     completed: false
-  };
-
+  }; 
 
     // Funcion para agregar nuevas tareas
-    const addTask = (newTask) => {
-        setTasks([...tasks, newTask ])
+    const addTask = async (title, description) => {
+        return new Promise((resolve, reject) => {
+            try {
+                setTasks([...tasks, {id: nextId('tarea-n-'),title, description, completed: false, isEditing: false}]);
+                localStorage.clear()
+                resolve();
+            }
+            catch (error) {
+                reject(error)
+                console.log('Error agregando la tarea: ' + error)
+            }
+        })
     }
 
 

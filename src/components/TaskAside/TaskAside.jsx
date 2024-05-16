@@ -11,15 +11,11 @@ const TaskAside = ({  }) => {
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
-      };
-
-      
+      };  
     const handleSubmit = (data) => {
         console.log("Nueva tarea:", data);
         setIsOpen(false); 
-        
     };
-
 
   return (
     <div >
@@ -37,10 +33,16 @@ const TaskAside = ({  }) => {
             </button>
         </div>
     </motion.aside>
-    <button 
-    className={`fixed bottom-4 right-4 ${isOpen ? 'hidden' : 'block'} flex gap-1 items-center bg-green-500 text-white px-3 py-1 rounded-md transition duration-300 ease-in-out hover:bg-green-600`} onClick={handleToggle}>
+    {
+        !isOpen && (
+
+            <button 
+            className={`fixed bottom-4 right-4 ${isOpen ? 'hidden' : 'block'} flex gap-1 items-center bg-green-500 text-white px-3 py-1 rounded-md transition duration-300 ease-in-out hover:bg-green-600`} onClick={handleToggle}
+            >
         <span className='text-3xl mb-1'>+</span>Agregar tarea
     </button>
+    )
+    }
     </div>
     
 )
