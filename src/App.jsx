@@ -1,4 +1,3 @@
-import './App.css'
 import Board from './components/TaskBoard/TaskBoard.jsx'
 import Header from './components/Header.jsx'
 

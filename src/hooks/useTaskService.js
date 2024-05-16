@@ -27,7 +27,6 @@ export const useTaskService = () => {
         return new Promise((resolve, reject) => {
             try {
                 setTasks([...tasks, {id: nextId('tarea-n-'),title, description, completed: false, isEditing: false}]);
-                localStorage.clear()
                 resolve();
             }
             catch (error) {

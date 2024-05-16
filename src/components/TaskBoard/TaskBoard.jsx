@@ -1,4 +1,3 @@
-import './TaskBoard.css'
 import TaskCard from '../TaskCard/TaskCard'
 import TaskAside from '../TaskAside/TaskAside';
 import { useTaskService } from '../../hooks/useTaskService';
