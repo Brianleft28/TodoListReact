@@ -1,16 +1,31 @@
 import React from 'react'
-import { FaEdit } from "react-icons/fa";
+import ButtonEdit from '../TaskButtons/ButtonEdit.jsx'
+/* import ButtonDelete from '../TaskButtons/ButtonDelete.jsx'   */
 import { FaRegTrashAlt } from "react-icons/fa";
-const TaskCard = ({title, description}) => {
+
+import { useTaskService } from '../../hooks/useTaskService'
+
+
+const TaskCard = ({title, description, taskId }) => {
+const {deleteTask} = useTaskService()
   return (
 <tr  className="bg-gradient-to-bl from-transparent to-black  border-y-2 border-green-500">
-    <td className="border text-white px-4 py-2">{title}</td>
-      <td className="border border-transparent flex items-center justify-between px-4 py-2 text-white">{description}
-        <div className='flex gap-3 items-center justify-center '>
-          <FaEdit className='ml-11 hover:text-green-500 transition-all duration-150 hover:cursor-pointer'/>
-          <FaRegTrashAlt className='hover:text-red-500 transition-all duration-150 hover:cursor-pointer'/>
-        </div>
-      </td>
+    <td className="border whitespace-normal  text-white px-4 py-2">
+      <span className="block  break-words">
+      {title}
+      </span>
+    </td>
+    <td className="border border-transparent flex items-center justify-between px-4 py-2 text-white">
+    <span className="block whitespace-normal break-words">
+      {description}
+    </span>
+    <div className='flex gap-3 items-center justify-center '>
+      <ButtonEdit taskId={taskId}/>   
+      <button onClick={() => deleteTask(taskId)    }>
+         <FaRegTrashAlt className='hover:text-red-500 transition-all duration-150 hover:cursor-pointer'/>
+    </button>
+    </div>
+    </td>
 </tr>
   )
 }

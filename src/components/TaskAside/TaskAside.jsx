@@ -2,20 +2,33 @@ import './TaskAside.css'
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import TaskForm from '../TaskForm/TaskForm.jsx';
+import { useTaskService } from '../../hooks/useTaskService.js'
+import { useEffect } from 'react';
 
 
 
-const TaskAside = ({  }) => {
+const TaskAside = ({   }) => {
+  
+    const { tasks, addTask, deleteTask, updateTask } = useTaskService();
     
     const [isOpen, setIsOpen] = useState(false);
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
       };  
-    const handleSubmit = (data) => {
-        console.log("Nueva tarea:", data);
+
+    const onSubmit = async (title, description) => {
+        await addTask(title, description);
         setIsOpen(false); 
     };
+
+    useEffect(() => {
+        console.log(tasks), [tasks] 
+    }
+    )
 
   return (
     <div >
@@ -27,7 +40,12 @@ const TaskAside = ({  }) => {
             >
         <div className='md:flex md:items-center mb-6'>
 
-            <TaskForm onSubmit={handleSubmit} />
+            <TaskForm 
+            onSubmit={onSubmit} 
+            title={title} 
+            description={description} 
+            setTitle={setTitle}
+            setDescription={setDescription}/>
             <button className="fixed bottom-4 right-12 w-52 justify-center bg-red-600 text-white px-4 py-2 rounded-md transition duration-300 ease-in-out hover:bg-red-500" onClick={handleToggle}>
                 {isOpen ? 'Cerrar' : '...'}
             </button>
@@ -35,9 +53,8 @@ const TaskAside = ({  }) => {
     </motion.aside>
     {
         !isOpen && (
-
             <button 
-            className={`fixed bottom-4 right-4 ${isOpen ? 'hidden' : 'block'} flex gap-1 items-center bg-green-500 text-white px-3 py-1 rounded-md transition duration-300 ease-in-out hover:bg-green-600`} onClick={handleToggle}
+            className={`fixed bottom-6 right-10 ${isOpen ? 'hidden' : 'block'} flex gap-1 items-center bg-green-500 text-white px-3 py-1 rounded-md transition duration-300 ease-in-out hover:bg-green-600`} onClick={handleToggle}
             >
         <span className='text-3xl mb-1'>+</span>Agregar tarea
     </button>

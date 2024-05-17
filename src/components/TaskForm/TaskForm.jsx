@@ -1,27 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { useTaskService } from '../../hooks/useTaskService.js'
+import React, { useEffect } from 'react'
 
 
-const TaskForm = ({  }) => {
-  const { tasks, addTask, deleteTask, updateTask } = useTaskService();
+const TaskForm = ({onSubmit, title, description, setTitle, setDescription }) => {
 
 
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+  const handleSubmit = () => {
+    onSubmit(title, description);
+    setTitle('');
+    setDescription('');
+  };
 
-    const handleSubmit = async (e) => {
-      // Uso las funciones que defini en el hook taskService
-        setTitle('');
-        setDescription(''); 
-        console.log("Tarea Agregada", title + ' ' + description);
-        await addTask(title, description);
 
-      };
 
-      useEffect(()=> {
-        console.log("tareas: ", tasks)
-        }, [tasks]  )
-
+    
+ 
   return (
    <form onSubmit={handleSubmit} className='flex flex-col gap-1 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
       <label className='selection:bg-none text-gray-500 font-bold  p-2'>Agregar Tarea</label>
