@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 
 const TaskForm = ({onSubmit, title, description, setTitle, setDescription }) => {
 
 
-  const handleSubmit = () => {
-    onSubmit(title, description);
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    onSubmit(e, title, description);
     setTitle('');
     setDescription('');
   };

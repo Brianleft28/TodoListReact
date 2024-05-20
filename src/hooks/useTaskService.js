@@ -5,7 +5,7 @@ import { saveTasks, getTasks } from "./localStorageService.js";
 
 export const useTaskService = () => {
     // Almacenamiento de tareas
-    const [tasks, setTasks] = useState(getTasks())
+    const [tasks, setTasks] = useState(getTasks() || [])
     
     
     useEffect(() => { 

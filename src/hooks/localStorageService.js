@@ -1,6 +1,7 @@
 // localStorageService.js
 
 export const saveTasks = (tasks) => {
+    
     try {
         
         const tasksToSave = tasks.map(task => ({
@@ -14,7 +15,7 @@ export const saveTasks = (tasks) => {
     } catch (error) {
         console.error('Error al guardar en el local storage: ' + error)
     }
-
+ 
 }
 
 export const getTasks = () => {

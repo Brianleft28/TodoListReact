@@ -1,15 +1,14 @@
 import './TaskAside.css'
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { motion } from 'framer-motion';
 import TaskForm from '../TaskForm/TaskForm.jsx';
-import { useTaskService } from '../../hooks/useTaskService.js'
-import { useEffect } from 'react';
+import TaskContext from '../../context/TaskContext';
 
 
 
-const TaskAside = ({   }) => {
+const TaskAside = () => { 
+    const {tasks, addTask} = useContext(TaskContext);
   
-    const { tasks, addTask, deleteTask, updateTask } = useTaskService();
     
     const [isOpen, setIsOpen] = useState(false);
     const [title, setTitle] = useState('');
@@ -20,15 +19,21 @@ const TaskAside = ({   }) => {
         setIsOpen(!isOpen);
       };  
 
-    const onSubmit = async (title, description) => {
-        await addTask(title, description);
-        setIsOpen(false); 
-    };
+      const onSubmit = async (e, title, description) => {
+          try {
+              e.preventDefault();
+              console.log(e)
+              await addTask(title, description);
+        } catch (error) {
+            console.log('Error: ' +  error);
+        }
+        setTimeout(() => {
+              setTitle('');
+              setDescription('');
+              setIsOpen(false); 
+            }, 0);
+      };
 
-    useEffect(() => {
-        console.log(tasks), [tasks] 
-    }
-    )
 
   return (
     <div >

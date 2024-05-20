@@ -8,7 +8,7 @@ const ButtonDelete = ({ taskId }) => {
   
   return (
     <>
-    <button onClick={() => deleteTask(taskId)}>
+    <button onClick={() => deleteTask(taskId)    }>
       <FaRegTrashAlt className='hover:text-red-500 transition-all duration-150 hover:cursor-pointer'/>
     </button>
     

@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ButtonEdit from '../TaskButtons/ButtonEdit.jsx'
 /* import ButtonDelete from '../TaskButtons/ButtonDelete.jsx'   */
 import { FaRegTrashAlt } from "react-icons/fa";
-
-import { useTaskService } from '../../hooks/useTaskService'
+import TaskContext from '../../context/TaskContext.jsx';
 
 
 const TaskCard = ({title, description, taskId }) => {
-const {deleteTask} = useTaskService()
+
+const { deleteTask } = useContext(TaskContext);
+
   return (
 <tr  className="bg-gradient-to-bl from-transparent to-black  border-y-2 border-green-500">
     <td className="border whitespace-normal  text-white px-4 py-2">

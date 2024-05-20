@@ -1,10 +1,15 @@
 import TaskCard from '../TaskCard/TaskCard'
 import TaskAside from '../TaskAside/TaskAside';
-import { useTaskService } from '../../hooks/useTaskService';
+import { useContext, useEffect } from 'react';
+import TaskContext from '../../context/TaskContext';
 
 const Board = () => {
 
-const { tasks }  = useTaskService();
+const { tasks }  = useContext(TaskContext);
+
+useEffect (() => {
+  console.log('tasks', tasks)
+},[tasks])
 
 if (!tasks || tasks.length === 0) {
     return (  
