@@ -5,7 +5,15 @@ import TaskContext from '../../context/TaskContext';
 
 const Board = () => {
 
-const { tasks }  = useContext(TaskContext);
+const { tasks, setIsOpen, setCurrentTask }  = useContext(TaskContext);
+
+const handleEditClick = (task) => {
+  setCurrentTask(task);
+  setIsOpen(true);
+}
+
+
+
 
 useEffect (() => {
   console.log('tasks', tasks)
@@ -39,6 +47,7 @@ if (!tasks || tasks.length === 0) {
               <TaskCard taskId={task.id} title={task.title} description={task.description} key={index} />
             ))
             }
+
           </tbody>
         </table>
     </div>

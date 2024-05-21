@@ -43,20 +43,28 @@ const addTask = async (title, description) => {
             if (newTasks.length === prevTasks.length) {
                 return prevTasks;
             }
-            console.log(newTasks, 'newTasks' + ' tarea eliminada' + taskId)
+            console.log('tarea eliminada: ' + taskId)
 
             saveTasks(newTasks)
             return [...newTasks];
         });
     };
 
-    // Función para actualizar una tarea existente
-    const updateTask = (taskId, updatedTask) => {
-        const updatedTasks = tasks.map(task =>
-          task.id === taskId ? { ...task, ...updatedTask } : task
-        );
-        setTasks(updatedTasks);
-    };
+// Función para actualizar una tarea existente
+const onEdit = (taskId, updatedTask) => {
+    const updatedTasks = tasks.map(task =>
+        task.id === taskId ? { ...task, ...updatedTask } : task
+    );
+    setTasks(updatedTasks);
+};
+
+// Función para marcar una tarea como completada
+const onComplete = (taskId) => {
+    const updatedTasks = tasks.map(task =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task
+    );
+    setTasks(updatedTasks);
+};
 
 
 
@@ -64,6 +72,7 @@ return {
     tasks,
     addTask,
     deleteTask,
-    updateTask
+    onEdit,
+    onComplete
 };
 };
