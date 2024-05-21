@@ -21,7 +21,7 @@ const addTask = async (title, description) => {
                     id: 'task-' + (prevTasks.length + 1) + Date.now() + Math.random(), 
                     title,
                     description,
-                    completed: false,
+                    status: true,
                     isEditing: false
                 };
                 saveTasks([...prevTasks, newTask]);
@@ -59,20 +59,26 @@ const onEdit = (taskId, updatedTask) => {
 };
 
 // Función para marcar una tarea como completada
-const onComplete = (taskId) => {
+const setStatus = (taskId, status) => {
     const updatedTasks = tasks.map(task =>
-        task.id === taskId ? { ...task, completed: !task.completed } : task
+        task.id === taskId ? { ...task, completed: status } : task
     );
     setTasks(updatedTasks);
 };
 
-
+const startTask = (taskId) => setStatus(taskId, 'In process');
+const readyForStart = (taskId) => setStatus(taskId, 'Ready for start');
+const stopTask = (taskId) => setStatus(taskId, 'Stopped');
+const completeTask = (taskId) => setStatus(taskId, 'Completed');
 
 return {
     tasks,
     addTask,
     deleteTask,
     onEdit,
-    onComplete
+    startTask,  
+    readyForStart,
+    stopTask,
+    completeTask
 };
 };

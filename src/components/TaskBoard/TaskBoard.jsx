@@ -2,10 +2,11 @@ import TaskCard from '../TaskCard/TaskCard'
 import TaskAside from '../TaskAside/TaskAside';
 import { useContext, useEffect } from 'react';
 import TaskContext from '../../context/TaskContext';
+import TaskEditModal from '../TaskEditModal/TaskEditModal';
 
 const Board = () => {
 
-const { tasks, setIsOpen, setCurrentTask }  = useContext(TaskContext);
+const { isOpen ,tasks, setIsOpen, setCurrentTask }  = useContext(TaskContext);
 
 const handleEditClick = (task) => {
   setCurrentTask(task);
@@ -16,6 +17,7 @@ const handleEditClick = (task) => {
 
 
 useEffect (() => {
+  console.log('is open?: ' + console.log(isOpen))
   console.log('tasks', tasks)
 },[tasks])
 
@@ -39,17 +41,25 @@ if (!tasks || tasks.length === 0) {
             <tr className="selection:bg-none hover:cursor-default bg-green-500 border-b-4 border-gray-500 text-white">
               <th className="border border-green-500 px-4 py-2">Título</th>
               <th className="border border-green-500 px-4 py-2">Descripción</th>
+              <th className="border border-green-500 px-4 py-2">Estado</th>
             </tr>
           </thead>
           <tbody>
             {
             tasks.map((task, index) => (
-              <TaskCard taskId={task.id} title={task.title} description={task.description} key={index} />
+              <TaskCard 
+              taskId={task.id} 
+              title={task.title} 
+              description={task.description} 
+              status={task.status}
+              key={index}
+              onEditClick={()=> handleEditClick(task)} 
+              />
             ))
             }
-
           </tbody>
         </table>
+                {isOpen && <TaskEditModal />}
     </div>
   </div>
   <TaskAside />
