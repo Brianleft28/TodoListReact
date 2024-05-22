@@ -24,7 +24,7 @@ if (!tasks || tasks.length === 0) {
     return (  
     <>
       <div className='text-white flex justify-center min-h-full text-2xl'>
-        <h3 className='  my-auto'>Comience agregando una tarea</h3>
+        <h3 className='my-auto'>Comience agregando una tarea</h3>
       </div>
       <TaskAside/>
     </>
@@ -59,6 +59,7 @@ if (!tasks || tasks.length === 0) {
           </tbody>
         </table>
                 {isOpen && <TaskEditModal />}
+                
     </div>
   </div>
   <TaskAside />

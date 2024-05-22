@@ -5,11 +5,17 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    './src/**/*.{js,ts,jsx,tsx}',
     flowbite.content(),
   ],  
   theme: {
     extend: {},
   },
-  plugins: [require('flowbite/plugin')],
+  daisyui: {
+    darkTheme: "dim",
+    lightTheme: "lemonade",
+    themes: ["lemonade", "dim"],
+  },
+  plugins: [require('flowbite/plugin'),require('daisyui'),],
 }
 

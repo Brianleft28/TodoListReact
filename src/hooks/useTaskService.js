@@ -32,6 +32,7 @@ const addTask = async (title, description) => {
         catch (error) {
             console.log('Error agregando la tarea: ' + error)
             reject(error)
+            
         }
     })
 }

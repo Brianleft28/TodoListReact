@@ -35,8 +35,11 @@ const TaskForm = ({onSubmit, title, description, setTitle, setDescription }) => 
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         />
-        <button type="submit" className='fixed bottom-16 right-12 w-52 justify-center bg-green-500 shadow hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded' 
-        >Añadir Tarea</button>
+
+        <button type="submit" className='fixed bottom-16 right-12 w-52 justify-center btn btn-outline btn-primary  py-2 px-4' 
+        >
+          Añadir Tarea
+          </button>
    </form>
   )
 }
