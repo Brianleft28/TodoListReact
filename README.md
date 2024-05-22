@@ -12,6 +12,6 @@ npm install
 ## Comandos de consola para prettier
 
 ```bash
-  prettier:check
-  prettier:write
+  npm run prettier:check
+  npm run prettier:write
 ```
