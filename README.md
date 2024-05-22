@@ -1,11 +1,21 @@
 # ToDoList
 
-## Instalación 
+## Instalación
 
 ```bash
-git clone https://github.com/Brianleft28/TodoListReact 
+git clone https://github.com/Brianleft28/TodoListReact
 cd TodoListReact
 
 npm install
 ```
 
+## Comandos de consola para prettier
+
+```bash
+  prettier:check
+  prettier:write
+```
+
+"scripts": {
+
+}
