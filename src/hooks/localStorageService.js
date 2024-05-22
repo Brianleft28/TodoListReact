@@ -8,7 +8,7 @@ export const saveTasks = (tasks) => {
             id: task.id,
             title: task.title,
             description: task.description,
-            completed: task.completed,
+            status: task.status,
             isEditing: task.isEditing
         }))
         localStorage.setItem('tasks', JSON.stringify(tasksToSave));

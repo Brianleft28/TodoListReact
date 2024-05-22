@@ -40,7 +40,7 @@ const TaskAside = () => {
             className="task-aside bg-gradient-to-b from-green-400 to-white p-3 w-full max-w-xs"
             initial={{ x: '100%', opacity: 0 }}
             animate={{ x: isOpen ? 0 : '100%', opacity: isOpen ? 1 : 0 }}
-            transition={{ duration: 0.1 }}
+            transition={{ duration: 0.5 }}
             >
         <div className='flex justify-center  md:items-center mb-6'>
 

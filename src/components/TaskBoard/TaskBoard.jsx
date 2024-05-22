@@ -15,7 +15,6 @@ const handleEditClick = (task) => {
 
 
 
-
 useEffect (() => {
   console.log('is open?: ' + console.log(isOpen))
   console.log('tasks', tasks)
