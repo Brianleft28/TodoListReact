@@ -17,37 +17,41 @@ const TaskForm = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-1 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 justify-center "
+      className="flex flex-col gap-1 bg-gradient-to-br from-base-100 via-base-200 to-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4 justify-center "
     >
-      <label className="selection:bg-none  text-black font-bold">
+      <label className="selection:bg-none  text-primary font-bold">
         Agregar una tarea
       </label>
-      <hr className="mt-3" />
-      <label className="selection:bg-none block text-gray-500 font-bold md:text-left pr-4">
-        Titulo
+      <hr className="mt-3 border-error" />
+      <label className="form-control w-full max-w-xs">
+        <div className="label">
+          <span className="label-text">Introduzca una tarea</span>
+        </div>
+        <input
+          type="text"
+          placeholder="Soy una tarea"
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
+          className="input input-bordered w-full max-w-xs"
+        />
       </label>
-      <input
-        type="text"
-        className="bg-gray-200 appearance-none border-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline focus:bg-white focus:border-green-500"
-        placeholder="Título"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        required
-      />
-      <label className="block text-gray-500 font-bold md:text-left pr-4">
-        Descripción
+
+      <label className="form-control w-full max-w-xs">
+        <div className="label">
+          <span className="label-text">Introduzca una descripción</span>
+        </div>
+
+        <textarea
+          className="textarea textarea-bordered"
+          placeholder="Soy una descripción de la tarea"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        ></textarea>
       </label>
-      <textarea
-        required
-        placeholder="Descripción"
-        className="bg-gray-200 appearance-none border-1 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline focus:bg-white focus:border-green-500"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
 
       <button
         type="submit"
-        className="fixed bottom-16 right-12 w-52 justify-center btn btn-outline btn-primary  py-2 px-4"
+        className="fixed bottom-20 right-12 w-52 justify-center btn btn-outline btn-primary  py-2 px-4"
       >
         Añadir Tarea
       </button>

@@ -4,7 +4,7 @@ import { FaEdit } from 'react-icons/fa';
 const ButtonEdit = () => {
   return (
     <>
-      <FaEdit className="ml-11 hover:text-green-500 transition-all duration-150 hover:cursor-pointer" />
+      <FaEdit className="hover:text-primary transition-all duration-150 hover:cursor-pointer" />
     </>
   );
 };

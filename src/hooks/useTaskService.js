@@ -12,22 +12,26 @@ export const useTaskService = () => {
   // Funcion para agregar nuevas tareas
   const addTask = async (title, description) => {
     return new Promise((resolve, reject) => {
-      try {
-        setTasks((prevTasks) => {
-          const newTask = {
-            id: 'task-' + (prevTasks.length + 1) + Date.now() + Math.random(),
-            title,
-            description,
-            status: '',
-            isEditing: false,
-          };
-          saveTasks([...prevTasks, newTask]);
-          return [...prevTasks, newTask];
-        });
-        resolve('Tarea agregada correctamente');
-      } catch (error) {
-        console.log('Error agregando la tarea: ' + error);
-        reject(error);
+      if (!title || !description) {
+        reject(new Error('El título y la descripción son obligatorios'));
+      } else {
+        try {
+          setTasks((prevTasks) => {
+            const newTask = {
+              id: 'task-' + (prevTasks.length + 1) + Date.now() + Math.random(),
+              title,
+              description,
+              status: '',
+              isEditing: false,
+            };
+            saveTasks([...prevTasks, newTask]);
+            return [...prevTasks, newTask];
+          });
+          resolve('Tarea agregada correctamente');
+        } catch (error) {
+          console.log('Error agregando la tarea: ' + error);
+          reject(error);
+        }
       }
     });
   };

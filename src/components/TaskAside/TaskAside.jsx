@@ -20,7 +20,7 @@ const TaskAside = () => {
       e.preventDefault();
       await addTask(title, description);
     } catch (error) {
-      console.log('Error: ' + error);
+      alert(error);
     }
     setTimeout(() => {
       setTitle('');
@@ -32,7 +32,7 @@ const TaskAside = () => {
   return (
     <div>
       <motion.aside
-        className="task-aside bg-gradient-to-b from-neutral-content to-base-300 p-3 w-full max-w-xs"
+        className="task-aside bg-gradient-to-b from-neutral to-base-300 p-3 w-full max-w-xs"
         initial={{ x: '100%', opacity: 0 }}
         animate={{ x: isOpen ? 0 : '100%', opacity: isOpen ? 1 : 0 }}
         transition={{ duration: 0.1 }}
@@ -46,7 +46,7 @@ const TaskAside = () => {
             setDescription={setDescription}
           />
           <button
-            className="fixed bottom-2 right-12 w-52 justify-center  btn btn-outline btn-secondary px-4 py-2"
+            className="fixed bottom-5 right-12 w-52 justify-center btn  btn-secondary px-4 py-2"
             onClick={handleToggle}
           >
             {isOpen ? 'Cerrar' : '...'}

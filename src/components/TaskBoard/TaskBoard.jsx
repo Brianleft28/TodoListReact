@@ -1,3 +1,5 @@
+import './taskboard.css';
+
 import TaskCard from '../TaskCard/TaskCard';
 import TaskAside from '../TaskAside/TaskAside';
 import { useContext, useEffect } from 'react';
@@ -20,8 +22,8 @@ const Board = () => {
   if (!tasks || tasks.length === 0) {
     return (
       <>
-        <div className="text-white flex justify-center min-h-full text-2xl">
-          <h3 className="my-auto">Comience agregando una tarea</h3>
+        <div className="text-neutral-content flex justify-center min-h-full text-2xl">
+          <h3 className="my-auto ">Comience agregando una tarea</h3>
         </div>
         <TaskAside />
       </>
@@ -29,21 +31,22 @@ const Board = () => {
   }
 
   return (
-    <div className="items-center mt-3 flex flex-col w-full">
-      <div className="w-full flex justify-center">
-        <div className="w-full md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto flex justify-center">
-          <table className="shadow-lg mx-auto w-full table-auto border-collapse border-y-2 border-x-2 border-green-500">
-            <thead>
-              <tr className="selection:bg-none hover:cursor-default bg-green-500 border-b-4 border-gray-500 text-white">
-                <th className="border border-green-500 px-4 py-2">Título</th>
-                <th className="border border-green-500 px-4 py-2">
-                  Descripción
-                </th>
-                <th className="border border-green-500 px-4 py-2">Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tasks.map((task, index) => (
+    <>
+      <div className="overflow-x-auto mt-5">
+        <table className="table table-xs mx-auto max-w-3xl justify-around-row">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>Titulo</th>
+              <th>Descripción</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tasks.map((task, index) => (
+              <>
+                <br className="text-base-100" />
                 <TaskCard
                   taskId={task.id}
                   title={task.title}
@@ -52,14 +55,15 @@ const Board = () => {
                   key={index}
                   onEditClick={() => handleEditClick(task)}
                 />
-              ))}
-            </tbody>
-          </table>
-          {isOpen && <TaskEditModal />}
-        </div>
+                <hr className="hidden" />
+              </>
+            ))}
+          </tbody>
+        </table>
       </div>
+      {isOpen && <TaskEditModal />}
       <TaskAside />
-    </div>
+    </>
   );
 };
 

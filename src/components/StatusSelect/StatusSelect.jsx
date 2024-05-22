@@ -7,7 +7,7 @@ export const StatusSelect = ({ status, onChange }) => {
     <select
       value={status}
       onChange={statusSelect}
-      className="border whitespace-normal text-black px-4 py-2"
+      className="select w-full max-w-xs min-w-52"
     >
       <option value="initial">- - -</option>
       <option value="Complete">Complete</option>
