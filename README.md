@@ -15,7 +15,3 @@ npm install
   prettier:check
   prettier:write
 ```
-
-"scripts": {
-
-}
