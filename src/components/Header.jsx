@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 
 const Header = () => {
   const [theme, setTheme] = useState(
-    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'lofi',
+    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'cyberpunk',
   );
 
   const handleToggle = () => {
-    setTheme(theme === 'lofi' ? 'sunset' : 'lofi');
+    setTheme(theme === 'cyberpunk' ? 'dim' : 'cyberpunk');
   };
 
   useEffect(() => {

@@ -32,11 +32,11 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
         <td>
           <div className="flex items-center gap-3 min-w-20">
             <div className={`p-1 rounded ${renderStatus(status)}`}>
-              {status}
+              {status} 
             </div>
           </div>
         </td>
-
+      
         <td>
           <div className="flex items-center gap-4">
             <StatusSelect

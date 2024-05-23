@@ -1,20 +1,23 @@
-const flowbite = require('flowbite-react/tailwind');
+const flowbite = require("flowbite-react/tailwind");
 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx}',
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
     './src/**/*.{js,ts,jsx,tsx}',
     flowbite.content(),
-  ],
+  ],  
   theme: {
     extend: {},
   },
   daisyui: {
-    darkTheme: 'sunset',
-    lightTheme: 'lofi',
-    themes: ['lofi', 'sunset'],
+    darkTheme: "cyberpunk",
+    lightTheme: "dim",
+    themes: ["dim", "cyberpunk"],
+    styled: true,
+    
   },
-  plugins: [require('flowbite/plugin'), require('daisyui')],
-};
+  plugins: [require('flowbite/plugin'),require('daisyui'),],
+}
+
