@@ -14,32 +14,44 @@ const Estadisticas = () => {
 
           <div className="place-self-start flex mx-5">
             <h3 className="font-semibold">Tareas completas:</h3>
-            <span className="text-secondary-content mx-2">
+            <span className="text-secondary-content mx-2 flex ">
+            <div className='bg-primary text-secondary px-2 '>
               {tasks.filter((task) => task.status === 'Completo').length}
+            </div>
             </span>
           </div>
-          <div className="place-self-start flex mx-5">
+          <div className="place-self-start flex mx-5 justify-center align-middle">
             <h3 className="font-semibold">Tareas en proceso:</h3>
-            <span className="text-secondary-content mx-2">
+            <span className="text-secondary-content mx-2 flex ">
+            <div className='bg-primary text-secondary px-2 '>
               {tasks.filter((task) => task.status === 'En proceso').length}
+            </div>
             </span>
           </div>
           <div className="place-self-start flex mx-5">
             <h3 className="font-semibold">Tareas en espera:</h3>
-            <span className="text-secondary-content mx-2">
+            <span className="text-secondary-content mx-2 flex ">
+            <div className='bg-primary text-secondary px-2 '>
+
               {tasks.filter((task) => task.status === 'En espera').length}
+            </div>
             </span>
           </div>
           <div className="place-self-start flex mx-5">
+
             <h3 className="font-semibold">Tareas paradas:</h3>
-            <span className="text-secondary-content mx-2">
+            <span className="text-secondary-content mx-2 flex ">
+          <div className='bg-primary text-secondary px-2 '>
               {tasks.filter((task) => task.status === 'Parada').length}
+</div>
             </span>
           </div>
         <hr className='text-secondary-content w-28 mt-2 ml-[85px] place-self-start'/>
-          <div className="place-self-start flex mx-5">
+          <div className="place-self-start flex gap-3 mx-5">
             <h3 className="font-semibold">Tareas totales:</h3>
-            <span className="text-secondary-content mx-2">{tasks.length}</span>
+          <div className='bg-secondary text-primary px flex '>
+            <span className="text-secondary-content px-2 ">{tasks.length}</span>
+          </div>
           </div>
         </Card>
         <Divider> </Divider>
