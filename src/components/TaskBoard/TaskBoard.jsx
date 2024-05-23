@@ -14,11 +14,6 @@ const Board = () => {
     setIsOpen(true);
   };
 
-  useEffect(() => {
-    console.log('is open?: ' + console.log(isOpen));
-    console.log('tasks', tasks);
-  }, [tasks]);
-
   if (!tasks || tasks.length === 0) {
     return (
       <>
@@ -45,14 +40,14 @@ const Board = () => {
           </thead>
           <tbody>
             <br />
-            {tasks.map((task, index) => (
+            {tasks.map((task) => (
               <>
                 <TaskCard
                   taskId={task.id}
                   title={task.title}
                   description={task.description}
                   status={task.status}
-                  key={index}
+                  key={task.id}
                   onEditClick={() => handleEditClick(task)}
                 />
                 <hr className="hidden" />

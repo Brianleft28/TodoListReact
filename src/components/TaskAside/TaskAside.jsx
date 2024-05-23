@@ -43,7 +43,7 @@ const TaskAside = () => {
             title={title}
             description={description}
             setTitle={setTitle}
-            setDescription={setDescription} 
+            setDescription={setDescription}
           />
           <button
             className="fixed bottom-5 right-12 w-52 justify-center btn  btn-error px-4 py-2"

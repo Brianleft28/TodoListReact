@@ -38,7 +38,9 @@ const TaskEditModal = () => {
       ></div>
       <div className="bg-gradient-to-b border-2 border-secondary from-base to-base-300 p-6 w-96 relative z-10">
         <label className="form-control w-full max-w-xs">
-          <h2 className="text-xl ml-24 font-bold mb-4 text-primary ">Editar Tarea</h2>
+          <h2 className="text-xl ml-24 font-bold mb-4 text-primary ">
+            Editar Tarea
+          </h2>
           <span className="label-text mb-1 ml-2">Nuevo Titulo</span>
           <input
             type="text"
