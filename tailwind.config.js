@@ -12,8 +12,8 @@ export default {
     extend: {},
   },
   daisyui: {
-    darkTheme: 'cyberpunk',
-    lightTheme: 'luxury',
+    darkTheme: 'luxury',
+    lightTheme: 'lemonade',
     themes: ['sunset', 'nord', 'dim', 'winter', 'coffee', 'night', 'lemonade', 'acid', 'business', 'autumn', 'cmyk', 'dracula', 'luxury', 'black', 'wireframe', 'fantasy', 'pastel', 'lofi', 'aqua', 'forest', 'synthwave', 'corporate', 'cyberpunk'],
     styled: true,
   },

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import TaskContext from '../../context/TaskContext';
+import { Button } from 'react-daisyui';
 
 const TaskEditModal = () => {
   const { isOpen, setIsOpen, currentTask, onEdit } = useContext(TaskContext);
@@ -38,9 +39,6 @@ const TaskEditModal = () => {
       ></div>
       <div className="bg-gradient-to-b border-2 border-secondary from-base to-base-300 p-6 w-96 relative z-10">
         <label className="form-control w-full max-w-xs">
-          <h2 className="text-xl ml-24 font-bold mb-4 text-primary ">
-            Editar Tarea
-          </h2>
           <span className="label-text mb-1 ml-2">Nuevo Titulo</span>
           <input
             type="text"
@@ -59,15 +57,12 @@ const TaskEditModal = () => {
           />
         </label>
         <div className="flex justify-center gap-3">
-          <button
-            onClick={handleSave}
-            className="btn btn-outline btn-primary  font-bold py-2 px-4 rounded"
-          >
-            Guardar
-          </button>
+          <Button onClick={handleSave} color="ghost">
+          Guardar
+         </Button>
           <button
             onClick={() => setIsOpen(false)}
-            className="btn btn-outline btn-error rounded"
+            className="btn btn-error rounded"
           >
             Cancelar
           </button>
