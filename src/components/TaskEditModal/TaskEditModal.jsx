@@ -58,8 +58,8 @@ const TaskEditModal = () => {
         </label>
         <div className="flex justify-center gap-3">
           <Button onClick={handleSave} color="ghost">
-          Guardar
-         </Button>
+            Guardar
+          </Button>
           <button
             onClick={() => setIsOpen(false)}
             className="btn btn-error rounded"

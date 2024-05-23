@@ -12,8 +12,8 @@ export const StatusSelect = ({ status, onChange }) => {
       <option value="initial">Seleccione un estado</option>
       <option value="Completo">Completo</option>
       <option value="En proceso">En proceso</option>
-      <option value="En cola">En cola</option>
-      <option value="Parado">Parado</option>
+      <option value="En espera">En espera</option>
+      <option value="Parada">Parada</option>
     </select>
   );
 };

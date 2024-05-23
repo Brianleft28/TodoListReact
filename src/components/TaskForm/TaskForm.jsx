@@ -45,8 +45,11 @@ const TaskForm = ({
         ></textarea>
       </label>
 
-       
-      <Button type="submit" color="ghost" className={'fixed bottom-20 right-12 w-52'}>
+      <Button
+        type="submit"
+        color="ghost"
+        className={'fixed bottom-20 right-12 w-52'}
+      >
         Añadir tarea
       </Button>
     </form>

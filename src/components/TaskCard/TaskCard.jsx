@@ -15,9 +15,9 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
         return 'bg-success text-neutral  ';
       case 'En proceso':
         return 'bg-yellow-500 text-neutral ';
-      case 'En cola':
+      case 'En espera':
         return 'bg-info text-neutral ';
-      case 'Parado':
+      case 'Parada':
         return 'bg-error text-neutral ';
       default:
         return 'hidden ';
