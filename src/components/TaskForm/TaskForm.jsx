@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-daisyui';
 
 const TaskForm = ({
   onSubmit,
@@ -17,12 +18,8 @@ const TaskForm = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="border-2 border-secondary flex flex-col gap-1 bg-gradient-to-br from-base-100 via-base-200 to-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4 justify-center "
+      className="flex flex-col gap-1 bg-gradient-to-br from-base-100 via-base-200 to-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4 justify-center "
     >
-      <label className="selection:bg-none  text-primary font-bold">
-        Agregar una tarea
-      </label>
-      <hr className="mt-3 border-secondary h-10 " />
       <label className="form-control w-full max-w-xs">
         <div className="label">
           <span className="label-text">Introduzca una tarea</span>
@@ -48,12 +45,10 @@ const TaskForm = ({
         ></textarea>
       </label>
 
-      <button
-        type="submit"
-        className="fixed bottom-20 right-12 w-52 justify-center btn btn-outline btn-primary  py-2 px-4"
-      >
-        Añadir Tarea
-      </button>
+       
+      <Button type="submit" color="ghost" className={'fixed bottom-20 right-12 w-52'}>
+        Añadir tarea
+      </Button>
     </form>
   );
 };
