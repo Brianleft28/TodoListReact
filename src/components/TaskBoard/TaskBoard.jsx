@@ -7,34 +7,34 @@ import TaskContext from '../../context/TaskContext';
 import TaskEditModal from '../TaskEditModal/TaskEditModal';
 /* dnd */
 import { DndContext, closestCenter } from '@dnd-kit/core';
-import { SortableContext, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable';
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+  arrayMove,
+} from '@dnd-kit/sortable';
 import { saveTasks } from '../../hooks/localStorageService';
 
 const Board = () => {
-  const { isOpen, tasks, setTasks, setIsOpen, setCurrentTask, saveTask } = useContext(TaskContext);
+  const { isOpen, tasks, setTasks, setIsOpen, setCurrentTask, saveTask } =
+    useContext(TaskContext);
 
   const handleEditClick = (task) => {
     setCurrentTask(task);
     setIsOpen(true);
   };
 
-  const handleDragEnd = (event) => { 
-    const {active, over} = event;
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
 
     tasks.findIndex((task) => task.id === active.id);
 
     const oldIndex = tasks.findIndex((task) => task.id === active.id);
     const newIndex = tasks.findIndex((task) => task.id === over.id);
-    
+
     const newOrder = arrayMove(tasks, oldIndex, newIndex);
     setTasks(newOrder);
-    saveTasks(newOrder)
-
-  }
-
-
-
-
+    saveTasks(newOrder);
+  };
 
   if (!tasks || tasks.length === 0) {
     return (
@@ -62,15 +62,14 @@ const Board = () => {
           </thead>
           <tbody>
             <br />
-              <DndContext
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
+            <DndContext
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext
+                items={tasks}
+                strategy={verticalListSortingStrategy}
               >
-                <SortableContext 
-                  items={tasks} 
-                  strategy={verticalListSortingStrategy}  
-              >
-
                 {tasks.map((task) => (
                   <>
                     <TaskCard
@@ -80,11 +79,11 @@ const Board = () => {
                       status={task.status}
                       key={task.id}
                       onEditClick={() => handleEditClick(task)}
-                      />
+                    />
                     <hr className="hidden" />
                   </>
                 ))}
-                </SortableContext>
+              </SortableContext>
             </DndContext>
           </tbody>
         </table>
