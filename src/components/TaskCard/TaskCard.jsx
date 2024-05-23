@@ -11,14 +11,14 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
 
   const renderStatus = (status) => {
     switch (status) {
-      case 'Complete':
-        return 'bg-green-500 ';
-      case 'In process':
-        return 'bg-yellow-500 ';
-      case 'Ready for start':
-        return 'bg-blue-500 ';
-      case 'Stopped':
-        return 'bg-red-500 ';
+      case 'Completo':
+        return 'bg-success text-neutral  ';
+      case 'En proceso':
+        return 'bg-yellow-500 text-neutral ';
+      case 'En cola':
+        return 'bg-info text-neutral ';
+      case 'Parado':
+        return 'bg-error text-neutral ';
       default:
         return 'hidden ';
     }
@@ -31,7 +31,9 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
         <th className="max-w-80 overflow-auto break-words">{description}</th>
         <td>
           <div className="flex items-center gap-3 min-w-20">
-            <div>{status}</div>
+            <div className={`p-1 rounded ${renderStatus(status)}`}>
+              {status}
+            </div>
           </div>
         </td>
 

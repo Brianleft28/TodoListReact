@@ -32,7 +32,7 @@ const TaskAside = () => {
   return (
     <div>
       <motion.aside
-        className="task-aside bg-gradient-to-b from-neutral to-base-300 p-3 w-full max-w-xs"
+        className="task-aside bg-gradient-to-b from-base to-base-content p-3 w-full max-w-xs"
         initial={{ x: '100%', opacity: 0 }}
         animate={{ x: isOpen ? 0 : '100%', opacity: isOpen ? 1 : 0 }}
         transition={{ duration: 0.1 }}

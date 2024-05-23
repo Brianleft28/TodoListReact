@@ -13,8 +13,8 @@ export default {
   },
   daisyui: {
     darkTheme: 'sunset',
-    lightTheme: 'lemonade',
-    themes: ['lemonade', 'sunset'],
+    lightTheme: 'lofi',
+    themes: ['lofi', 'sunset'],
   },
   plugins: [require('flowbite/plugin'), require('daisyui')],
 };

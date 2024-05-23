@@ -9,11 +9,11 @@ export const StatusSelect = ({ status, onChange }) => {
       onChange={statusSelect}
       className="select w-full max-w-xs min-w-52"
     >
-      <option value="initial">- - -</option>
-      <option value="Complete">Complete</option>
-      <option value="In process">In process</option>
-      <option value="Ready for start">Ready for start</option>
-      <option value="Stopped">Stopped</option>
+      <option value="initial">Seleccione un estado</option>
+      <option value="Completo">Completo</option>
+      <option value="En proceso">En proceso</option>
+      <option value="En cola">En cola</option>
+      <option value="Parado">Parado</option>
     </select>
   );
 };

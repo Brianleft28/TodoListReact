@@ -32,11 +32,11 @@ const Board = () => {
 
   return (
     <>
-      <div className="overflow-x-auto mt-5">
-        <table className="table table-xs mx-auto max-w-3xl justify-around-row">
+      <div className="overflow-x-auto">
+        <table className="table table-xs mx-auto justify-around-row">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="pb-2 p-2 border-b-1 border-neutral">
               <th>Titulo</th>
               <th>Descripción</th>
               <th>Estado</th>
@@ -44,9 +44,9 @@ const Board = () => {
             </tr>
           </thead>
           <tbody>
+            <br />
             {tasks.map((task, index) => (
               <>
-                <br className="text-base-100" />
                 <TaskCard
                   taskId={task.id}
                   title={task.title}

@@ -36,17 +36,15 @@ const TaskEditModal = () => {
         className="fixed inset-0 bg- opacity-50"
         onClick={() => setIsOpen(false)}
       ></div>
-      <div className="bg-gradient-to-b from-neutral to-base-100 p-6 w-96 relative z-10">
+      <div className="bg-gradient-to-b border-2 border-secondary from-base to-base-300 p-6 w-96 relative z-10">
         <label className="form-control w-full max-w-xs">
-          <h2 className="text-xl text-primary  ml-28 font-semibold mb-4">
-            Editar Tarea
-          </h2>
+          <h2 className="text-xl ml-28 font-bold mb-4">Editar Tarea</h2>
           <span className="label-text mb-1 ml-2">Nuevo Titulo</span>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="input w-full max-w-xs mb-2"
+            className="input w-full max-w-xs mb-2 bg-base-300"
           />
         </label>
         <label className="form-control w-full max-w-xs mb-4">
@@ -55,7 +53,7 @@ const TaskEditModal = () => {
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="input w-full max-w-xs"
+            className="input w-full max-w-xs bg-base-300"
           />
         </label>
         <div className="flex justify-center gap-3">
