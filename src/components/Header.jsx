@@ -21,9 +21,11 @@ const Header = () => {
     <>
       <Navbar>
         <div className="flex-1">
+            <Link to="/"> 
           <Button tag="a" color="ghost" className="normal-case text-xl">
             TaskManager
           </Button>
+            </Link>
         </div>
         <div className="flex-none">
           <Menu className="flex flex-row px-1">
