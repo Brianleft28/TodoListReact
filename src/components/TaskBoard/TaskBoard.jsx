@@ -1,5 +1,5 @@
 import './taskboard.css';
-
+import React from 'react';
 import TaskCard from '../TaskCard/TaskCard';
 import TaskAside from '../TaskAside/TaskAside';
 import { useContext } from 'react';
@@ -21,6 +21,7 @@ const Board = () => {
   const handleEditClick = (task) => {
     setCurrentTask(task);
     setIsOpen(true);
+    console.log(tasks)
   };
 
   const handleDragEnd = (event) => {
@@ -71,17 +72,17 @@ const Board = () => {
                 strategy={verticalListSortingStrategy}
               >
                 {tasks.map((task) => (
-                  <>
-                    <TaskCard
-                      taskId={task.id}
-                      title={task.title}
-                      description={task.description}
-                      status={task.status}
-                      key={task.id}
-                      onEditClick={() => handleEditClick(task)}
-                    />
-                    <hr className="hidden" />
-                  </>
+        <React.Fragment key={task.id}>
+        <TaskCard
+          taskId={task.id}
+          title={task.title}
+          description={task.description}
+          status={task.status}
+          onEditClick={() => handleEditClick(task)}
+        />
+        <hr className="hidden" />
+      </React.Fragment>
+                  
                 ))}
               </SortableContext>
             </DndContext>
