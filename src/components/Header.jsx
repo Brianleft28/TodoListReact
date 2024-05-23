@@ -19,7 +19,7 @@ const Header = () => {
     <div className="navbar bg-base-100">
       <div className="flex-1 ml-4 hover:bg-none hover:cursor-pointer hover selection:bg-none">
         <h1 className="shadow-sm text-3xl">
-          <span className="text-primary">Tasker</span>
+          <span className="text-primary">Task</span>
           <span className="font-bold text-secondary text-3xl">Manager</span>
         </h1>
       </div>
