@@ -13,8 +13,8 @@ export default {
   },
   daisyui: {
     darkTheme: "cyberpunk",
-    lightTheme: "dim",
-    themes: ["dim", "cyberpunk"],
+    lightTheme: "luxury",
+    themes: ["luxury", "cyberpunk"],
     styled: true,
     
   },

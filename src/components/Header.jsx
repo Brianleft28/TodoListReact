@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 
 const Header = () => {
   const [theme, setTheme] = useState(
-    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'cyberpunk',
+    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'luxury',
   );
 
   const handleToggle = () => {
-    setTheme(theme === 'cyberpunk' ? 'dim' : 'cyberpunk');
+    setTheme(theme === 'cyberpunk' ? 'luxury' : 'cyberpunk');
   };
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Header = () => {
       <div className="flex-1 ml-4 hover:bg-none hover:cursor-pointer hover selection:bg-none">
         <h1 className="shadow-sm text-3xl">
           <span className="text-primary">Task</span>
-          <span className="font-bold text-secondary text-3xl">Manager</span>
+          <span className="font-bold text-secondary-content text-3xl">Manager</span>
         </h1>
       </div>
       <div className="flex-none px-4">
