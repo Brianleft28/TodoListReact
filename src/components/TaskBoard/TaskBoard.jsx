@@ -2,17 +2,39 @@ import './taskboard.css';
 
 import TaskCard from '../TaskCard/TaskCard';
 import TaskAside from '../TaskAside/TaskAside';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import TaskContext from '../../context/TaskContext';
 import TaskEditModal from '../TaskEditModal/TaskEditModal';
+/* dnd */
+import { DndContext, closestCenter } from '@dnd-kit/core';
+import { SortableContext, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable';
+import { saveTasks } from '../../hooks/localStorageService';
 
 const Board = () => {
-  const { isOpen, tasks, setIsOpen, setCurrentTask } = useContext(TaskContext);
+  const { isOpen, tasks, setTasks, setIsOpen, setCurrentTask, saveTask } = useContext(TaskContext);
 
   const handleEditClick = (task) => {
     setCurrentTask(task);
     setIsOpen(true);
   };
+
+  const handleDragEnd = (event) => { 
+    const {active, over} = event;
+
+    tasks.findIndex((task) => task.id === active.id);
+
+    const oldIndex = tasks.findIndex((task) => task.id === active.id);
+    const newIndex = tasks.findIndex((task) => task.id === over.id);
+    
+    const newOrder = arrayMove(tasks, oldIndex, newIndex);
+    setTasks(newOrder);
+    saveTasks(newOrder)
+
+  }
+
+
+
+
 
   if (!tasks || tasks.length === 0) {
     return (
@@ -27,7 +49,7 @@ const Board = () => {
 
   return (
     <>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-hidden">
         <table className="table table-xs mx-auto justify-around-row">
           {/* head */}
           <thead>
@@ -40,19 +62,30 @@ const Board = () => {
           </thead>
           <tbody>
             <br />
-            {tasks.map((task) => (
-              <>
-                <TaskCard
-                  taskId={task.id}
-                  title={task.title}
-                  description={task.description}
-                  status={task.status}
-                  key={task.id}
-                  onEditClick={() => handleEditClick(task)}
-                />
-                <hr className="hidden" />
-              </>
-            ))}
+              <DndContext
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <SortableContext 
+                  items={tasks} 
+                  strategy={verticalListSortingStrategy}  
+              >
+
+                {tasks.map((task) => (
+                  <>
+                    <TaskCard
+                      taskId={task.id}
+                      title={task.title}
+                      description={task.description}
+                      status={task.status}
+                      key={task.id}
+                      onEditClick={() => handleEditClick(task)}
+                      />
+                    <hr className="hidden" />
+                  </>
+                ))}
+                </SortableContext>
+            </DndContext>
           </tbody>
         </table>
       </div>

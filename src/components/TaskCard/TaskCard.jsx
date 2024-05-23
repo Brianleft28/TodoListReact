@@ -5,8 +5,27 @@ import ButtonEdit from '../TaskButtons/ButtonEdit.jsx';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import TaskContext from '../../context/TaskContext.jsx';
 import StatusSelect from '../StatusSelect/StatusSelect.jsx';
+/* dnd */
+import { useSortable } from '@dnd-kit/sortable';
+import {CSS} from '@dnd-kit/utilities';
 
 const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
+  
+const {
+  attributes,
+  listeners,
+  setNodeRef,
+  transform,
+  transition
+} =  useSortable({
+    id: taskId,
+  })
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition
+  }
+
   const { deleteTask, setStatus } = useContext(TaskContext);
 
   const renderStatus = (status) => {
@@ -26,7 +45,15 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
 
   return (
     <>
-      <tr className="justify-around-row hover">
+      <tr
+      ref={setNodeRef}
+
+      {...attributes}
+      {...listeners}
+
+      style={style}
+      className="justify-around-row hover"
+      >
         <td className="">{title}</td>
         <th className="max-w-80 overflow-auto break-words">{description}</th>
         <td>
@@ -36,7 +63,6 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
             </div>
           </div>
         </td>
-
         <td>
           <div className="flex items-center gap-4">
             <StatusSelect

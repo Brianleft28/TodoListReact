@@ -73,5 +73,6 @@ export const useTaskService = () => {
     deleteTask,
     onEdit,
     setStatus,
+    setTasks
   };
 };
