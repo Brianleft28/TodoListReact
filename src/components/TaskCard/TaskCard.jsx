@@ -5,7 +5,7 @@ import TaskContext from '../../context/TaskContext.jsx';
 import StatusSelect from '../StatusSelect/StatusSelect.jsx';
 /* dnd */
 import { useSortable } from '@dnd-kit/sortable';
-import { CSS, } from '@dnd-kit/utilities';
+import { CSS } from '@dnd-kit/utilities';
 import { Button } from 'react-daisyui';
 
 const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
@@ -17,21 +17,18 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
       listeners: {
         onDragStart: () => setIsDragging(true),
         onDragEnd: () => setIsDragging(false),
-        
       },
-      
-    }
-  );
+    });
 
-    const style = {
-      transform: CSS.Transform.toString({
-        ...transform,
-        scaleX: isDragging ? 1.2 : 1,
-        scaleY: isDragging ? 1.2 : 1,
-      }),
-      transition,
-      opacity: isDragging ? 0.5 : 1,
-    };
+  const style = {
+    transform: CSS.Transform.toString({
+      ...transform,
+      scaleX: isDragging ? 1.2 : 1,
+      scaleY: isDragging ? 1.2 : 1,
+    }),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
 
   const { deleteTask, setStatus } = useContext(TaskContext);
 
@@ -49,8 +46,6 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
         return 'hidden ';
     }
   };
-
-  
 
   return (
     <>
@@ -76,14 +71,16 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
               status={status}
               onChange={(newStatus) => setStatus(taskId, newStatus)}
             />
-             <div className="flex gap-3 " style={{pointerEvents: isDragging ? 'none' : 'auto'}}>
-             <Button  color="primary">
-        Editar
-      </Button>
+            <div
+              className="flex gap-3 "
+              style={{ pointerEvents: isDragging ? 'none' : 'auto' }}
+            >
+              <button onClick={()=> onEditClick(taskId)}>
+              <Button color="primary">Editar</Button>
+              </button>
               <button onClick={() => deleteTask(taskId)}>
-              <Button  color="error">
-        Eliminar
-      </Button></button>
+                <Button color="error">Eliminar</Button>
+              </button>
             </div>
           </div>
         </td>

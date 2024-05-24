@@ -7,7 +7,13 @@ import { useContext } from 'react';
 import TaskContext from '../../context/TaskContext';
 import TaskEditModal from '../TaskEditModal/TaskEditModal';
 /* dnd */
-import { DndContext, closestCenter, useSensor, useSensors, PointerSensor } from '@dnd-kit/core';
+import {
+  DndContext,
+  closestCenter,
+  useSensor,
+  useSensors,
+  PointerSensor,
+} from '@dnd-kit/core';
 import {
   SortableContext,
   verticalListSortingStrategy,
@@ -15,48 +21,58 @@ import {
 } from '@dnd-kit/sortable';
 import { saveTasks } from '../../hooks/localStorageService';
 
+
+/* Definición del tablero */
 const Board = () => {
+  /* usando el contexto */
   const { isOpen, tasks, setTasks, setIsOpen, setCurrentTask } =
     useContext(TaskContext);
 
+    /* Manejador del evento edit */
   const handleEditClick = (task) => {
     setCurrentTask(task);
     setIsOpen(true);
-    console.log(tasks)
+    console.log(tasks);
   };
-
+/* Manejador del evento arrastrar */
   const handleDragEnd = (event) => {
     const { active, over } = event;
 
-  if (over) {
-    const oldIndex = tasks.findIndex((task) => task.id === active.id);
-    const newIndex = tasks.findIndex((task) => task.id === over.id);
+    if (over) {
+      const oldIndex = tasks.findIndex((task) => task.id === active.id);
+      const newIndex = tasks.findIndex((task) => task.id === over.id);
 
-    const newOrder = arrayMove(tasks, oldIndex, newIndex);
-    setTasks(newOrder);
-    saveTasks(newOrder);
-  }
-}
-
-const sensors = useSensors(
-  useSensor(PointerSensor,{
-    activationConstraint: {
-      delay: 150,
-      tolerance: 1
+      const newOrder = arrayMove(tasks, oldIndex, newIndex);
+      setTasks(newOrder);
+      saveTasks(newOrder);
     }
-  }),
-)
+  };
+/* Sensores para activar el drop
+    En este caso se activa el drop luego de 150ms de estar sobre un elemento
+    y con una tolerancia de 1px
+*/
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        delay: 150,
+        tolerance: 1,
+      },
+    }),
+  );
 
+  /* Renderizado condicional */
   if (!tasks || tasks.length === 0) {
     return (
       <>
-        <div className="text-neutral-content flex justify-center min-h-full text-2xl">
-          <h3 className="my-auto text-black">Comience agregando una tarea</h3>
+        <div className="flex justify-center min-h-full text-2xl">
+          <h3 className="my-auto text-semibold text-base-content">Comience agregando una tarea</h3>
         </div>
         <TaskAside />
       </>
     );
   }
+
+  /* Renderizado del componente tablero */
 
   return (
     <>
@@ -73,6 +89,7 @@ const sensors = useSensors(
           </thead>
           <tbody>
             <br />
+            {/* Contexto para el DND */}
             <DndContext
               collisionDetection={closestCenter}
               onDragEnd={handleDragEnd}
@@ -83,17 +100,18 @@ const sensors = useSensors(
                 strategy={verticalListSortingStrategy}
               >
                 {tasks.map((task) => (
-        <React.Fragment key={task.id}>
-        <TaskCard
-          taskId={task.id}
-          title={task.title}
-          description={task.description}
-          status={task.status}
-          onEditClick={() =>   handleEditClick(task) }
-        />
-        <hr className="hidden" />
-      </React.Fragment>
-                  
+                  <React.Fragment key={task.id}>
+                    {/*  */}
+
+                    <TaskCard
+                      taskId={task.id}
+                      title={task.title}
+                      description={task.description}
+                      status={task.status}
+                      onEditClick={() => handleEditClick(task)}
+                    />
+                    <hr className="hidden" />
+                  </React.Fragment>
                 ))}
               </SortableContext>
             </DndContext>
