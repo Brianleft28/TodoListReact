@@ -1,13 +1,12 @@
 import './taskcard.css';
 
-import React, { useContext, useState } from 'react';
-import ButtonEdit from '../TaskButtons/ButtonEdit.jsx';
-import { FaRegTrashAlt } from 'react-icons/fa';
+import React, { useContext, useEffect, useState } from 'react';
 import TaskContext from '../../context/TaskContext.jsx';
 import StatusSelect from '../StatusSelect/StatusSelect.jsx';
 /* dnd */
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS, } from '@dnd-kit/utilities';
+import { Button } from 'react-daisyui';
 
 const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
   const [isDragging, setIsDragging] = useState(false);
@@ -18,8 +17,11 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
       listeners: {
         onDragStart: () => setIsDragging(true),
         onDragEnd: () => setIsDragging(false),
+        
       },
-    });
+      
+    }
+  );
 
     const style = {
       transform: CSS.Transform.toString({
@@ -36,17 +38,19 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
   const renderStatus = (status) => {
     switch (status) {
       case 'Completo':
-        return 'bg-success text-neutral  ';
+        return 'badge badge-success gap-2  ';
       case 'En proceso':
-        return 'bg-yellow-500 text-neutral ';
+        return 'badge badge-warning gap-2 ';
       case 'En espera':
-        return 'bg-info text-neutral ';
+        return 'badge badge-info gap-2 ';
       case 'Parada':
-        return 'bg-error text-neutral ';
+        return 'badge badge-error gap-2 ';
       default:
         return 'hidden ';
     }
   };
+
+  
 
   return (
     <>
@@ -73,12 +77,13 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
               onChange={(newStatus) => setStatus(taskId, newStatus)}
             />
              <div className="flex gap-3 " style={{pointerEvents: isDragging ? 'none' : 'auto'}}>
-              <button onClick={() => onEditClick()}>
-                <ButtonEdit />
-              </button>
+             <Button  color="primary">
+        Editar
+      </Button>
               <button onClick={() => deleteTask(taskId)}>
-                <FaRegTrashAlt className="hover:text-secondary transition-all duration-150 hover:cursor-pointer" />
-              </button>
+              <Button  color="error">
+        Eliminar
+      </Button></button>
             </div>
           </div>
         </td>
