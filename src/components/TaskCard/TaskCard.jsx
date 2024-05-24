@@ -21,12 +21,15 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
       },
     });
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    opacity: isDragging ? 0.5 : 1
-   
-  };
+    const style = {
+      transform: CSS.Transform.toString({
+        ...transform,
+        scaleX: isDragging ? 1.2 : 1,
+        scaleY: isDragging ? 1.2 : 1,
+      }),
+      transition,
+      opacity: isDragging ? 0.5 : 1,
+    };
 
   const { deleteTask, setStatus } = useContext(TaskContext);
 

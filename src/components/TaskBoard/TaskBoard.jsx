@@ -16,12 +16,11 @@ import {
 import { saveTasks } from '../../hooks/localStorageService';
 
 const Board = () => {
-  const { isOpen, tasks, setTasks, setIsOpen, setCurrentTask, saveTask } =
+  const { isOpen, tasks, setTasks, setIsOpen, setCurrentTask } =
     useContext(TaskContext);
 
   const handleEditClick = (task) => {
     setCurrentTask(task);
-    console.log('hola')
     setIsOpen(true);
     console.log(tasks)
   };
