@@ -1,23 +1,31 @@
 import './taskcard.css';
 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import ButtonEdit from '../TaskButtons/ButtonEdit.jsx';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import TaskContext from '../../context/TaskContext.jsx';
 import StatusSelect from '../StatusSelect/StatusSelect.jsx';
 /* dnd */
 import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import { CSS, } from '@dnd-kit/utilities';
 
 const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
+  const [isDragging, setIsDragging] = useState(false);
+
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({
       id: taskId,
+      listeners: {
+        onDragStart: () => setIsDragging(true),
+        onDragEnd: () => setIsDragging(false),
+      },
     });
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+    opacity: isDragging ? 0.5 : 1
+   
   };
 
   const { deleteTask, setStatus } = useContext(TaskContext);
@@ -61,8 +69,8 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
               status={status}
               onChange={(newStatus) => setStatus(taskId, newStatus)}
             />
-            <div className="flex gap-3 ">
-              <button onClick={onEditClick}>
+             <div className="flex gap-3 " style={{pointerEvents: isDragging ? 'none' : 'auto'}}>
+              <button onClick={() => onEditClick()}>
                 <ButtonEdit />
               </button>
               <button onClick={() => deleteTask(taskId)}>
