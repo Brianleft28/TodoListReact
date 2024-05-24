@@ -20,7 +20,6 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
       },
     });
 
-    
   const style = {
     transform: CSS.Transform.toString({
       ...transform,
@@ -60,7 +59,9 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
         className="justify-around-row hover"
       >
         <td className="">{title}</td>
-        <td className="max-w-80 overflow-auto break-words space-p">{description}</td>
+        <td className="max-w-80 overflow-auto break-words space-p">
+          {description}
+        </td>
         <td>
           <div className="flex items-center gap-3 min-w-20">
             <div className={`p-1 rounded ${renderStatus(status)}`}>
@@ -78,8 +79,8 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
               className="flex gap-3 "
               style={{ pointerEvents: isDragging ? 'none' : 'auto' }}
             >
-              <button onClick={()=> onEditClick(taskId)}>
-              <Button color="primary">Editar</Button>
+              <button onClick={() => onEditClick(taskId)}>
+                <Button color="primary">Editar</Button>
               </button>
               <button onClick={() => deleteTask(taskId)}>
                 <Button color="error">Eliminar</Button>

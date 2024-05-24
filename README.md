@@ -17,8 +17,9 @@ cd TodoListReact
 npm install
 
 ```
+
 ## 🖱️ Uso de la funcionalidad de arrastrar y soltar
 
 La aplicación cuenta con una funcionalidad de arrastrar y soltar que te permite reorganizar tus tareas.
 
-El Drag And Drop cuenta con un pequeño delay para no interferir con los botones de las tareas.  
+El Drag And Drop cuenta con un pequeño delay para no interferir con los botones de las tareas.

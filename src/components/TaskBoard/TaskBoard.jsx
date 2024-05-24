@@ -1,7 +1,7 @@
 import './taskboard.css';
 import React from 'react';
 import TaskAside from '../TaskAside/TaskAside';
-import SprintAside from '../Sprint/SprintSide/SpintAside.jsx'  
+import SprintAside from '../Sprint/SprintSide/SpintAside.jsx';
 import { useContext } from 'react';
 import TaskContext from '../../context/TaskContext';
 import TaskCard from '../TaskCard/TaskCard';
@@ -21,20 +21,19 @@ import {
 } from '@dnd-kit/sortable';
 import { saveTasks } from '../../hooks/localStorageService';
 
-
 /* Definición del tablero */
 const Board = () => {
   /* usando el contexto */
   const { isOpen, tasks, setTasks, setIsOpen, setCurrentTask } =
     useContext(TaskContext);
 
-    /* Manejador del evento edit */
+  /* Manejador del evento edit */
   const handleEditClick = (task) => {
     setCurrentTask(task);
     setIsOpen(true);
     console.log(tasks);
   };
-/* Manejador del evento arrastrar */
+  /* Manejador del evento arrastrar */
   const handleDragEnd = (event) => {
     const { active, over } = event;
 
@@ -47,7 +46,7 @@ const Board = () => {
       saveTasks(newOrder);
     }
   };
-/* Sensores para activar el drop
+  /* Sensores para activar el drop
     En este caso se activa el drop luego de 150ms de estar sobre un elemento
     y con una tolerancia de 1px
 */
@@ -65,7 +64,9 @@ const Board = () => {
     return (
       <>
         <div className="flex justify-center min-h-full text-2xl">
-          <h3 className="my-auto text-semibold text-base-content">Comience agregando una tarea</h3>
+          <h3 className="my-auto text-semibold text-base-content">
+            Comience agregando una tarea
+          </h3>
         </div>
         <TaskAside />
         <SprintAside />
@@ -103,7 +104,6 @@ const Board = () => {
                 {/* Renderizado de las tareas con TASKCARD */}
                 {tasks.map((task) => (
                   <React.Fragment key={task.id}>
-
                     <TaskCard
                       taskId={task.id}
                       title={task.title}

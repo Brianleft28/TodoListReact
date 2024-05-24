@@ -1,17 +1,16 @@
 .sprint-aside {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 300px;
-    /* Ancho del aside */
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    /* Sombra a la izquierda */
-    z-index: 1000;
-    /* Asegura que esté por encima de otros elementos */
-    overflow-y: auto;
-    /* Agrega desplazamiento vertical si el contenido es largo */
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  /* Ancho del aside */
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  /* Sombra a la izquierda */
+  z-index: 1000;
+  /* Asegura que esté por encima de otros elementos */
+  overflow-y: auto;
+  /* Agrega desplazamiento vertical si el contenido es largo */
+}

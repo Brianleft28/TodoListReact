@@ -1,13 +1,56 @@
 import { useEffect, useState } from 'react';
-import { saveTasks, getTasks } from './localStorageService.js';
+import { saveTasks, getTasks, getSprints, saveSprints } from './localStorageService.js';
 
 export const useTaskService = () => {
-  // Almacenamiento de tareas
+  // Estado para las tareas
   const [tasks, setTasks] = useState(getTasks() || []);
+  /* Estado para los sprints */
+  const [sprints, setSprints] = useState(getSprints() || []);
 
   useEffect(() => {
     saveTasks(tasks);
   }, [tasks]);
+
+  useEffect(() => {
+    saveSprints(sprints);
+  },[sprints])
+  /*  */
+
+  const addSprint = async (title, description, responsable, startDate, endDate, status, priority) => {
+    return new Promise((resolve, reject) => { 
+      if (!title || !description || !responsable || !startDate || !endDate || !status || !priority) {
+        reject(new Error('Todos los campos son obligatorios'));
+      } else {
+        try {
+          setSprints((prevSprints) => {
+            const newSprint = {
+              id: 'sprint-' + (prevSprints.length + 1),
+              title,
+              description,
+              responsable,
+              startDate,
+              endDate,
+              status,
+              priority,
+              tasks: [],
+            };
+            saveSprints([...prevSprints, newSprint]);
+            return [...prevSprints, newSprint];
+          });
+          resolve('Sprint agregado correctamente');
+        } catch (error) {
+          console.log('Error agregando el sprint: ' + error);
+          reject(error);
+        }
+      }
+
+    }
+
+
+  )
+
+  }
+
 
   // Funcion para agregar nuevas tareas
   const addTask = async (title, description) => {
@@ -18,7 +61,7 @@ export const useTaskService = () => {
         try {
           setTasks((prevTasks) => {
             const newTask = {
-              id: 'task-' + (prevTasks.length + 1) + Date.now() + Math.random(),
+              id: 'task-' + (prevTasks.length + 1),
               title,
               description,
               status: '',
@@ -35,6 +78,8 @@ export const useTaskService = () => {
       }
     });
   };
+
+
 
   // Función para eliminar una tarea por su ID
   const deleteTask = (taskId) => {
@@ -74,5 +119,7 @@ export const useTaskService = () => {
     onEdit,
     setStatus,
     setTasks,
+    sprints,
+    setSprints
   };
 };
