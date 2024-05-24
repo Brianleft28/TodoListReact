@@ -1,10 +1,10 @@
 import './taskboard.css';
 import React from 'react';
-import TaskCard from '../TaskCard/TaskCard';
 import TaskAside from '../TaskAside/TaskAside';
-
+import SprintAside from '../Sprint/SprintSide/SpintAside.jsx'  
 import { useContext } from 'react';
 import TaskContext from '../../context/TaskContext';
+import TaskCard from '../TaskCard/TaskCard';
 import TaskEditModal from '../TaskEditModal/TaskEditModal';
 /* dnd */
 import {
@@ -68,6 +68,7 @@ const Board = () => {
           <h3 className="my-auto text-semibold text-base-content">Comience agregando una tarea</h3>
         </div>
         <TaskAside />
+        <SprintAside />
       </>
     );
   }
@@ -99,9 +100,9 @@ const Board = () => {
                 items={tasks}
                 strategy={verticalListSortingStrategy}
               >
+                {/* Renderizado de las tareas con TASKCARD */}
                 {tasks.map((task) => (
                   <React.Fragment key={task.id}>
-                    {/*  */}
 
                     <TaskCard
                       taskId={task.id}
@@ -120,6 +121,7 @@ const Board = () => {
       </div>
       {isOpen && <TaskEditModal />}
       <TaskAside />
+      <SprintAside />
     </>
   );
 };
