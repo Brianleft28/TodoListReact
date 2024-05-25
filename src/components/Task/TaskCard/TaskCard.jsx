@@ -1,7 +1,7 @@
 import './taskcard.css';
 
 import React, { useContext, useEffect, useState } from 'react';
-import TaskContext from '../../context/TaskContext.jsx';
+import TaskContext from '../../../context/TaskContext.jsx';
 import StatusSelect from '../StatusSelect/StatusSelect.jsx';
 /* dnd */
 import { useSortable } from '@dnd-kit/sortable';

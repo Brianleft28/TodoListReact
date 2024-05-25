@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { useTaskService } from '../hooks/useTaskService';
+import { useTaskService } from '../logic/useTaskService';
 
 export const TaskContext = createContext();
 

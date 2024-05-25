@@ -1,9 +1,9 @@
 import './taskboard.css';
 import React from 'react';
-import TaskAside from '../TaskAside/TaskAside';
-import SprintAside from '../Sprint/SprintSide/SpintAside.jsx';
+import TaskAside from '../TaskAside/TaskAside.jsx';
+import SprintAside from '../../Sprint/SprintSide/SpintAside.jsx';
 import { useContext } from 'react';
-import TaskContext from '../../context/TaskContext';
+import TaskContext from '../../../context/TaskContext';
 import TaskCard from '../TaskCard/TaskCard';
 import TaskEditModal from '../TaskEditModal/TaskEditModal';
 /* dnd */
@@ -19,7 +19,7 @@ import {
   verticalListSortingStrategy,
   arrayMove,
 } from '@dnd-kit/sortable';
-import { saveTasks } from '../../hooks/localStorageService';
+import { saveTasks } from '../../../logic/localStorageService.js';
 
 /* Definición del tablero */
 const Board = () => {

@@ -1,8 +1,8 @@
 import './TaskAside.css';
 import React, { useContext, useState } from 'react';
 import { motion } from 'framer-motion';
-import TaskForm from '../TaskForm/TaskForm.jsx';
-import TaskContext from '../../context/TaskContext';
+import TaskForm from '../TaskForm/TaskForm';
+import TaskContext from '../../../context/TaskContext';
 
 const TaskAside = () => {
   const { addTask } = useContext(TaskContext);

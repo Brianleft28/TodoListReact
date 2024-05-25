@@ -1,8 +1,8 @@
-import Board from './components/TaskBoard/TaskBoard.jsx';
-import Header from './components/Header.jsx';
-import { TaskProvider } from './context/TaskContext.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Estadisticas from './pages/estadisticas.jsx';
+import Estadisticas from './pages/estadisticas';
+import Board from './components/Task/TaskBoard/TaskBoard';
+import Header from './components/Header.jsx';
+import React from 'react';
 
 function App() {
   return (
@@ -14,12 +14,10 @@ function App() {
             className=" content-container min-h-full"
             style={{ height: 'calc(100vh - 120px)' }}
           >
-            <TaskProvider>
-              <Routes>
-                <Route path="/" element={<Board />} />
-                <Route path="/stats" element={<Estadisticas />} />
-              </Routes>
-            </TaskProvider>
+            <Routes>
+              <Route path="/" element={<Board />} />
+              <Route path="/stats" element={<Estadisticas />} />
+            </Routes>
           </div>
         </Router>
       </div>

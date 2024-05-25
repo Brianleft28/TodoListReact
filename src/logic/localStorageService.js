@@ -26,19 +26,13 @@ export const saveSprints = (sprints) => {
       startDate: sprint.startDate,
       endDate: sprint.endDate,
       status: sprint.status,
-      priority: sprint.priority,  
+      priority: sprint.priority,
     }));
     localStorage.setItem('sprints', JSON.stringify(sprintsToSave));
   } catch (error) {
     console.error('Error al guardar en el local storage: ' + error);
   }
 };
-
-
-
-
-
-
 
 export const getTasks = () => {
   try {
@@ -66,4 +60,4 @@ export const getSprints = () => {
 
     return [];
   }
-}
+};

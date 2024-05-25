@@ -1,12 +1,24 @@
 import './SprintAside.css';
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
+import SprintForm from '../SprintForm/SprintForm';
+import SprintModal from '../SprintModal/SprintModal';
+import { Button } from 'react-daisyui';
+import { SprintContext } from '../../../context/SprintContext';
 
 const SpintAside = () => {
+  const { isModalOpen, setIsModalOpen } = useContext(SprintContext);
+
   const [isOpen, setIsOpen] = useState(false);
+
   const handleToggle = () => {
     setIsOpen(!isOpen);
+  };
+
+  const modalToggle = () => {
+    setIsModalOpen(!isModalOpen);
+    setIsOpen(false);
   };
 
   return (
@@ -18,7 +30,15 @@ const SpintAside = () => {
         transition={{ duration: 0.1 }}
       >
         <div className="flex justify-center  md:items-center mb-6">
-          <div>hola</div>
+          <SprintForm />
+
+          <Button
+            onClick={modalToggle}
+            color="ghost"
+            className={'fixed bottom-20 left-12 w-52'}
+          >
+            Añadir Sprint
+          </Button>
           <button
             className="fixed bottom-5 left-12 w-52 justify-center btn  btn-error px-4 py-2"
             onClick={handleToggle}
@@ -27,6 +47,7 @@ const SpintAside = () => {
           </button>
         </div>
       </motion.aside>
+      <SprintModal />
       {!isOpen && (
         <button
           onClick={handleToggle}

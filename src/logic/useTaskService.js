@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { saveTasks, getTasks, getSprints, saveSprints } from './localStorageService.js';
+import {
+  saveTasks,
+  getTasks,
+  getSprints,
+  saveSprints,
+} from './localStorageService.js';
 
 export const useTaskService = () => {
   // Estado para las tareas
@@ -10,47 +15,6 @@ export const useTaskService = () => {
   useEffect(() => {
     saveTasks(tasks);
   }, [tasks]);
-
-  useEffect(() => {
-    saveSprints(sprints);
-  },[sprints])
-  /*  */
-
-  const addSprint = async (title, description, responsable, startDate, endDate, status, priority) => {
-    return new Promise((resolve, reject) => { 
-      if (!title || !description || !responsable || !startDate || !endDate || !status || !priority) {
-        reject(new Error('Todos los campos son obligatorios'));
-      } else {
-        try {
-          setSprints((prevSprints) => {
-            const newSprint = {
-              id: 'sprint-' + (prevSprints.length + 1),
-              title,
-              description,
-              responsable,
-              startDate,
-              endDate,
-              status,
-              priority,
-              tasks: [],
-            };
-            saveSprints([...prevSprints, newSprint]);
-            return [...prevSprints, newSprint];
-          });
-          resolve('Sprint agregado correctamente');
-        } catch (error) {
-          console.log('Error agregando el sprint: ' + error);
-          reject(error);
-        }
-      }
-
-    }
-
-
-  )
-
-  }
-
 
   // Funcion para agregar nuevas tareas
   const addTask = async (title, description) => {
@@ -78,8 +42,6 @@ export const useTaskService = () => {
       }
     });
   };
-
-
 
   // Función para eliminar una tarea por su ID
   const deleteTask = (taskId) => {
@@ -120,6 +82,6 @@ export const useTaskService = () => {
     setStatus,
     setTasks,
     sprints,
-    setSprints
+    setSprints,
   };
 };
