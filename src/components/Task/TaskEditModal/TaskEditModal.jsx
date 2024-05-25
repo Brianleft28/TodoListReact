@@ -34,7 +34,7 @@ const TaskEditModal = () => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div
-        className="fixed inset-0 bg- opacity-50"
+        className="fixed inset-0 bg-black opacity-50"
         onClick={() => setIsOpen(false)}
       ></div>
       <div className="bg-gradient-to-b border-2 border-secondary from-base to-base-300 p-6 w-96 relative z-10">
