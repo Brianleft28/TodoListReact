@@ -5,6 +5,7 @@ export const SprintContext = createContext();
 
 export const SprintProvider = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSprintOpen, setSprintOpen] = useState(false);
   const [currentSprint, setCurrentSprint] = useState([]);
   const sprintService = useSprintService();
 
@@ -16,6 +17,8 @@ export const SprintProvider = ({ children }) => {
         setIsModalOpen,
         currentSprint,
         setCurrentSprint,
+        isSprintOpen,
+        setSprintOpen,
       }}
     >
       {children}

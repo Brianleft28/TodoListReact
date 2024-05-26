@@ -31,20 +31,28 @@ const TaskAside = () => {
 
   return (
     <div>
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
       <motion.aside
         className="task-aside bg-gradient-to-b from-base to-base-content p-3 w-full max-w-xs"
         initial={{ x: '100%', opacity: 0 }}
         animate={{ x: isOpen ? 0 : '100%', opacity: isOpen ? 1 : 0 }}
         transition={{ duration: 0.1 }}
       >
-        <div className="flex justify-center  md:items-center mb-6">
-          <TaskForm
-            onSubmit={onSubmit}
-            title={title}
-            description={description}
-            setTitle={setTitle}
-            setDescription={setDescription}
-          />
+        <div className="flex-row gap-10">
+          <div className="justify-center shadow-md bg-black">
+            <TaskForm
+              onSubmit={onSubmit}
+              title={title}
+              description={description}
+              setTitle={setTitle}
+              setDescription={setDescription}
+            />
+          </div>
           <button
             className="fixed bottom-5 right-12 w-52 justify-center btn  btn-error px-4 py-2"
             onClick={handleToggle}

@@ -1,6 +1,6 @@
 import './SprintAside.css';
 
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import SprintForm from '../SprintForm/SprintForm';
 import SprintModal from '../SprintModal/SprintModal';
@@ -8,17 +8,16 @@ import { Button } from 'react-daisyui';
 import { SprintContext } from '../../../context/SprintContext';
 
 const SpintAside = () => {
-  const { isModalOpen, setIsModalOpen } = useContext(SprintContext);
-
-  const [isOpen, setIsOpen] = useState(false);
+  const { isSprintOpen, setSprintOpen, isModalOpen, setIsModalOpen } =
+    useContext(SprintContext);
 
   const handleToggle = () => {
-    setIsOpen(!isOpen);
+    setSprintOpen(!isSprintOpen);
   };
 
   const modalToggle = () => {
     setIsModalOpen(!isModalOpen);
-    setIsOpen(false);
+    setSprintOpen(false);
   };
 
   return (
@@ -26,12 +25,13 @@ const SpintAside = () => {
       <motion.aside
         className="sprint-aside bg-gradient-to-b from-base to-base-content p-3 w-full max-w-xs"
         initial={{ x: '-100%', opacity: 0 }}
-        animate={{ x: isOpen ? 0 : '-100%', opacity: isOpen ? 1 : 0 }}
+        animate={{
+          x: isSprintOpen ? 0 : '-100%',
+          opacity: isSprintOpen ? 1 : 0,
+        }}
         transition={{ duration: 0.1 }}
       >
         <div className="flex justify-center  md:items-center mb-6">
-          <SprintForm />
-
           <Button
             onClick={modalToggle}
             color="ghost"
@@ -48,7 +48,7 @@ const SpintAside = () => {
         </div>
       </motion.aside>
       <SprintModal />
-      {!isOpen && (
+      {!isSprintOpen && (
         <button
           onClick={handleToggle}
           className="btn btn-primary fixed bottom-6 left-10"

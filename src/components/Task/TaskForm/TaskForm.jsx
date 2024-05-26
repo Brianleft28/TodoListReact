@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'react-daisyui';
+import SprintSelect from '../SprintSelect/SprintSelect';
 
 const TaskForm = ({
   onSubmit,
@@ -18,31 +19,26 @@ const TaskForm = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-1 bg-gradient-to-br from-base-100 via-base-200 to-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4 justify-center "
+      className="bg-gradient-to-b border-2 border-secondary from-base to-base-300 p-6 "
     >
       <label className="form-control w-full max-w-xs">
-        <div className="label">
-          <span className="label-text">Introduzca una tarea</span>
-        </div>
+        <span className="label-text mb-1 ml-2">Agregue una tarea</span>
         <input
           type="text"
-          placeholder="Soy una tarea"
+          placeholder="Titulo de la tarea"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
-          className="input input-bordered w-full max-w-xs"
+          className="input w-full max-w-xs mb-2 bg-base-300"
         />
       </label>
-      <label className="form-control w-full max-w-xs">
-        <div className="label">
-          <span className="label-text">Introduzca una descripción</span>
-        </div>
-
+      <label className="form-control w-full max-w-xs mb-4">
         <textarea
-          className="textarea textarea-bordered"
-          placeholder="Soy una descripción de la tarea"
+          className="input w-full max-w-xs bg-base-300 min-h-[241px] mb-2"
+          placeholder="Descripción de la tarea"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
+        <SprintSelect />
       </label>
 
       <Button
