@@ -23,46 +23,52 @@ const SprintModal = () => {
         onClick={() => setIsModalOpen(false)}
       ></div>
       {/* modal */}
-      <div className="bg-gradient-to-b border-2 border-secondary from-base to-base-300 p-6 min-h-[350px] min-w-[750px] relative z-[1000] flex flex-col">
-        <div className="flex flew-row gap-10">
-          <div>
+      <div className="bg-gradient-to-b border-2 border-secondary from-base to-base-300 p-6 min-h-[350px] min-w-[350px] relative z-[1000] flex flex-col">
+        <div className=" flew-row gap-10">
+          <div className="justify-self-center flex-col">
             {/* Comienza input */}
-            <label className="form-control w-full max-w-4xl">
-              <span className="label-text mb-1 ml-2">Nombre del Sprint</span>
+            <label className="form-control   w-full max-w-4xl">
+              <span className="label-text mb-1 ml-2">
+                Información del Sprint
+              </span>
+
               <input
                 type="text"
                 value={title}
+                placeholder="Título del Sprint"
                 onChange={(e) => setTitle(e.target.value)}
                 className="input w-full max-w-xs mb-2 bg-base-300"
               />
             </label>
             <label className="form-control w-full max-w-xs mb-4">
-              <span className="label-text mb-1 ml-2">Descripción</span>
               <textarea
                 type="text"
+                placeholder="Descripción del Sprint"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="input w-full max-w-xs bg-base-300 h-auto"
+                className="input w-full max-w-xs bg-base-300 h-auto mb-2"
                 style={{ height: '100px' }}
               />
-              <label className="form-control mt-2 w-full max-w-4xl">
-                <span className="label-text mb-1 ml-2">Responsable</span>
+              <label className="form-control w-full max-w-4xl">
                 <input
                   type="text"
+                  placeholder="Responsable"
                   value={responsable}
                   onChange={(e) => setResponsable(e.target.value)}
                   className="input w-full max-w-xs mb-2 bg-base-300"
                 />
               </label>
+              <label className="form-control w-full max-w-4x">
+                <SprintSelect />
+              </label>
+
+              <label className="form-control w-full max-w-4x">
+                <SprintSelect />
+              </label>
             </label>
           </div>
           {/* SELECTS */}
-          <div>
-            <label className="form-control w-full max-w-4x">
-              <span className="label-text mb-1 ml-1">Seleccione un estado</span>
-              <SprintSelect />
-            </label>
-          </div>
+          <div></div>
         </div>
 
         {/* Botones */}
