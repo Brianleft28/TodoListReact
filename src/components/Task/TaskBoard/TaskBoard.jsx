@@ -79,7 +79,7 @@ const Board = () => {
   return (
     <>
       <div>
-        <div className="max-h-[415px] overflow-auto">
+        <div className="max-h-[408px] overflow-auto">
           <table className="bg-transparent max-h-[calc(100vh-60px)] table table-xs mx-auto justify-around-row">
             {/* head */}
             <thead>

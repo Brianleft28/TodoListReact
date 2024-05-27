@@ -11,7 +11,7 @@ function App() {
         <div className="layout h-screen overflow-hidden">
           <Header />
           <div className="bg-gradient-to-bl from-base-300 via-base-200 to-base-100 min-h-screen overflow-hidden">
-            <div className="content-container overflow-auto mt-5">
+            <div className="content-container overflow-auto mt-5 bg-gradient-to-bl from-base-300 via-base-200 to-base-100 min-h-screen">
               <Routes>
                 <Route path="/" element={<Board />} />
                 <Route path="/stats" element={<Estadisticas />} />
