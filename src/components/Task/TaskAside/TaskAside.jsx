@@ -13,7 +13,7 @@ const TaskAside = () => {
 
   const { isTaskOpen, setTaskOpen } = useContext(TaskContext);
 
-  const handleToggle = () => { 
+  const handleToggle = () => {
     setTaskOpen(!isTaskOpen);
   };
 
@@ -23,7 +23,7 @@ const TaskAside = () => {
       await addTask(title, description);
     } catch (error) {
       alert(error);
-      setTaskOpen(true)
+      setTaskOpen(true);
     }
     setTimeout(() => {
       setTitle('');
@@ -64,17 +64,14 @@ const TaskAside = () => {
           </button>
         </div>
       </motion.aside>
-      {
-        
-        !isOpen && (
-          <button
-            onClick={handleToggle}
-            className="btn btn-primary fixed bottom-6 right-10"
-          >
-            Agregar tarea
-          </button>
-        )
-      }
+      {!isOpen && (
+        <button
+          onClick={handleToggle}
+          className="btn btn-primary fixed bottom-6 right-10"
+        >
+          Agregar tarea
+        </button>
+      )}
     </div>
   );
 };

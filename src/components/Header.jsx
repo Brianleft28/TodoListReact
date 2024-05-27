@@ -11,16 +11,16 @@ const Header = () => {
   const sprintId = location.pathname.split('/')[1];
 
   useEffect(() => {
-    if(sprints){
+    if (sprints) {
       const sprintFound = sprints.find((sprint) => sprint.id === sprintId);
       setSprint(sprintFound);
     }
-  },[sprints, sprintId])
+  }, [sprints, sprintId]);
 
-  const [title, setTitle] = useState("TaskManager");
+  const [title, setTitle] = useState('TaskManager');
 
   useEffect(() => {
-    switch(location.pathname) {
+    switch (location.pathname) {
       case '/stats':
         setTitle('Estadísticas');
         break;
@@ -28,10 +28,9 @@ const Header = () => {
         setTitle('Configuración');
         break;
       default:
-        setTitle(sprint && sprint.title ? sprint.title : "TaskManager");
+        setTitle(sprint && sprint.title ? sprint.title : 'TaskManager');
     }
   }, [location, sprint]);
-
 
   const [theme, setTheme] = useState(
     localStorage.getItem('theme') ? localStorage.getItem('theme') : 'luxury',

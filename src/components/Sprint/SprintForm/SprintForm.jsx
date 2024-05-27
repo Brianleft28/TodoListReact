@@ -21,41 +21,40 @@ const SprintModal = () => {
     useContext(SprintContext);
 
   const handleToggle = () => {
-
     setIsModalOpen(false);
     setSprintOpen(true);
   };
 
-const handleSave = () => {
-  console.log(
-    title,
-    description,
-    responsable,
-    startDate,
-    endDate,
-    status,
-    priority,
-  );
+  const handleSave = () => {
+    console.log(
+      title,
+      description,
+      responsable,
+      startDate,
+      endDate,
+      status,
+      priority,
+    );
 
-  addSprint(
-    title,
-    description,
-    responsable,
-    startDate,
-    endDate,
-    status,
-    priority,
-  )
-  .then(() => {
-    handleToggle();
-  })
-  .catch((error) => {
-    setIsModalOpen(true);
-    setSprintOpen(false);
-    console.log('Error al guardar el sprint' + error);
-    alert(error);
-  });
-};
+    addSprint(
+      title,
+      description,
+      responsable,
+      startDate,
+      endDate,
+      status,
+      priority,
+    )
+      .then(() => {
+        handleToggle();
+      })
+      .catch((error) => {
+        setIsModalOpen(true);
+        setSprintOpen(false);
+        console.log('Error al guardar el sprint' + error);
+        alert(error);
+      });
+  };
 
   if (!isModalOpen) {
     return null;
