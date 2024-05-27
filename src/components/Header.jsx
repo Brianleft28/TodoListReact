@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <>
-      <Navbar>
+      <Navbar className="bg-base-300 z-30">
         <div className="flex-1">
           <Link to="/">
             <Button tag="a" color="ghost" className="normal-case text-xl">
@@ -35,7 +35,7 @@ const Header = () => {
             <Menu.Item>
               <details className="">
                 <summary>Panel de Control</summary>
-                <ul className="p-2 bg-base-100 absolute">
+                <ul className="z-50 p-2 mt-0.5 bg-base-100 absolute">
                   <li>
                     <Link to="/stats">Estadísticas</Link>
                   </li>

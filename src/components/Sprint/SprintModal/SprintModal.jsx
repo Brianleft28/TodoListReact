@@ -20,7 +20,7 @@ const SprintModal = () => {
         onClick={() => setIsModalOpen(false)}
       ></div>
       {/* modal */}
-      <div className="bg-gradient-to-b border-2 border-secondary from-base to-base-300 p-6 min-h-[350px] min-w-[350px] relative z-[1000] flex flex-col">
+      <div className="bg-gradient-to-b shadow-md from-base to-base-300 p-6 min-h-[350px] min-w-[350px] relative z-[1000] flex flex-col">
         <SprintForm />
         {/* Botones */}
         <div className="flex justify-center  gap-1">

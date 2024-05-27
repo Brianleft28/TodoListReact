@@ -1,7 +1,7 @@
 .justify-around-row td {
-  padding: 0.5em 8em;
+  padding: 0.5em 4em;
 }
 
-.justify-around-row td.space-p {
+.justify-around-row td.status {
   padding: 0.5em 0em;
 }

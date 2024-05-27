@@ -63,7 +63,7 @@ const Board = () => {
   if (!tasks || tasks.length === 0) {
     return (
       <>
-        <div className="flex justify-center min-h-full text-2xl">
+        <div className="flex justify-center min-h-full text-2xl scroll-smooth">
           <h3 className="my-auto text-semibold text-base-content">
             Comience agregando una tarea
           </h3>
@@ -78,46 +78,48 @@ const Board = () => {
 
   return (
     <>
-      <div className="overflow-x-hidden">
-        <table className="table table-xs mx-auto justify-around-row">
-          {/* head */}
-          <thead>
-            <tr className="pb-2 p-2 border-b-1 border-neutral">
-              <th>Titulo</th>
-              <th>Descripción</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <br />
-            {/* Contexto para el DND */}
-            <DndContext
-              collisionDetection={closestCenter}
-              onDragEnd={handleDragEnd}
-              sensors={sensors}
-            >
-              <SortableContext
-                items={tasks}
-                strategy={verticalListSortingStrategy}
+      <div>
+        <div className="max-h-[415px] overflow-auto">
+          <table className="bg-transparent max-h-[calc(100vh-60px)] table table-xs mx-auto justify-around-row">
+            {/* head */}
+            <thead>
+              <tr className="pb-2 p-2 border-b-1 border-neutral">
+                <th>Titulo</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <br />
+              {/* Contexto para el DND */}
+              <DndContext
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+                sensors={sensors}
               >
-                {/* Renderizado de las tareas con TASKCARD */}
-                {tasks.map((task) => (
-                  <React.Fragment key={task.id}>
-                    <TaskCard
-                      taskId={task.id}
-                      title={task.title}
-                      description={task.description}
-                      status={task.status}
-                      onEditClick={() => handleEditClick(task)}
-                    />
-                    <hr className="hidden" />
-                  </React.Fragment>
-                ))}
-              </SortableContext>
-            </DndContext>
-          </tbody>
-        </table>
+                <SortableContext
+                  items={tasks}
+                  strategy={verticalListSortingStrategy}
+                >
+                  {/* Renderizado de las tareas con TASKCARD */}
+                  {tasks.map((task) => (
+                    <React.Fragment key={task.id}>
+                      <TaskCard
+                        taskId={task.id}
+                        title={task.title}
+                        description={task.description}
+                        status={task.status}
+                        onEditClick={() => handleEditClick(task)}
+                      />
+                      <hr className="hidden" />
+                    </React.Fragment>
+                  ))}
+                </SortableContext>
+              </DndContext>
+            </tbody>
+          </table>
+        </div>
       </div>
       {isOpen && <TaskEditModal />}
       <TaskAside />

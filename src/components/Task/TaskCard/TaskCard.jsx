@@ -7,6 +7,8 @@ import StatusSelect from '../StatusSelect/StatusSelect.jsx';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Button } from 'react-daisyui';
+import SelectOptions from '../../Select/Select.jsx';
+import { StatusTaskOptions } from '../../../data/SelectOptions.js';
 
 const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
   const [isDragging, setIsDragging] = useState(false);
@@ -71,10 +73,14 @@ const TaskCard = ({ title, description, taskId, onEditClick, status }) => {
         </td>
         <td>
           <div className="flex items-center gap-4">
-            <StatusSelect
-              status={status}
-              onChange={(newStatus) => setStatus(taskId, newStatus)}
-            />
+            <div>
+              <SelectOptions
+                options={StatusTaskOptions}
+                status={status}
+                onChange={(newStatus) => setStatus(taskId, newStatus)}
+              />
+            </div>
+
             <div
               className="flex gap-3 "
               style={{ pointerEvents: isDragging ? 'none' : 'auto' }}

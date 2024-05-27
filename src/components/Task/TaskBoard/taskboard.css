@@ -1,4 +1,7 @@
 .justify-around-row th {
-  padding: 0 8em;
-  overflow-x: hidden;
+  padding: 0 4em;
+}
+
+.justify-around-row td {
+  padding: 0.5em 4em;
 }

@@ -4,9 +4,12 @@ import { useSprintService } from '../logic/useSprintService';
 export const SprintContext = createContext();
 
 export const SprintProvider = ({ children }) => {
+  /* Definición de los estados de SPRINT */
+  const [sprints, setSprints] = useState([]);
+
+  /* Controlares de modales y asides */
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSprintOpen, setSprintOpen] = useState(false);
-  const [currentSprint, setCurrentSprint] = useState([]);
   const sprintService = useSprintService();
 
   return (
@@ -15,8 +18,6 @@ export const SprintProvider = ({ children }) => {
         ...sprintService,
         isModalOpen,
         setIsModalOpen,
-        currentSprint,
-        setCurrentSprint,
         isSprintOpen,
         setSprintOpen,
       }}

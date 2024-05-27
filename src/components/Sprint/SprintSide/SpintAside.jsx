@@ -34,7 +34,7 @@ const SpintAside = () => {
         <div className="flex justify-center  md:items-center mb-6">
           <Button
             onClick={modalToggle}
-            color="ghost"
+            color="primary"
             className={'fixed bottom-20 left-12 w-52'}
           >
             Añadir Sprint

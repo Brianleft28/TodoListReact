@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
 import SprintContext from '../../../context/SprintContext';
 import { Button } from 'react-daisyui';
-import SprintSelect from '../SprintSelect/SprintSelect';
 import Filter from '../DatePicker/Filter';
+import { StatusOptionsSprint } from '../../../data/SelectOptions';
+import SelectOptions from '../../Select/Select';
 
 const SprintModal = () => {
   const [title, setTitle] = useState('');
@@ -28,12 +29,12 @@ const SprintModal = () => {
         onClick={() => setIsModalOpen(false)}
       ></div>
       {/* modal */}
-      <div className="bg-gradient-to-b border-2 border-secondary from-base to-base-300 p-6 min-h-[350px] min-w-[350px] relative z-[1000] flex flex-col">
+      <div className="bg-gradient-to-b  from-base-200 to-base-300 p-6 min-h-[350px] min-w-[350px] relative z-[1000] flex flex-col">
         <div className=" flew-row gap-10">
           <form className="justify-self-center flex-col">
             {/* Comienza input */}
             <label className="form-control w-full max-w-4xl">
-              <span className="label justify-center label-text mb-1 ml-2">
+              <span className="label font-semibold justify-center label-text mb-1 ml-2">
                 Agrega un SPRINT
               </span>
             </label>
@@ -66,8 +67,12 @@ const SprintModal = () => {
               />
             </div>
             <div className="label w-full max-w-4x">
-              <SprintSelect />
+              <SelectOptions
+                options={StatusOptionsSprint}
+                style={'min-w-full'}
+              />
             </div>
+            <div className="label w-full max-w-4x"></div>
             <div className="label flex-col mb-4">
               <Filter />
             </div>
@@ -75,7 +80,7 @@ const SprintModal = () => {
         </div>
         {/* Botones */}
         <div className="flex justify-center  gap-3">
-          <Button onClick={handleToggle} color="ghost">
+          <Button onClick={handleToggle} color="primary">
             Guardar
           </Button>
           <button

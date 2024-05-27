@@ -7,20 +7,19 @@ import React from 'react';
 function App() {
   return (
     <>
-      <div className="layout bg-gradient-to-br from-base-100 via-base-200 to-base-300">
-        <Router>
+      <Router>
+        <div className="layout h-screen overflow-hidden">
           <Header />
-          <div
-            className=" content-container min-h-full"
-            style={{ height: 'calc(100vh - 120px)' }}
-          >
-            <Routes>
-              <Route path="/" element={<Board />} />
-              <Route path="/stats" element={<Estadisticas />} />
-            </Routes>
+          <div className="bg-gradient-to-bl from-base-300 via-base-200 to-base-100 min-h-screen overflow-hidden">
+            <div className="content-container overflow-auto mt-5">
+              <Routes>
+                <Route path="/" element={<Board />} />
+                <Route path="/stats" element={<Estadisticas />} />
+              </Routes>
+            </div>
           </div>
-        </Router>
-      </div>
+        </div>
+      </Router>
     </>
   );
 }
