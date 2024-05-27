@@ -4,11 +4,12 @@ import React, { useState, useContext, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import SprintForm from '../SprintForm/SprintForm';
 import SprintModal from '../SprintModal/SprintModal';
-import { Button } from 'react-daisyui';
+import { Button, Menu } from 'react-daisyui';
 import { SprintContext } from '../../../context/SprintContext';
+import SprintCard from '../SprintCard/SprintCard';
 
 const SpintAside = () => {
-  const { isSprintOpen, setSprintOpen, isModalOpen, setIsModalOpen } =
+  const { sprints, isSprintOpen, setSprintOpen, isModalOpen, setIsModalOpen } =
     useContext(SprintContext);
 
   const handleToggle = () => {
@@ -31,13 +32,29 @@ const SpintAside = () => {
         }}
         transition={{ duration: 0.1 }}
       >
+        {
+          sprints && (
+            <Menu className="flex flex-col px-1  ">
+            
+            <ul className='flex flex-col gap-3'>
+
+              {sprints.map((sprint)  => ( 
+                <SprintCard key={sprint.id} sprint={sprint}/>
+              ))} 
+              </ul>
+          
+
+              </Menu> 
+          )
+        }
         <div className="flex justify-center  md:items-center mb-6">
+
           <Button
             onClick={modalToggle}
             color="primary"
             className={'fixed bottom-20 left-12 w-52'}
           >
-            Añadir Sprint
+            Añadir Tablero
           </Button>
           <button
             className="fixed bottom-5 left-12 w-52 justify-center btn  btn-error px-4 py-2"
@@ -53,7 +70,7 @@ const SpintAside = () => {
           onClick={handleToggle}
           className="btn btn-primary fixed bottom-6 left-10"
         >
-          Sprints
+          Tableros
         </button>
       )}
     </>

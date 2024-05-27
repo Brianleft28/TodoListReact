@@ -53,3 +53,26 @@ export const StatusTaskOptions = [
     label: 'Parado',
   },
 ];
+
+export const priorityOptionsSprint = [
+  {
+    id: 0,
+    value: 'Seleccione una prioridad',
+    label: 'Seleccione una prioridad',
+  },
+  {
+    id: 1,
+    value: 'Alta',
+    label: 'Alta',
+  },
+  {
+    id: 2,
+    value: 'Media',
+    label: 'Media',
+  },
+  {
+    id: 3,
+    value: 'Baja',
+    label: 'Baja',
+  },
+];

@@ -5,7 +5,6 @@ export const SprintContext = createContext();
 
 export const SprintProvider = ({ children }) => {
   /* Definición de los estados de SPRINT */
-  const [sprints, setSprints] = useState([]);
 
   /* Controlares de modales y asides */
   const [isModalOpen, setIsModalOpen] = useState(false);

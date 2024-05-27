@@ -18,9 +18,9 @@ export const useSprintService = () => {
   ) => {
     return new Promise((resolve, reject) => {
       if (
-        !title ||
-        !description ||
-        !responsable ||
+        title === '' ||
+        description === '' ||
+        responsable === '' ||
         !startDate ||
         !endDate ||
         !status ||
@@ -50,12 +50,11 @@ export const useSprintService = () => {
           reject(error);
         }
       }
-
-      return {
-        sprints,
-        addSprint,
-        setSprints,
-      };
     });
+  };
+  return {
+    sprints,
+    addSprint,
+    setSprints,
   };
 };
