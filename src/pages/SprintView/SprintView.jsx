@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import { SprintContext } from '../../context/SprintContext'
+import TaskAside from '../../components/Task/TaskAside/TaskAside'
+import SprintAside from '../../components/Sprint/SprintSide/SpintAside'
 
 const SprintView = () => {
     const { sprintId } = useParams()
@@ -10,11 +12,7 @@ const SprintView = () => {
     useEffect(() => { 
         if (sprints) {
             const sprintFound = sprints.find((sprint) => sprint.id === sprintId)
-            console.log('Sprints ', sprints)
-            console.log('Id ', sprintId)
-            console.log('Sprint Encontrado ', sprintFound)
             setSprint(sprintFound)
-            console.log(sprint)
         }
     }, [sprints, sprintId])
 
@@ -65,6 +63,8 @@ const SprintView = () => {
             </span>
         </div>
             </div>
+            <TaskAside />
+      <SprintAside />
 </>
         ) 
         

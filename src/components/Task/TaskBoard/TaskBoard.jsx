@@ -20,18 +20,19 @@ import {
   arrayMove,
 } from '@dnd-kit/sortable';
 import { saveTasks } from '../../../logic/localStorageService.js';
+import SprintContext from '../../../context/SprintContext.jsx';
 
 /* Definición del tablero */
 const Board = () => {
   /* usando el contexto */
   const { isOpen, tasks, setTasks, setIsOpen, setCurrentTask } =
     useContext(TaskContext);
+  const { sprints } = useContext(SprintContext);
 
   /* Manejador del evento edit */
   const handleEditClick = (task) => {
     setCurrentTask(task);
     setIsOpen(true);
-    console.log(tasks);
   };
   /* Manejador del evento arrastrar */
   const handleDragEnd = (event) => {
@@ -60,12 +61,12 @@ const Board = () => {
   );
 
   /* Renderizado condicional */
-  if (!tasks || tasks.length === 0) {
+  if (!tasks || tasks.length === 0 || !sprints || sprints.length === 0) {
     return (
       <>
         <div className="flex justify-center min-h-full text-2xl scroll-smooth">
           <h3 className="my-auto text-semibold text-base-content">
-            Comience agregando una tarea
+            Comience creando un tablero
           </h3>
         </div>
         <TaskAside />

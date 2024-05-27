@@ -11,8 +11,10 @@ const TaskAside = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
+  const { isTaskOpen, setTaskOpen } = useContext(TaskContext);
+
+  const handleToggle = () => { 
+    setTaskOpen(!isTaskOpen);
   };
 
   const onSubmit = async (e, title, description) => {
@@ -21,26 +23,27 @@ const TaskAside = () => {
       await addTask(title, description);
     } catch (error) {
       alert(error);
+      setTaskOpen(true)
     }
     setTimeout(() => {
       setTitle('');
       setDescription('');
-      setIsOpen(false);
+      setTaskOpen(false);
     }, 0);
   };
 
   return (
     <div>
-      {isOpen && (
+      {isTaskOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50"
-          onClick={() => setIsOpen(false)}
+          onClick={() => setTaskOpen(false)}
         ></div>
       )}
       <motion.aside
         className="task-aside bg-gradient-to-b from-base to-base-content p-3 w-full max-w-xs"
         initial={{ x: '100%', opacity: 0 }}
-        animate={{ x: isOpen ? 0 : '100%', opacity: isOpen ? 1 : 0 }}
+        animate={{ x: isTaskOpen ? 0 : '100%', opacity: isTaskOpen ? 1 : 0 }}
         transition={{ duration: 0.1 }}
       >
         <div className="flex-row gap-10">
@@ -57,12 +60,12 @@ const TaskAside = () => {
             className="fixed bottom-5 right-12 w-52 justify-center btn  btn-error px-4 py-2"
             onClick={handleToggle}
           >
-            {isOpen ? 'Cerrar' : '...'}
+            {isTaskOpen ? 'Cerrar' : '...'}
           </button>
         </div>
       </motion.aside>
       {
-        //
+        
         !isOpen && (
           <button
             onClick={handleToggle}

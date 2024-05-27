@@ -4,13 +4,15 @@ import { useTaskService } from '../logic/useTaskService';
 export const TaskContext = createContext();
 
 export const TaskProvider = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  
+  const [isTaskOpen, setTaskOpen] = useState(false);
   const [currentTask, setCurrentTask] = useState(null);
   const taskService = useTaskService();
+  
 
   return (
     <TaskContext.Provider
-      value={{ ...taskService, isOpen, setIsOpen, currentTask, setCurrentTask }}
+      value={{ ...taskService, isTaskOpen, setTaskOpen, currentTask, setCurrentTask }}
     >
       {children}
     </TaskContext.Provider>

@@ -1,8 +1,38 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button, Menu, Navbar } from 'react-daisyui';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import SprintContext from '../context/SprintContext';
 
 const Header = () => {
+  const { sprints } = useContext(SprintContext);
+  const [sprint, setSprint] = useState([]);
+
+  const location = useLocation();
+  const sprintId = location.pathname.split('/')[1];
+
+  useEffect(() => {
+    if(sprints){
+      const sprintFound = sprints.find((sprint) => sprint.id === sprintId);
+      setSprint(sprintFound);
+    }
+  },[sprints, sprintId])
+
+  const [title, setTitle] = useState("TaskManager");
+
+  useEffect(() => {
+    switch(location.pathname) {
+      case '/stats':
+        setTitle('Estadísticas');
+        break;
+      case '/settings':
+        setTitle('Configuración');
+        break;
+      default:
+        setTitle(sprint && sprint.title ? sprint.title : "TaskManager");
+    }
+  }, [location, sprint]);
+
+
   const [theme, setTheme] = useState(
     localStorage.getItem('theme') ? localStorage.getItem('theme') : 'luxury',
   );
@@ -23,14 +53,14 @@ const Header = () => {
         <div className="flex-1">
           <Link to="/">
             <Button tag="a" color="ghost" className="normal-case text-xl">
-              TaskManager
+              {title}
             </Button>
           </Link>
         </div>
         <div className="flex-none">
           <Menu className="flex flex-row px-1">
             <Menu.Item>
-              <Link to="/">Tablero</Link>
+              <Link to="/">Inicio</Link>
             </Menu.Item>
             <Menu.Item>
               <details className="">

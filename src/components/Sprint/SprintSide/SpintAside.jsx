@@ -7,13 +7,18 @@ import SprintModal from '../SprintModal/SprintModal';
 import { Button, Menu } from 'react-daisyui';
 import { SprintContext } from '../../../context/SprintContext';
 import SprintCard from '../SprintCard/SprintCard';
+import TaskContext from '../../../context/TaskContext';
 
 const SpintAside = () => {
   const { sprints, isSprintOpen, setSprintOpen, isModalOpen, setIsModalOpen } =
     useContext(SprintContext);
-
+  const { isTaskOpen, setTaskOpen } = useContext(TaskContext);
+  
   const handleToggle = () => {
-    setSprintOpen(!isSprintOpen);
+    setSprintOpen(!isSprintOpen); 
+    setTaskOpen(false);
+
+
   };
 
   const modalToggle = () => {
@@ -21,8 +26,15 @@ const SpintAside = () => {
     setSprintOpen(false);
   };
 
-  return (
+  return ( 
     <>
+     <div>
+      {isSprintOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50"
+          onClick={() => setSprintOpen(false)}
+        ></div>
+      )}
       <motion.aside
         className="sprint-aside bg-gradient-to-b from-base to-base-content p-3 w-full max-w-xs"
         initial={{ x: '-100%', opacity: 0 }}
@@ -32,6 +44,7 @@ const SpintAside = () => {
         }}
         transition={{ duration: 0.1 }}
       >
+        
         {
           sprints && (
             <Menu className="flex flex-col px-1  ">
@@ -72,6 +85,7 @@ const SpintAside = () => {
           Tableros
         </button>
       )}
+      </div>
     </>
   );
 };
