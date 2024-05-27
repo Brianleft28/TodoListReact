@@ -3,6 +3,7 @@ import Estadisticas from './pages/estadisticas';
 import Board from './components/Task/TaskBoard/TaskBoard';
 import Header from './components/Header.jsx';
 import React from 'react';
+import SprintView from './pages/SprintView/SprintView.jsx';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Board />} />
                 <Route path="/stats" element={<Estadisticas />} />
+                <Route path="/:sprintId" element={<SprintView />} />
               </Routes>
             </div>
           </div>

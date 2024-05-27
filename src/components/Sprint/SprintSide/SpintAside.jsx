@@ -42,7 +42,6 @@ const SpintAside = () => {
                 <SprintCard key={sprint.id} sprint={sprint}/>
               ))} 
               </ul>
-          
 
               </Menu> 
           )
