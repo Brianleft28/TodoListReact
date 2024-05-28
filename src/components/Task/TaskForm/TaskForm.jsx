@@ -19,7 +19,7 @@ const TaskForm = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-gradient-to-b shadow-md from-base to-base-300 p-6 "
+      className="bg-gradient-to-b shadow-md from-base to-base-100 p-6 "
     >
       <label className="form-control w-full max-w-xs">
         <span className="label-text mb-1 ml-2">Agregue una tarea</span>

@@ -26,7 +26,7 @@ const SpintAside = () => {
 
   return (
     <>
-      <div className="">
+      <div>
         {isSprintOpen && (
           <div
             className="fixed inset-0 bg-black opacity-50"
@@ -34,7 +34,7 @@ const SpintAside = () => {
           ></div>
         )}
         <motion.aside
-          className="sprint-aside bg-gradient-to-b from-base to-base-content menu-vertical p-3 w-full max-w-xs"
+          className="sprint-aside bg-gradient-to-b from-base-200 to-base-100 menu-vertical p-3 w-full max-w-xs"
           initial={{ x: '-100%', opacity: 0 }}
           animate={{
             x: isSprintOpen ? 0 : '-100%',
@@ -44,13 +44,15 @@ const SpintAside = () => {
         >
           <div className="h-[445px] overflow-y-auto menu-md  scrollbar-hide">
             {sprints && (
-              <Menu className="flex flex-col gap-3 px-1">
+              <Menu className="flex flex-col gap-3 px-4">
                 {sprints.map((sprint) => (
                   <SprintCard key={sprint.id} sprint={sprint} />
                 ))}
+                <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-base-100 via-base-200 to-transparent"></div>
               </Menu>
             )}
           </div>
+
           <div className="flex justify-center  md:items-center mb-6">
             <Button
               onClick={modalToggle}

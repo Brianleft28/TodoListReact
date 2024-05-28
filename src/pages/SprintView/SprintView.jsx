@@ -6,6 +6,7 @@ import SprintAside from '../../components/Sprint/SprintSide/SpintAside';
 
 const SprintView = () => {
   const { sprintId } = useParams();
+
   const { sprints } = useContext(SprintContext);
   const [sprint, setSprint] = useState(null);
 
@@ -21,25 +22,10 @@ const SprintView = () => {
   return (
     <div>
       {sprint ? (
-        <>
-          <div className="p-4 bg-base-200 rounded-md">
-            <h2 className="text-2xl font-bold mb-4">{sprint.title}</h2>
-            <p className="mb-2">
-              <strong>Descripción:</strong> {sprint.description}
-            </p>
-
-            <p className="mb-2">
-              <strong>Prioridad:</strong> {sprint.priority}
-            </p>
-            <p className="mb-2">
-              <strong>Status:</strong> {sprint.status}
-            </p>
-            <TaskAside />
-            <SprintAside />
-          </div>
-          <TaskAside />
+        <div className="grid grid-cols-12 gap-4">
           <SprintAside />
-        </>
+          <TaskAside sprint={sprint} />
+        </div>
       ) : (
         'loading'
       )}
