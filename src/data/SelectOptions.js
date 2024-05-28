@@ -2,27 +2,27 @@ export const StatusOptionsSprint = [
   {
     id: 0,
     value: 'Seleccione un estado',
-    label: 'Seleccione un estado',
+    title: 'Seleccione un estado',
   },
   {
     id: 1,
     value: 'En proceso',
-    label: 'En proceso',
+    title: 'En proceso',
   },
   {
     id: 2,
     value: 'Completo',
-    label: 'Completo',
+    title: 'Completo',
   },
   {
     id: 3,
     value: 'En espera',
-    label: 'En espera',
+    title: 'En espera',
   },
   {
     id: 4,
     value: 'Parado',
-    label: 'Parado',
+    title: 'Parado',
   },
 ];
 
@@ -30,27 +30,27 @@ export const StatusTaskOptions = [
   {
     id: 0,
     value: 'Seleccione un estado',
-    label: 'Seleccione un estado',
+    title: 'Seleccione un estado',
   },
   {
     id: 1,
     value: 'En proceso',
-    label: 'En proceso',
+    title: 'En proceso',
   },
   {
     id: 2,
     value: 'Completo',
-    label: 'Completo',
+    title: 'Completo',
   },
   {
     id: 3,
     value: 'En espera',
-    label: 'En espera',
+    title: 'En espera',
   },
   {
     id: 4,
     value: 'Parada',
-    label: 'Parado',
+    title: 'Parado',
   },
 ];
 
@@ -58,21 +58,21 @@ export const priorityOptionsSprint = [
   {
     id: 0,
     value: 'Seleccione una prioridad',
-    label: 'Seleccione una prioridad',
+    title: 'Seleccione una prioridad',
   },
   {
     id: 1,
     value: 'Alta',
-    label: 'Alta',
+    title: 'Alta',
   },
   {
     id: 2,
     value: 'Media',
-    label: 'Media',
+    title: 'Media',
   },
   {
     id: 3,
     value: 'Baja',
-    label: 'Baja',
+    title: 'Baja',
   },
 ];

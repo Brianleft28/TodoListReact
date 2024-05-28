@@ -1,13 +1,10 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import SprintContext from '../../../context/SprintContext';
 import { Button } from 'react-daisyui';
 import SprintForm from '../SprintForm/SprintForm';
-import Filter from '../DatePicker/Filter';
 
 const SprintModal = () => {
   const { isModalOpen, setIsModalOpen } = useContext(SprintContext);
-
-  const handleToggle = () => {};
 
   if (!isModalOpen) {
     return null;

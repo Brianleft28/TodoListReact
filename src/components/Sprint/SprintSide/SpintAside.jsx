@@ -1,8 +1,7 @@
 import './SprintAside.css';
 
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
-import SprintForm from '../SprintForm/SprintForm';
 import SprintModal from '../SprintModal/SprintModal';
 import { Button, Menu } from 'react-daisyui';
 import { SprintContext } from '../../../context/SprintContext';
@@ -12,7 +11,7 @@ import TaskContext from '../../../context/TaskContext';
 const SpintAside = () => {
   const { sprints, isSprintOpen, setSprintOpen, isModalOpen, setIsModalOpen } =
     useContext(SprintContext);
-  const { isTaskOpen, setTaskOpen } = useContext(TaskContext);
+  const { setTaskOpen } = useContext(TaskContext);
 
   const handleToggle = () => {
     setSprintOpen(!isSprintOpen);

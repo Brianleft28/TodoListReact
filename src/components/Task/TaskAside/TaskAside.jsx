@@ -7,7 +7,7 @@ import TaskContext from '../../../context/TaskContext';
 const TaskAside = () => {
   const { addTask } = useContext(TaskContext);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -41,7 +41,7 @@ const TaskAside = () => {
         ></div>
       )}
       <motion.aside
-        className="task-aside bg-gradient-to-b from-base-100 to-base-200 p-3 w-full max-w-xs"
+        className="task-aside bg-gradient-to-b from-base-200 to-base-100 menu-vertical p-3 w-full max-w-xs"
         initial={{ x: '100%', opacity: 0 }}
         animate={{ x: isTaskOpen ? 0 : '100%', opacity: isTaskOpen ? 1 : 0 }}
         transition={{ duration: 0.1 }}

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button } from 'react-daisyui';
-import SprintSelect from '../SprintSelect/SprintSelect';
+import SelectOptions from '../../Select/Select';
+import SprintContext from '../../../context/SprintContext';
 
 const TaskForm = ({
   onSubmit,
@@ -9,6 +10,8 @@ const TaskForm = ({
   setTitle,
   setDescription,
 }) => {
+  const { sprints } = useContext(SprintContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(e, title, description);
@@ -19,10 +22,9 @@ const TaskForm = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-gradient-to-b shadow-md from-base to-base-100 p-6 "
+      className="bg-gradient-to-b shadow-md from-base-200 to-base-100 p-6 "
     >
       <label className="form-control w-full max-w-xs">
-        <span className="label-text mb-1 ml-2">Agregue una tarea</span>
         <input
           type="text"
           placeholder="Titulo de la tarea"
@@ -38,7 +40,8 @@ const TaskForm = ({
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
-        <SprintSelect />
+        {/* Opciones */}
+        <SelectOptions options={sprints} status={''} onChange={''} style={''} />
       </label>
 
       <Button
