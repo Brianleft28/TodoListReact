@@ -36,11 +36,11 @@ const Header = () => {
   }, [location, sprint]);
 
   const [theme, setTheme] = useState(
-    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'luxury',
+    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'lofi',
   );
 
   const handleToggle = () => {
-    setTheme(theme === 'lemonade' ? 'luxury' : 'lemonade');
+    setTheme(theme === 'lofi' ? 'black' : 'lofi');
   };
 
   useEffect(() => {
@@ -53,10 +53,10 @@ const Header = () => {
     <>
       <Navbar className="flex bg-base-100 z-30">
         <div className="flex-1 gap-5">
-          <div className="flex-none">
-            <Button tag="a" color="secondary" className="normal-case text-xl">
+          <div className="flex-none ">
+            <button className="btn btn-primary btm-nav-label normal-case text-xl">
               {title}
-            </Button>
+            </button>
           </div>
         </div>
 

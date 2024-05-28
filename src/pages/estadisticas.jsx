@@ -15,7 +15,7 @@ const Estadisticas = () => {
           <div className="place-self-start flex mx-5">
             <h3 className="font-semibold">Tareas completas:</h3>
             <span className="text-secondary-content mx-2 flex ">
-              <div className="bg-primary text-secondary px-2 ">
+              <div className="bg-primary text-base-100 px-2 ">
                 {tasks.filter((task) => task.status === 'Completo').length}
               </div>
             </span>
@@ -23,7 +23,7 @@ const Estadisticas = () => {
           <div className="place-self-start flex mx-5 justify-center align-middle">
             <h3 className="font-semibold">Tareas en proceso:</h3>
             <span className="text-secondary-content mx-2 flex ">
-              <div className="bg-primary text-secondary px-2 ">
+              <div className="bg-primary text-base-100 px-2 ">
                 {tasks.filter((task) => task.status === 'En proceso').length}
               </div>
             </span>
@@ -31,7 +31,7 @@ const Estadisticas = () => {
           <div className="place-self-start flex mx-5">
             <h3 className="font-semibold">Tareas en espera:</h3>
             <span className="text-secondary-content mx-2 flex ">
-              <div className="bg-primary text-secondary px-2 ">
+              <div className="bg-primary text-base-100 px-2 ">
                 {tasks.filter((task) => task.status === 'En espera').length}
               </div>
             </span>
@@ -39,7 +39,7 @@ const Estadisticas = () => {
           <div className="place-self-start flex mx-5">
             <h3 className="font-semibold">Tareas paradas:</h3>
             <span className="text-secondary-content mx-2 flex ">
-              <div className="bg-primary text-secondary px-2 ">
+              <div className="bg-primary text-base-100 px-2 ">
                 {tasks.filter((task) => task.status === 'Parada').length}
               </div>
             </span>

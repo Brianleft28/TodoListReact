@@ -7,6 +7,10 @@ export const TaskProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false); /* Modal de edit */
   const [isTaskOpen, setTaskOpen] = useState(false); /* Aside de Task */
   const [currentTask, setCurrentTask] = useState(null); /* Task actual */
+  const [actualSprint, setActualSprint] = useState(
+    [],
+  ); /* Sprint actual de la tarea */
+
   const taskService = useTaskService();
 
   return (
@@ -15,6 +19,8 @@ export const TaskProvider = ({ children }) => {
         ...taskService,
         isTaskOpen,
         isOpen,
+        actualSprint,
+        setActualSprint,
         setIsOpen,
         setTaskOpen,
         currentTask,

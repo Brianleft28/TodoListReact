@@ -33,7 +33,7 @@ const SpintAside = () => {
           ></div>
         )}
         <motion.aside
-          className="sprint-aside bg-gradient-to-b from-base-200 to-base-100 menu-vertical p-3 w-full max-w-xs"
+          className="sprint-aside [border-width:var(--tab-border)] border-base-300  bg-gradient-to-b from-base-200 to-base-100 menu-vertical p-3 w-full max-w-xs"
           initial={{ x: '-100%', opacity: 0 }}
           animate={{
             x: isSprintOpen ? 0 : '-100%',
@@ -41,9 +41,9 @@ const SpintAside = () => {
           }}
           transition={{ duration: 0.1 }}
         >
-          <div className="h-[445px] overflow-y-auto menu-md  scrollbar-hide">
+          <div className="h-[445px] overflow-y-auto menu-md  scrollbar-hide [border-width:var(--tab-border)] border-base-300">
             {sprints && (
-              <Menu className="flex flex-col gap-3 px-4">
+              <Menu className="flex mt-3 flex-col gap-3 px-4">
                 {sprints.map((sprint) => (
                   <SprintCard key={sprint.id} sprint={sprint} />
                 ))}

@@ -17,7 +17,7 @@ const TaskAside = () => {
     setTaskOpen(!isTaskOpen);
   };
 
-  const onSubmit = async (e, title, description) => {
+  const onSubmit = async (e, title, description, sprintId) => {
     try {
       e.preventDefault();
       await addTask(title, description);
@@ -41,17 +41,18 @@ const TaskAside = () => {
         ></div>
       )}
       <motion.aside
-        className="task-aside bg-gradient-to-b from-base-200 to-base-100 menu-vertical p-3 w-full max-w-xs"
+        className="[border-width:var(--tab-border)] border-base-300 task-aside bg-gradient-to-b from-base-200 to-base-100 menu-vertical p-3 w-full max-w-xs"
         initial={{ x: '100%', opacity: 0 }}
         animate={{ x: isTaskOpen ? 0 : '100%', opacity: isTaskOpen ? 1 : 0 }}
         transition={{ duration: 0.1 }}
       >
         <div className="flex-row gap-10">
-          <div className="justify-center shadow-md ">
+          <div className="justify-center shadow-md bordered">
             <TaskForm
               onSubmit={onSubmit}
               title={title}
               description={description}
+              /*        sprintId={_sprintId} */
               setTitle={setTitle}
               setDescription={setDescription}
             />

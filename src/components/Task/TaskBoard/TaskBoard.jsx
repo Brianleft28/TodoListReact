@@ -1,5 +1,5 @@
 import './taskboard.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import TaskAside from '../TaskAside/TaskAside.jsx';
 import SprintAside from '../../Sprint/SprintSide/SpintAside.jsx';
 import { useContext } from 'react';
@@ -27,7 +27,13 @@ const Board = () => {
   /* usando el contexto */
   const { isOpen, tasks, setTasks, setIsOpen, setCurrentTask } =
     useContext(TaskContext);
-  const { sprints } = useContext(SprintContext);
+  const { sprints, setSprintOpen, isSprintOpen } = useContext(SprintContext);
+
+  useEffect(() => {
+    if (sprints.length === 0) {
+      setSprintOpen(true);
+    }
+  }, []);
 
   /* Manejador del evento edit */
   const handleEditClick = (task) => {
@@ -61,7 +67,7 @@ const Board = () => {
   );
 
   /* Renderizado condicional */
-  if (!tasks || tasks.length === 0 || !sprints || sprints.length === 0) {
+  if (!sprints || sprints.length === 0) {
     return (
       <>
         <div className="flex justify-center min-h-full text-2xl scroll-smooth">
@@ -81,8 +87,9 @@ const Board = () => {
     <>
       <div>
         <div className="max-h-[408px] overflow-auto">
-          <table className="bg-transparent max-h-[calc(100vh-60px)] table table-xs mx-auto justify-around-row">
-            {/* head */}
+          {}
+          {/*  <table className="bg-transparent max-h-[calc(100vh-60px)] table table-xs mx-auto justify-around-row">
+            {/* head }
             <thead>
               <tr className="pb-2 p-2 border-b-1 border-neutral">
                 <th>Titulo</th>
@@ -93,7 +100,7 @@ const Board = () => {
             </thead>
             <tbody>
               <br />
-              {/* Contexto para el DND */}
+              {/* Contexto para el DND }
               <DndContext
                 collisionDetection={closestCenter}
                 onDragEnd={handleDragEnd}
@@ -103,7 +110,7 @@ const Board = () => {
                   items={tasks}
                   strategy={verticalListSortingStrategy}
                 >
-                  {/* Renderizado de las tareas con TASKCARD */}
+                  {/* Renderizado de las tareas con TASKCARD }
                   {tasks.map((task) => (
                     <React.Fragment key={task.id}>
                       <TaskCard
@@ -119,7 +126,7 @@ const Board = () => {
                 </SortableContext>
               </DndContext>
             </tbody>
-          </table>
+          </table> */}
         </div>
       </div>
       {isOpen && <TaskEditModal />}

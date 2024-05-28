@@ -1,12 +1,21 @@
+import { useEffect } from 'react';
+
 const SelectOptions = ({ options, status, onChange, style }) => {
   const statusSelect = (e) => {
     onChange(e.target.value);
   };
+
+  useEffect(() => {
+    if (options.length > 0) {
+      onChange(options[0].id);
+    }
+  }, [options]);
+
   return (
     <select
-      value={status}
+      value={status?.id}
       onChange={statusSelect}
-      className={`${style} select bg-base-300`}
+      className={`select  ${style}`}
     >
       {options.length > 0 ? (
         options.map((option) => (
@@ -15,7 +24,7 @@ const SelectOptions = ({ options, status, onChange, style }) => {
           </option>
         ))
       ) : (
-        <option disabled defaultValue>
+        <option disabled selected>
           Primero cree un tablero
         </option>
       )}
