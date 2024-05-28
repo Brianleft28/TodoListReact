@@ -47,7 +47,7 @@ const TaskAside = () => {
         transition={{ duration: 0.1 }}
       >
         <div className="flex-row gap-10">
-          <div className="justify-center shadow-md bg-black">
+          <div className="justify-center shadow-md ">
             <TaskForm
               onSubmit={onSubmit}
               title={title}

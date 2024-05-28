@@ -48,13 +48,49 @@ const Header = () => {
 
   return (
     <>
-      <Navbar className="bg-base-300 z-30">
-        <div className="flex-1">
-          <Link to="/">
-            <Button tag="a" color="ghost" className="normal-case text-xl">
-              {title}
-            </Button>
-          </Link>
+      <Navbar className="flex bg-base-300 z-30">
+        <div className="flex-2 gap-5">
+          <div className="flex-none">
+            <Link to="/">
+              <Button tag="a" color="secondary" className="normal-case text-xl">
+                {title}
+              </Button>
+            </Link>
+          </div>
+        </div>
+        {/* responsable */}
+        <div className="justify-center flex-1 ">
+          <div className="flex align-middle justify-center flex-row border-base-content  border-y-2">
+            {sprint && sprint.responsable && (
+              <span className="hover:cursor-pointer selection:bg-none flex gap-2 flex-row text-xs border-x-2 border-base-content p-2">
+                <span className=" text-base-content font-bold">
+                  Responsable:
+                </span>{' '}
+                <h6 className="">{sprint.responsable}</h6>
+              </span>
+            )}
+            {sprint && sprint.startDate && (
+              <span className="hover:cursor-pointer selection:bg-none flex gap-2 flex-row text-xs border-r-2 border-base-content  p-2">
+                <span className=" text-base-content font-bold">
+                  Fecha de inicio:
+                </span>{' '}
+                <h6 className="">{sprint.startDate}</h6>
+              </span>
+            )}
+            {sprint && sprint.endDate && (
+              <span className="hover:cursor-pointer selection:bg-none flex gap-2 flex-row text-xs border-base-content p-2">
+                <span className=" text-base-content font-bold">
+                  Fecha de Cierre:
+                </span>{' '}
+                <h6 className="">{sprint.endDate}</h6>
+              </span>
+            )}
+            {sprint && sprint.responsable && (
+              <button className="btn-square:where(.btn-xs) text-secondary hover:bg-secondary-content bg-base-content text-xs border-x-2 min-h-full border-base-content p-2">
+                <span className="">Más info</span>
+              </button>
+            )}
+          </div>
         </div>
         <div className="flex-none">
           <Menu className="flex flex-row px-1">

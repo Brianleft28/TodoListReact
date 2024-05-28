@@ -7,7 +7,7 @@ import SprintAside from '../../components/Sprint/SprintSide/SpintAside';
 const SprintView = () => {
   const { sprintId } = useParams();
   const { sprints } = useContext(SprintContext);
-  const [sprint, setSprint] = useState([]);
+  const [sprint, setSprint] = useState(null);
 
   useEffect(() => {
     if (sprints) {
@@ -16,39 +16,26 @@ const SprintView = () => {
     }
   }, [sprints, sprintId]);
 
+  if (!sprint) return <div className="grid place-self-center">Cargando...</div>;
+
   return (
     <div>
       {sprint ? (
         <>
-          <div>
-            <div>
-              <span>Tablero: </span>
-              {sprint.title}
-            </div>
+          <div className="p-4 bg-base-200 rounded-md">
+            <h2 className="text-2xl font-bold mb-4">{sprint.title}</h2>
+            <p className="mb-2">
+              <strong>Descripción:</strong> {sprint.description}
+            </p>
 
-            <div>
-              <span>Descripción: {sprint.description}</span>
-            </div>
-
-            <div>
-              <span>Responsable: {sprint.responsable}</span>
-            </div>
-
-            <div>
-              <span>Fecha de inicio: {sprint.startDate}</span>
-            </div>
-
-            <div>
-              <span>Fecha de fin: {sprint.endDate}</span>
-            </div>
-
-            <div>
-              <span>Prioridad: {sprint.priority}</span>
-            </div>
-
-            <div>
-              <span>Status: {sprint.status}</span>
-            </div>
+            <p className="mb-2">
+              <strong>Prioridad:</strong> {sprint.priority}
+            </p>
+            <p className="mb-2">
+              <strong>Status:</strong> {sprint.status}
+            </p>
+            <TaskAside />
+            <SprintAside />
           </div>
           <TaskAside />
           <SprintAside />
