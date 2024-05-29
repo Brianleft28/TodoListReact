@@ -17,10 +17,18 @@ export const useTaskService = () => {
   }, [tasks]);
 
   // Funcion para agregar nuevas tareas
-  const addTask = async (title, description) => {
+  const addTask = async (title, description, sprintId) => {
     return new Promise((resolve, reject) => {
-      if (!title || !description) {
-        reject(new Error('El título y la descripción son obligatorios'));
+      if (
+        !title ||
+        !description ||
+        !sprintId ||
+        sprintId === 'none' ||
+        (Array.isArray(sprints) && sprints.length === 0)
+      ) {
+        reject(
+          new Error('El título, la descripción y el tablero son obligatorios'),
+        );
       } else {
         try {
           setTasks((prevTasks) => {
@@ -30,6 +38,7 @@ export const useTaskService = () => {
               description,
               status: '',
               isEditing: false,
+              sprintId: sprintId,
             };
             saveTasks([...prevTasks, newTask]);
             return [...prevTasks, newTask];

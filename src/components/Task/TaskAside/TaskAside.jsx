@@ -10,6 +10,7 @@ const TaskAside = () => {
   const [isOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [sprintId, setSprintId] = useState('');
 
   const { isTaskOpen, setTaskOpen } = useContext(TaskContext);
 
@@ -20,10 +21,10 @@ const TaskAside = () => {
   const onSubmit = async (e, title, description, sprintId) => {
     try {
       e.preventDefault();
-      await addTask(title, description);
+      await addTask(title, description, sprintId);
     } catch (error) {
-      alert(error);
       setTaskOpen(true);
+      alert(error);
     }
     setTimeout(() => {
       setTitle('');
@@ -52,7 +53,8 @@ const TaskAside = () => {
               onSubmit={onSubmit}
               title={title}
               description={description}
-              /*        sprintId={_sprintId} */
+              sprintId={sprintId}
+              setSprintId={setSprintId}
               setTitle={setTitle}
               setDescription={setDescription}
             />

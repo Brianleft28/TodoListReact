@@ -53,11 +53,9 @@ const Header = () => {
     <>
       <Navbar className="flex bg-base-100 z-30">
         <div className="flex-1 gap-5">
-          <div className="flex-none ">
-            <button className="btn btn-primary btm-nav-label normal-case text-xl">
-              {title}
-            </button>
-          </div>
+          <button className="ml-4 mt-2 btn btn-primary  normal-case text-xl">
+            {title}
+          </button>
         </div>
 
         {/* responsable */}

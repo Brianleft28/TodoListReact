@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getSprints, saveSprints } from './localStorageService';
+
 export const useSprintService = () => {
   const [sprints, setSprints] = useState(getSprints() || []);
 
@@ -24,7 +25,9 @@ export const useSprintService = () => {
         !startDate ||
         !endDate ||
         !status ||
-        !priority
+        !priority ||
+        status === '0' || // StatusOptionsSprint[0]
+        priority === '0' // priorityOptionsSprint[0]
       ) {
         reject(new Error('Todos los campos son obligatorios'));
       } else {
@@ -39,12 +42,11 @@ export const useSprintService = () => {
               endDate,
               status,
               priority,
-              tasks: [],
             };
             saveSprints([...prevSprints, newSprint]);
+            resolve(newSprint.id);
             return [...prevSprints, newSprint];
           });
-          resolve('Sprint agregado correctamente');
         } catch (error) {
           console.log('Error agregando el sprint: ' + error);
           reject(error);

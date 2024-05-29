@@ -7,8 +7,10 @@ import {
   priorityOptionsSprint,
 } from '../../../data/SelectOptions';
 import SelectOptions from '../../Select/Select';
+import { useNavigate } from 'react-router-dom';
 
 const SprintModal = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [responsable, setResponsable] = useState('');
@@ -22,28 +24,27 @@ const SprintModal = () => {
 
   const handleToggle = () => {
     setIsModalOpen(false);
-    setSprintOpen(true);
   };
 
-  const handleSave = () => {
-    addSprint(
-      title,
-      description,
-      responsable,
-      startDate,
-      endDate,
-      status,
-      priority,
-    )
-      .then(() => {
-        handleToggle();
-      })
-      .catch((error) => {
-        setIsModalOpen(true);
-        setSprintOpen(false);
-        console.error('Error al guardar el sprint' + error);
-        alert(error);
-      });
+  const handleSave = async () => {
+    try {
+      const newSprintId = await addSprint(
+        title,
+        description,
+        responsable,
+        startDate,
+        endDate,
+        status,
+        priority,
+      );
+      handleToggle();
+      navigate('/' + newSprintId);
+    } catch (error) {
+      setIsModalOpen(true);
+      setSprintOpen(false);
+      console.error('Error al guardar el sprint' + error);
+      alert(error);
+    }
   };
 
   if (!isModalOpen) {

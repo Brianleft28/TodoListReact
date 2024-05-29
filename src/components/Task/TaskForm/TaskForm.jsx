@@ -16,9 +16,15 @@ const TaskForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(e, title, description);
+    onSubmit(e, title, description, actualSprint);
     setTitle('');
     setDescription('');
+    console.log(
+      'Tarea enviada:',
+      'title: ' + title,
+      'description: ' + description,
+      'tablero: ' + actualSprint,
+    );
   };
 
   return (

@@ -8,6 +8,7 @@ export const saveTasks = (tasks) => {
       description: task.description,
       status: task.status,
       isEditing: task.isEditing,
+      sprintId: task.sprintId,
     }));
     localStorage.setItem('tasks', JSON.stringify(tasksToSave));
   } catch (error) {
@@ -21,7 +22,6 @@ export const saveSprints = (sprints) => {
       id: sprint.id,
       title: sprint.title,
       description: sprint.description,
-      tasks: sprint.tasks,
       responsable: sprint.responsable,
       startDate: sprint.startDate,
       endDate: sprint.endDate,

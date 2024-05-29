@@ -32,6 +32,8 @@ const Board = () => {
   useEffect(() => {
     if (sprints.length === 0) {
       setSprintOpen(true);
+    } else {
+      console.log(tasks);
     }
   }, []);
 

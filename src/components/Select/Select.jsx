@@ -24,7 +24,7 @@ const SelectOptions = ({ options, status, onChange, style }) => {
           </option>
         ))
       ) : (
-        <option disabled selected>
+        <option value="none" disabled selected>
           Primero cree un tablero
         </option>
       )}
