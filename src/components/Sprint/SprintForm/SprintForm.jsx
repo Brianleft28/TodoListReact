@@ -30,7 +30,6 @@ const SprintModal = () => {
     try {
       const newSprintId = await addSprint(
         title,
-        description,
         responsable,
         startDate,
         endDate,
@@ -76,16 +75,7 @@ const SprintModal = () => {
                 className="input input-bordered w-full max-w-xs bg-base-100"
               />
             </div>
-            <div className="label w-full max-w-xs">
-              <textarea
-                type="text"
-                placeholder="Descripción del tablero"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="textarea textarea-bordered w-full max-w-xs bg-base-100 h-auto"
-                style={{ height: '100px' }}
-              />
-            </div>
+
             <div className="label w-full max-w-4xl">
               <input
                 type="text"

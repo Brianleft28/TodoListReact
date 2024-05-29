@@ -41,13 +41,12 @@ const SpintAside = () => {
           }}
           transition={{ duration: 0.1 }}
         >
-          <div className="h-[445px] overflow-y-auto menu-md  scrollbar-hide [border-width:var(--tab-border)] border-base-300">
+          <div className="h-[445px] overflow-y-auto menu-md  scrollbar-hide [border-width:var(--tab-border)] border-base-200">
             {sprints && (
-              <Menu className="menu bg-base-200  rounded-box w-full">
+              <Menu className="menu  rounded-box w-full">
                 {sprints.map((sprint) => (
                   <SprintCard key={sprint.id} sprint={sprint} />
                 ))}
-                <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-base-100 via-base-200 to-transparent"></div>
               </Menu>
             )}
           </div>

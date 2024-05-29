@@ -1,26 +1,26 @@
 export const StatusOptionsSprint = [
   {
-    id: 0,
+    id: '0',
     value: 'Seleccione un estado',
     title: 'Seleccione un estado',
   },
   {
-    id: 1,
+    id: 'En progreso',
     value: 'En proceso',
     title: 'En proceso',
   },
   {
-    id: 2,
+    id: 'Completo',
     value: 'Completo',
     title: 'Completo',
   },
   {
-    id: 3,
+    id: 'En espera',
     value: 'En espera',
     title: 'En espera',
   },
   {
-    id: 4,
+    id: 'Parado',
     value: 'Parado',
     title: 'Parado',
   },
@@ -61,17 +61,17 @@ export const priorityOptionsSprint = [
     title: 'Seleccione una prioridad',
   },
   {
-    id: 1,
+    id: 'Alta',
     value: 'Alta',
     title: 'Alta',
   },
   {
-    id: 2,
+    id: 'Media',
     value: 'Media',
     title: 'Media',
   },
   {
-    id: 3,
+    id: 'Baja',
     value: 'Baja',
     title: 'Baja',
   },

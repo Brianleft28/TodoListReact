@@ -10,7 +10,6 @@ export const useSprintService = () => {
 
   const addSprint = async (
     title,
-    description,
     responsable,
     startDate,
     endDate,
@@ -20,7 +19,6 @@ export const useSprintService = () => {
     return new Promise((resolve, reject) => {
       if (
         title === '' ||
-        description === '' ||
         responsable === '' ||
         !startDate ||
         !endDate ||
@@ -36,7 +34,6 @@ export const useSprintService = () => {
             const newSprint = {
               id: 'sprint-' + (prevSprints.length + 1),
               title,
-              description,
               responsable,
               startDate,
               endDate,

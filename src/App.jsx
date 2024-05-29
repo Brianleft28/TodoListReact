@@ -9,17 +9,17 @@ function App() {
   return (
     <>
       <Router>
-        <div className="layout h-screen">
+        <div className="layout h-screen overflow-hidden">
           <Header />
           <div
-            className="bg-base-200 overflow-hidden"
+            className="bg-base-200 overflow-x-hidden overflow-y-auto"
             style={{ height: 'calc(100vh - 68px)' }}
           >
             <div
-              className="content-container bg-base-200"
+              className="content-container bg-base-200 min-h-full"
               style={{
                 height: '100%',
-                overflowY: 'auto',
+                overflowY: 'none',
                 scrollbarWidth: 'none' /* For Firefox */,
                 msOverflowStyle: 'none' /* For Internet Explorer and Edge */,
               }}
