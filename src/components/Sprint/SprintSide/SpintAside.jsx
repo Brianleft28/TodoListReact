@@ -43,7 +43,7 @@ const SpintAside = () => {
         >
           <div className="h-[445px] overflow-y-auto menu-md  scrollbar-hide [border-width:var(--tab-border)] border-base-300">
             {sprints && (
-              <Menu className="flex mt-3 flex-col gap-3 px-4">
+              <Menu className="menu bg-base-200  rounded-box w-full">
                 {sprints.map((sprint) => (
                   <SprintCard key={sprint.id} sprint={sprint} />
                 ))}

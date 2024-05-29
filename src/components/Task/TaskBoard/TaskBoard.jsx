@@ -1,141 +1,71 @@
 import './taskboard.css';
-import React, { useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import TaskAside from '../TaskAside/TaskAside.jsx';
-import SprintAside from '../../Sprint/SprintSide/SpintAside.jsx';
-import { useContext } from 'react';
-import TaskContext from '../../../context/TaskContext';
-import TaskCard from '../TaskCard/TaskCard';
-import TaskEditModal from '../TaskEditModal/TaskEditModal';
-/* dnd */
-import {
-  DndContext,
-  closestCenter,
-  useSensor,
-  useSensors,
-  PointerSensor,
-} from '@dnd-kit/core';
-import {
-  SortableContext,
-  verticalListSortingStrategy,
-  arrayMove,
-} from '@dnd-kit/sortable';
-import { saveTasks } from '../../../logic/localStorageService.js';
+import SpintAside from '../../Sprint/SprintSide/SpintAside.jsx';
 import SprintContext from '../../../context/SprintContext.jsx';
 
 /* Definición del tablero */
-const Board = () => {
-  /* usando el contexto */
-  const { isOpen, tasks, setTasks, setIsOpen, setCurrentTask } =
-    useContext(TaskContext);
+const TaskBoard = () => {
   const { sprints, setSprintOpen, isSprintOpen } = useContext(SprintContext);
+  const [started, setStarted] = useState(false);
 
-  useEffect(() => {
-    if (sprints.length === 0) {
-      setSprintOpen(true);
-    } else {
-      console.log(tasks);
-    }
-  }, []);
-
-  /* Manejador del evento edit */
-  const handleEditClick = (task) => {
-    setCurrentTask(task);
-    setIsOpen(true);
+  /* Manejador de firstHandler */
+  const handleGetStarted = () => {
+    setStarted(true);
   };
-  /* Manejador del evento arrastrar */
-  const handleDragEnd = (event) => {
-    const { active, over } = event;
-
-    if (over) {
-      const oldIndex = tasks.findIndex((task) => task.id === active.id);
-      const newIndex = tasks.findIndex((task) => task.id === over.id);
-
-      const newOrder = arrayMove(tasks, oldIndex, newIndex);
-      setTasks(newOrder);
-      saveTasks(newOrder);
-    }
-  };
-  /* Sensores para activar el drop
-    En este caso se activa el drop luego de 150ms de estar sobre un elemento
-    y con una tolerancia de 1px
-*/
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        delay: 150,
-        tolerance: 1,
-      },
-    }),
-  );
 
   /* Renderizado condicional */
   if (!sprints || sprints.length === 0) {
     return (
       <>
-        <div className="flex justify-center min-h-full text-2xl scroll-smooth">
-          <h3 className="my-auto text-semibold text-base-content">
-            Comience creando un tablero
-          </h3>
+        <div>
+          {started ? (
+            <div className="flex justify-center align-middle border-x-slate-200 border-2 w-[500px] m-auto ">
+              {/* Tablero de bienvenida */}
+              <div className="overflow-x-auto">
+                <table className="table table-xs">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Job</th>
+                      <th>company</th>
+                      <th>location</th>
+                      <th>Last Login</th>
+                      <th>Favorite Color</th>
+                    </tr>
+                  </thead>
+                  <tbody>{/* Tablero de bienvenida */}</tbody>
+                </table>
+              </div>
+
+              <SpintAside />
+              <TaskAside />
+            </div>
+          ) : (
+            <div className="hero min-h-screen bg-base-200">
+              <div className="hero-content text-center">
+                <div className="max-w-md">
+                  <h1 className="text-5xl font-bold">Task Manager</h1>
+                  <p className="py-6">
+                    Organice su trabajo con tableros y tareas. ¿Porque no
+                    comienza creando un tablero?
+                  </p>
+                  <button
+                    onClick={handleGetStarted}
+                    className="btn btn-primary"
+                  >
+                    Get Started
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-        <TaskAside />
-        <SprintAside />
       </>
     );
   }
 
-  /* Renderizado del componente tablero */
-
-  return (
-    <>
-      <div>
-        <div className="max-h-[408px] overflow-auto">
-          {}
-          {/*  <table className="bg-transparent max-h-[calc(100vh-60px)] table table-xs mx-auto justify-around-row">
-            {/* head }
-            <thead>
-              <tr className="pb-2 p-2 border-b-1 border-neutral">
-                <th>Titulo</th>
-                <th>Descripción</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <br />
-              {/* Contexto para el DND }
-              <DndContext
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-                sensors={sensors}
-              >
-                <SortableContext
-                  items={tasks}
-                  strategy={verticalListSortingStrategy}
-                >
-                  {/* Renderizado de las tareas con TASKCARD }
-                  {tasks.map((task) => (
-                    <React.Fragment key={task.id}>
-                      <TaskCard
-                        taskId={task.id}
-                        title={task.title}
-                        description={task.description}
-                        status={task.status}
-                        onEditClick={() => handleEditClick(task)}
-                      />
-                      <hr className="hidden" />
-                    </React.Fragment>
-                  ))}
-                </SortableContext>
-              </DndContext>
-            </tbody>
-          </table> */}
-        </div>
-      </div>
-      {isOpen && <TaskEditModal />}
-      <TaskAside />
-      <SprintAside />
-    </>
-  );
+  return <div></div>;
 };
 
-export default Board;
+export default TaskBoard;

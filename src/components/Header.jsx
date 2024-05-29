@@ -53,7 +53,7 @@ const Header = () => {
     <>
       <Navbar className="flex bg-base-100 z-30">
         <div className="flex-1 gap-5">
-          <button className="ml-4 mt-2 btn btn-primary  normal-case text-xl">
+          <button className="ml-4  btn btn-primary  normal-case text-xl">
             {title}
           </button>
         </div>
@@ -68,7 +68,7 @@ const Header = () => {
             <Menu.Item>
               <details className="">
                 <summary>Panel de Control</summary>
-                <ul className="z-50 p-2 mt-0.5 bg-base-100 absolute">
+                <ul className="[border-width:var(--tab-border)] border-base-300 z-[1000] menu bg-base-200 w-max rounded-box absolute">
                   <li>
                     <Link to="/stats">Estadísticas</Link>
                   </li>
