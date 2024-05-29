@@ -20,6 +20,8 @@ const TaskBoard = () => {
       <>
         <div>
           {started ? (
+            /* tablero info bienvenida */
+            /* tabla de bienvenida */
             <div className="flex justify-center align-middle border-x-slate-200 border-2 w-[500px] m-auto ">
               {/* Tablero de bienvenida */}
               <div className="overflow-x-auto">
@@ -65,7 +67,12 @@ const TaskBoard = () => {
     );
   }
 
-  return <div></div>;
+  return (
+    <div>
+      <SpintAside />
+      <TaskAside />
+    </div>
+  );
 };
 
 export default TaskBoard;
