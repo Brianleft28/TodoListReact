@@ -9,13 +9,10 @@ import TaskView from '../../components/Task/TaskView/TaskView';
 
 const SprintView = () => {
   const { tasks } = useContext(TaskContext);
-  const [task, setTask] = useState([]);
   const sprintId = useParams().sprintId;
 
-  useEffect(() => {
-    const theseTask = tasks.filter((task) => task.sprintId === sprintId);
-    setTask(theseTask);
-  }, [sprintId, tasks]);
+  const theseTask = tasks.filter((task) => task.sprintId === sprintId);
+  console.log('tareas tablero ', theseTask);
 
   return (
     <div>
@@ -30,7 +27,7 @@ const SprintView = () => {
         </div>
         {/*  */}
         {/* Tareas columna */}
-        {task.length === 0 || !task || !tasks ? (
+        {theseTask.length === 0 || !theseTask ? (
           <div className="flex-grow p-4 border-2 pt-4 border-neutral/50 max-w-[1080px] h-auto mx-auto flex flex-col justify-start">
             <p className="text-2xl flex mx-auto items-center h-full">
               Comience agregando una tarea
@@ -54,7 +51,7 @@ const SprintView = () => {
               {/* tareas */}
 
               <div className="mt-4 pl-1 max-w-full overflow-auto col-span-5">
-                <TaskView task={task} tasks={tasks} />
+                <TaskView task={theseTask} />
               </div>
             </div>
           </div>

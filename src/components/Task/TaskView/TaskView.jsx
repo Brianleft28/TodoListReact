@@ -1,13 +1,11 @@
 import SelectOptions from '../../Select/Select';
 import { StatusTaskOptions } from '../../../data/SelectOptions';
 import { useTaskService } from '../../../logic/useTaskService';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import SelectOptionsStatus from '../../Select/SelectStatus';
-import { saveTasks } from '../../../logic/localStorageService';
 
 const TaskView = ({ task }) => {
-  const { setStatus, deleteTask } = useTaskService();
-  const [tasks, setTasks] = useState(task);
+  const { tasks, setTasks, setStatus, deleteTask } = useTaskService();
 
   const handleStatusChange = (taskId, newStatus) => {
     setStatus(taskId, newStatus);
@@ -16,33 +14,23 @@ const TaskView = ({ task }) => {
 
   useEffect(() => {
     if (tasks) {
-      saveTasks(tasks);
+      setTasks(task);
     }
-  }, [task, tasks]);
+  }, []);
 
   const handleDelete = (taskId) => {
     deleteTask(taskId);
-    setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
   if (!task) {
     return <div>Loading</div>;
-  }
-  if (tasks.length === 0) {
-    return (
-      <div className="flex-grow p-4 border-2 pt-4 border-neutral/50 max-w-[1080px] h-auto mx-auto flex flex-col justify-start">
-        <p className="text-2xl flex mx-auto items-center h-full">
-          Comience agregando una tarea
-        </p>
-      </div>
-    );
   }
   return (
     <>
       {' '}
       <div className="grid grid-row-1  gap-1 max-h-[400px]">
         {/*    */}
-        {tasks.map((task, index) => {
+        {task?.map((task, index) => {
           return (
             <div
               key={index}

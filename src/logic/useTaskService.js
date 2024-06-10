@@ -9,6 +9,9 @@ import {
 export const useTaskService = () => {
   // Estado para las tareas
   const [tasks, setTasks] = useState(getTasks() || []);
+  /* TAREAS POR SPRINT */
+  const [sprintTasks, setSprintTasks] = useState({});
+
   /* Estado para los sprints */
   const [sprints, setSprints] = useState(getSprints() || []);
 
@@ -36,7 +39,7 @@ export const useTaskService = () => {
               id: 'task-' + (prevTasks.length + 1),
               title,
               description,
-              status: null,
+              status: '',
               isEditing: false,
               sprintId: sprintId,
             };

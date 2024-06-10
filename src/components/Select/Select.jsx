@@ -1,20 +1,23 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const SelectOptions = ({ options, status, onChange, style }) => {
-  const statusSelect = (e) => {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleSelectChange = (e) => {
+    setSelectedOption(e.target.value);
     onChange(e.target.value);
   };
 
   useEffect(() => {
-    if (options.length > 0) {
-      onChange(options[0].id);
+    if (options.length > 0 && selectedOption === null) {
+      handleSelectChange({ target: { value: options[0].id } });
     }
-  }, [options]);
+  }, [options, selectedOption]);
 
   return (
     <select
-      value={status?.id || ''}
-      onChange={statusSelect}
+      value={selectedOption}
+      onChange={handleSelectChange}
       className={`select bordered  ${style}`}
     >
       {options.length > 0 ? (

@@ -36,11 +36,11 @@ const Header = () => {
   }, [location, sprint]);
 
   const [theme, setTheme] = useState(
-    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'lofi',
+    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'business',
   );
 
   const handleToggle = () => {
-    setTheme(theme === 'lofi' ? 'black' : 'lofi');
+    setTheme(theme === 'business' ? 'black' : 'business');
   };
 
   useEffect(() => {
