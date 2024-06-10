@@ -5,6 +5,7 @@ import React from 'react';
 import SprintView from './pages/SprintView/SprintView.jsx';
 import Settings from './pages/Settings.jsx';
 import Login from './pages/auth/Login.jsx';
+import Home from './pages/Home.jsx';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
             }}
           >
             <Routes>
-              <Route path="/" element={<Login />} />
+              <Route path="/" element={<Home />} />
               <Route path="/stats" element={<Estadisticas />} />
               <Route path="/:sprintId" element={<SprintView />} />
               <Route path="/settings" element={<Settings />} />

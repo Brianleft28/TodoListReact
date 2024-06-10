@@ -63,7 +63,7 @@ const Header = () => {
         <div className="hidden md:flex flex-none">
           <Menu className="flex flex-row px-1">
             <Menu.Item>
-              <Link to="/login">Iniciar Sesión</Link>
+              <Link to="/auth/login">Iniciar Sesión</Link>
             </Menu.Item>
             <Menu.Item>
               <details className="">
@@ -140,7 +140,7 @@ const Header = () => {
               <ul className="menu p-4 w-80 min-h-full bg-base-200">
                 {/* Sidebar content here */}
                 <li>
-                  <Link to="/login">Iniciar Sesión</Link>
+                  <Link to="/auth/login">Iniciar Sesión</Link>
                 </li>
                 <li>
                   <Link to="/boardtask">Tableros</Link>
