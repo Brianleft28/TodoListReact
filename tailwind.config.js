@@ -9,7 +9,20 @@ export default {
     flowbite.content(),
   ],
   theme: {
-    extend: {},
+    container: {
+      padding: {
+        DEFAULT: '2rem',
+        lg: '3.5rem',
+        xl: '4rem',
+      },
+    },
+
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1080px',
+      xl: '1280px',
+    },
   },
   daisyui: {
     darkTheme: 'luxury',

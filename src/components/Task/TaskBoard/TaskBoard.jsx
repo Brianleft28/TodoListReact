@@ -12,17 +12,26 @@ const TaskBoard = () => {
 
   /* Manejador de firstHandler */
   const handleGetStarted = () => {
-    setStarted(true);
+    setStarted(!started);
   };
+
+  useEffect(() => {
+    console.log(started);
+  }, [started]);
 
   /* Manejador de getStartedHandler */
 
   useEffect(() => {
     if (sprints) {
       setSprintOpen(true);
-      setStarted(false);
     }
   }, [started]);
+
+  useEffect(() => {
+    if (sprints && sprints.length > 0 && !isSprintOpen) {
+      setSprintOpen(true);
+    }
+  }, [sprints, isSprintOpen]);
 
   /* Renderizado condicional */
   if (!sprints || sprints.length === 0) {
@@ -57,11 +66,6 @@ const TaskBoard = () => {
     );
   }
 
-  useEffect(() => {
-    if (sprints.length > 0 && !isSprintOpen) {
-      setSprintOpen(true);
-    }
-  }, []);
   return (
     <div>
       <SpintAside />

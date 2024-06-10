@@ -36,7 +36,7 @@ export const useTaskService = () => {
               id: 'task-' + (prevTasks.length + 1),
               title,
               description,
-              status: '',
+              status: null,
               isEditing: false,
               sprintId: sprintId,
             };

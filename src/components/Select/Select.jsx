@@ -13,13 +13,13 @@ const SelectOptions = ({ options, status, onChange, style }) => {
 
   return (
     <select
-      value={status?.id}
+      value={status?.id || ''}
       onChange={statusSelect}
-      className={`select  ${style}`}
+      className={`select bordered  ${style}`}
     >
       {options.length > 0 ? (
         options.map((option) => (
-          <option key={option.id} value={option.id}>
+          <option key={option.id} value={option.id || ''}>
             {option.title}
           </option>
         ))
