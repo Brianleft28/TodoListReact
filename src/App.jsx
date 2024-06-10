@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Estadisticas from './pages/estadisticas';
-import Board from './components/Task/TaskBoard/TaskBoard';
 import Header from './components/Header.jsx';
 import React from 'react';
 import SprintView from './pages/SprintView/SprintView.jsx';
+import Settings from './pages/Settings.jsx';
+import Login from './pages/auth/Login.jsx';
 
 function App() {
   return (
@@ -21,9 +22,11 @@ function App() {
             }}
           >
             <Routes>
-              <Route path="/" element={<Board />} />
+              <Route path="/" element={<Login />} />
               <Route path="/stats" element={<Estadisticas />} />
               <Route path="/:sprintId" element={<SprintView />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/auth/login" element={<Login />} />
             </Routes>
           </div>
         </div>

@@ -6,13 +6,28 @@ import SprintAside from '../../components/Sprint/SprintSide/SpintAside';
 import TaskContext from '../../context/TaskContext';
 import SprintBoard from '../../components/Sprint/SprintBoard/SprintBoard';
 import TaskView from '../../components/Task/TaskView/TaskView';
+import { FilteredTaskContent } from '../../context/FilteredTaskContent';
 
 const SprintView = () => {
-  const { tasks } = useContext(TaskContext);
   const sprintId = useParams().sprintId;
+  const { deleteTask, tasks } = useContext(TaskContext);
+  const { theseTask, setTheseTask } = useContext(FilteredTaskContent);
+  const [localTask, setLocalTask] = useState([]);
+  useEffect(() => {
+    // Filtrando las tareas según el sprintId
+    const filteredTasks = tasks.filter((task) => task.sprintId === sprintId);
+    setLocalTask(filteredTasks); // Actualizando el estado local con las tareas filtradas
+    setTheseTask(filteredTasks); // Actualizando el contexto con las tareas filtradas
+    console.log('Tareas filtradas del sprint:', filteredTasks);
+    console.log('Tareas totales:', tasks);
+  }, [tasks, sprintId, setTheseTask]);
 
-  const theseTask = tasks.filter((task) => task.sprintId === sprintId);
-  console.log('tareas tablero ', theseTask);
+  const handleDelete = (taskId) => {
+    deleteTask(taskId);
+    const filteredTasks = tasks.filter((task) => task.id !== taskId);
+    setTheseTask(filteredTasks);
+    console.log('tarea ' + taskId, ' eliminada');
+  };
 
   return (
     <div>
@@ -51,7 +66,7 @@ const SprintView = () => {
               {/* tareas */}
 
               <div className="mt-4 pl-1 max-w-full overflow-auto col-span-5">
-                <TaskView task={theseTask} />
+                <TaskView task={theseTask} deleteTask={handleDelete} />
               </div>
             </div>
           </div>

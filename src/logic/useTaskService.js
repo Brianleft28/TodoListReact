@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   saveTasks,
   getTasks,
@@ -9,8 +9,6 @@ import {
 export const useTaskService = () => {
   // Estado para las tareas
   const [tasks, setTasks] = useState(getTasks() || []);
-  /* TAREAS POR SPRINT */
-  const [sprintTasks, setSprintTasks] = useState({});
 
   /* Estado para los sprints */
   const [sprints, setSprints] = useState(getSprints() || []);
@@ -20,7 +18,7 @@ export const useTaskService = () => {
   }, [tasks]);
 
   // Funcion para agregar nuevas tareas
-  const addTask = async (title, description, sprintId) => {
+  const addTask = (title, description, sprintId) => {
     return new Promise((resolve, reject) => {
       if (
         !title ||
@@ -34,18 +32,17 @@ export const useTaskService = () => {
         );
       } else {
         try {
-          setTasks((prevTasks) => {
-            const newTask = {
-              id: 'task-' + (prevTasks.length + 1),
-              title,
-              description,
-              status: '',
-              isEditing: false,
-              sprintId: sprintId,
-            };
-            saveTasks([...prevTasks, newTask]);
-            return [...prevTasks, newTask];
-          });
+          const newTask = {
+            id: Date.now(),
+            title,
+            description,
+            status: '',
+            isEditing: false,
+            sprintId: sprintId,
+          };
+          const updatedTasks = [...tasks, newTask];
+          setTasks(updatedTasks);
+          saveTasks(updatedTasks);
           resolve('Tarea agregada correctamente');
         } catch (error) {
           console.log('Error agregando la tarea: ' + error);
@@ -54,7 +51,6 @@ export const useTaskService = () => {
       }
     });
   };
-
   // Función para eliminar una tarea por su ID
   const deleteTask = (taskId) => {
     setTasks((prevTasks) => {
@@ -65,6 +61,7 @@ export const useTaskService = () => {
       console.log('tarea eliminada: ' + taskId);
 
       saveTasks(newTasks);
+
       return [...newTasks];
     });
   };
