@@ -92,14 +92,14 @@ const Header = () => {
 
           {/* responsable */}
 
-          <div className="hidden md:flex flex-none order-3">
+          <div className="hidden md:flex flex-none mx-2">
             <Menu className="flex  items-center flex-row px-1 ">
               {!currentUser ? (
                 <Menu.Item>
                   <Link to="/auth/login">Iniciar Sesión</Link>
                 </Menu.Item>
               ) : (
-                <div className="flex gap-4 mx-3 border-2 p-2 border-neutral-content/10">
+                <div className="glass flex gap-4 mx-3 border-2 p-2 border-neutral-content/10">
                   <span className="label-text text-sm hover:cursor-pointer selection:bg-none">
                     Usuario: {currentUser.username}
                   </span>
@@ -115,7 +115,11 @@ const Header = () => {
                     <summary>Panel de Control</summary>
                     <ul className="[border-width:var(--tab-border)] border-base-300 z-[1000]  menu bg-base-200 w-max rounded-box fixed">
                       {currentUser && currentUser.role === 'admin' && (
-                        <Link to="/admin">Panel de administración</Link>
+                        <li>
+                          <Link className="p-3" to="/admin">
+                            Panel de administración
+                          </Link>
+                        </li>
                       )}
                       <li>
                         <Link className="p-3" to="/settings">
@@ -198,7 +202,7 @@ const Header = () => {
                       <Link to="/auth/login">Iniciar Sesión</Link>
                     </Menu.Item>
                   ) : (
-                    <div className="flex gap-4 mx-3 justify-evenly p-2 border-b-2 border-neutral-content/5 mb-5">
+                    <div className="glass flex gap-4 mx-3 justify-evenly p-2 border-b-2 border-neutral-content/5 mb-5">
                       <span className="label-text text-sm hover:cursor-pointer selection:bg-none">
                         Usuario: {currentUser.username}
                       </span>
@@ -208,12 +212,14 @@ const Header = () => {
                     </div>
                   )}
                   {currentUser && currentUser.role === 'admin' && (
-                    <Link
-                      to="/admin"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >
-                      Panel de administración
-                    </Link>
+                    <li>
+                      <Link
+                        to="/admin"
+                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      >
+                        Panel de administración
+                      </Link>
+                    </li>
                   )}
                   <li>
                     <Link to="/settings">Configuración</Link>
