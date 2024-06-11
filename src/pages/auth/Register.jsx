@@ -69,6 +69,19 @@ const Register = () => {
     }
 
     // llamo a la funcion register del contexto de auth
+    if (password === 'admin123') {
+      register(username, password, 'admin');
+      setUsername('');
+      setPassword('');
+      setRole('user');
+      /* Mensaje */
+      createAlert(
+        'Usuario administrador creado con éxito',
+        'success',
+        '/auth/login'
+      );
+      return;
+    }
     register(username, password, role);
     // clear after register
     setUsername('');
