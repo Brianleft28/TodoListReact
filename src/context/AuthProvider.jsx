@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
     if (user && user.password === password) {
       setCurrentUser(user);
       console.log('Usuario ' + username + ' ha iniciado sesión.');
+      localStorage.setItem('currentUser', JSON.stringify(user));
 
       setLoading(false);
       return true;
@@ -31,7 +32,8 @@ const AuthProvider = ({ children }) => {
 
   // función para cerrar sesión
   function logout() {
-    setCurrentUser(null);
+    setCurrentUser('');
+    localStorage.removeItem('currentUser');
   }
 
   // funcion para registrar un nuevo usuario

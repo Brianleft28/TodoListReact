@@ -94,6 +94,7 @@ const Login = () => {
             {/* INPUT USER */}
             <input
               value={username}
+              disabled={isDisabled}
               onChange={(e) => setUsername(e.target.value)}
               type="text"
               className="grow input border-none  focus:ring-0 focus-visible:outline-none"
@@ -116,6 +117,7 @@ const Login = () => {
             {/* INPUT PASSWORD */}
             <input
               type="password"
+              disabled={isDisabled}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="**********"
@@ -123,7 +125,10 @@ const Login = () => {
             />
           </label>
           <div className="mt-2">
-            <button className="w-full btn btn-primary rounded">
+            <button
+              disabled={isDisabled}
+              className="w-full btn btn-primary rounded"
+            >
               Inicia Sesión{' '}
             </button>
           </div>

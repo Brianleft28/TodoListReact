@@ -1,9 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import { Button, Menu, Navbar } from 'react-daisyui';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SprintContext from '../context/SprintContext';
+import useAuth from '../logic/hooks/useAuth';
+import { Divider } from 'antd';
 
 const Header = () => {
+  const navigate = useNavigate();
+  const { currentUser, logout } = useAuth();
   const { sprints } = useContext(SprintContext);
   const [sprint, setSprint] = useState([]);
   const location = useLocation();
@@ -26,6 +30,11 @@ const Header = () => {
   }, [sprints, sprintId]);
 
   const [title, setTitle] = useState('TaskManager');
+
+  const handleLogout = () => {
+    logout();
+    navigate('/auth/login');
+  };
 
   useEffect(() => {
     switch (location.pathname) {
@@ -73,37 +82,58 @@ const Header = () => {
           className={`flex bg-base-100 z-30 transition-all ease-in-out duration-600 ${showNav ? 'md:opacity-100' : 'md:opacity-0'} `}
         >
           <div className="flex-1 gap-5">
-            <button className="ml-4  btn btn-primary  normal-case text-xl">
+            <button
+              onClick={() => navigate('/')}
+              className="ml-4  btn btn-primary  normal-case text-xl"
+            >
               {title}
             </button>
           </div>
 
           {/* responsable */}
 
-          <div className="hidden md:flex flex-none">
-            <Menu className="flex flex-row px-1">
-              <Menu.Item>
-                <Link to="/auth/login">Iniciar Sesión</Link>
-              </Menu.Item>
-              <Menu.Item>
-                <details className="">
-                  <summary>Panel de Control</summary>
-                  <ul className="[border-width:var(--tab-border)] border-base-300 z-[1000]  menu bg-base-200 w-max rounded-box fixed">
-                    <li>
-                      <Link to="/settings">Tableros</Link>
-                    </li>
-                    <li>
-                      <Link to="/stats">Estadísticas</Link>
-                    </li>
-                    <li>
-                      <Link to="/settings">Configuración</Link>
-                    </li>
-                    <li>
-                      <Link to="/logout">Log Out</Link>
-                    </li>
-                  </ul>
-                </details>
-              </Menu.Item>
+          <div className="hidden md:flex flex-none order-3">
+            <Menu className="flex  items-center flex-row px-1 ">
+              {!currentUser ? (
+                <Menu.Item>
+                  <Link to="/auth/login">Iniciar Sesión</Link>
+                </Menu.Item>
+              ) : (
+                <div className="flex gap-4 mx-3 border-2 p-2 border-neutral-content/10">
+                  <span className="label-text text-sm hover:cursor-pointer selection:bg-none">
+                    Usuario: {currentUser.username}
+                  </span>
+                  <span className="label-text text-sm hover:cursor-pointer selection:bg-none">
+                    Rol: {currentUser.role}
+                  </span>
+                </div>
+              )}
+
+              {currentUser && (
+                <Menu.Item>
+                  <details className="">
+                    <summary>Panel de Control</summary>
+                    <ul className="[border-width:var(--tab-border)] border-base-300 z-[1000]  menu bg-base-200 w-max rounded-box fixed">
+                      {currentUser && currentUser.role === 'admin' && (
+                        <Link to="/admin">Panel de administración</Link>
+                      )}
+                      <li>
+                        <Link className="p-3" to="/settings">
+                          Configuración
+                        </Link>
+                      </li>
+                      <li>
+                        <button
+                          className="p-3 hover:bg-error/80"
+                          onClick={handleLogout}
+                        >
+                          Log Out
+                        </button>
+                      </li>
+                    </ul>
+                  </details>
+                </Menu.Item>
+              )}
             </Menu>
           </div>
           {/* DRAWER */}
@@ -163,22 +193,38 @@ const Header = () => {
                 ></label>
                 <ul className="menu p-4 w-80 z-[1000] min-h-full bg-base-200">
                   {/* Sidebar content here */}
-                  <li>
-                    <Link to="/auth/login">Iniciar Sesión</Link>
-                  </li>
-                  <li>
-                    <Link to="/boardtask">Tableros</Link>
-                  </li>
-                  <li>
-                    <Link to="/stats">Estadisticas</Link>
-                  </li>
+                  {!currentUser ? (
+                    <Menu.Item>
+                      <Link to="/auth/login">Iniciar Sesión</Link>
+                    </Menu.Item>
+                  ) : (
+                    <div className="flex gap-4 mx-3 justify-evenly p-2 border-b-2 border-neutral-content/5 mb-5">
+                      <span className="label-text text-sm hover:cursor-pointer selection:bg-none">
+                        Usuario: {currentUser.username}
+                      </span>
+                      <span className="label-text text-sm hover:cursor-pointer selection:bg-none">
+                        Rol: {currentUser.role}
+                      </span>
+                    </div>
+                  )}
+                  {currentUser && currentUser.role === 'admin' && (
+                    <Link
+                      to="/admin"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Panel de administración
+                    </Link>
+                  )}
                   <li>
                     <Link to="/settings">Configuración</Link>
                   </li>
                   <li className="flex flex-col gap-2">
-                    <Link to="/logout" className=" hover:bg-error/80">
+                    <button
+                      onClick={() => logout() && navigate('/')}
+                      className=" hover:bg-error/80"
+                    >
                       Log Out
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </div>
