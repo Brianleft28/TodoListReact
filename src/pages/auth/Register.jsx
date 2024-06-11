@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../logic/hooks/useAuth';
+import UserService from '../../models/UserService';
 
 const Register = () => {
+  useEffect(() => {
+    document.title = 'Register';
+  }, []);
   const { register } = useAuth();
   const navigate = useNavigate();
+  const userService = new UserService();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [alert, setAlert] = useState(false);
-  const [styleAlert, setStyleAlert] = useState(false);
+  const [styleAlert, setStyleAlert] = useState('success');
   const [alertmsj, setAlertMsj] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
   const [role, setRole] = useState('user');
@@ -37,9 +42,29 @@ const Register = () => {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    // validaciones
+    //////////////////
+    // validaciones///
+    //////////////////
+
+    // si el usuario existe
+    const existingUser = userService.findUserByUsername(username);
+
+    if (existingUser) {
+      createAlert('El usuario ya existe', 'error');
+      return;
+    }
+
+    // si no hay usuario o contraseña
     if (!username || !password) {
       createAlert('Todos los campos son obligatorios', 'error');
+      return;
+    }
+    // si hay espacios en blanco
+    if (!username.trim() || !password.trim()) {
+      createAlert(
+        'Todos los campos son obligatorios y no pueden estar vacíos o ser solo espacios en blanco',
+        'error'
+      );
       return;
     }
 
@@ -59,7 +84,7 @@ const Register = () => {
     <>
       <div className="mx-auto container h-screen items-center flex flex-col justify-center">
         {/*  */}
-        <div className="p-6 rounded-ee-lg border-base-300/25 border-2 bg-neutral-content/10">
+        <div className="p-6 max-w-sm shadow-2xl rounded-ee-lg border-base-300/25 border-2 bg-neutral-content/10">
           {/* Div de titulo */}
           <div className="text-2xl text-center selection:bg-none hover:cursor-default pb-3">
             Registro

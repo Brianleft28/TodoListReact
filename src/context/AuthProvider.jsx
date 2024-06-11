@@ -5,7 +5,10 @@ import UserService from '../models/UserService';
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(() => {
+    const storedUser = localStorage.getItem('currentUser');
+    return storedUser ? JSON.parse(storedUser) : '';
+  });
   const [loading, setLoading] = useState(null);
 
   // instancio useService
@@ -16,8 +19,12 @@ const AuthProvider = ({ children }) => {
     const user = userService.findUserByUsername(username);
     if (user && user.password === password) {
       setCurrentUser(user);
+      console.log('Usuario ' + username + ' ha iniciado sesión.');
+
       setLoading(false);
       return true;
+    } else {
+      console.log('Usuario o contraseña incorrectos.');
     }
     return false;
   }
@@ -32,7 +39,7 @@ const AuthProvider = ({ children }) => {
   function register(username, password, role) {
     const newUser = userService.createUser(username, password, role);
     setCurrentUser(newUser);
-    console.log('Usuario ' + username + ' creado con éxito.' + newUser);
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
     setLoading(false);
   }
 
