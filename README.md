@@ -1,6 +1,7 @@
 # 📝 ToDoList
 
 Proyecto de organizador de tareas construido con React.
+El projecto cuenta con un sistema de registro que funciona mediante clases, utilizando el localstorage.
 
 ## 🚀 Instalación
 
@@ -17,9 +18,3 @@ cd TodoListReact
 npm install
 
 ```
-
-## 🖱️ Uso de la funcionalidad de arrastrar y soltar
-
-La aplicación cuenta con una funcionalidad de arrastrar y soltar que te permite reorganizar tus tareas.
-
-El Drag And Drop cuenta con un pequeño delay para no interferir con los botones de las tareas.
