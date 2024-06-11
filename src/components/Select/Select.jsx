@@ -22,7 +22,7 @@ const SelectOptions = ({ options, status, onChange, style }) => {
     >
       {options.length > 0 ? (
         options.map((option) => (
-          <option key={option.id} value={option.id || ''}>
+          <option key={option.id} value={option.id}>
             {option.title}
           </option>
         ))

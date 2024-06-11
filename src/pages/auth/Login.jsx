@@ -1,14 +1,15 @@
 import React from 'react';
 import './Login.css';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
-    <div className="max-auto container h-screen items-center flex justify-center">
-      <div className="p-6 rounded-ee-lg bg-gradient-to-t from-neutral-content/10 border-base-300 border-2 to-neutral-content/10">
-        <div className="text-2xl text-center selection:bg-none hover:cursor-default pb-2">
-          Inicia Sesión
+    <div className="mx-auto container h-screen items-center flex flex-col justify-center">
+      <div className="p-6 rounded-ee-lg border-base-300/25 border-2 bg-neutral-content/10">
+        <div className="text-2xl text-center selection:bg-none hover:cursor-default pb-3">
+          Task Manager
         </div>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2">
           <label className="input input-bordered flex flex-row items-center gap-2  focus-within:outline-none ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -18,13 +19,14 @@ const Login = () => {
             >
               <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
             </svg>
+            {/* INPUT USER */}
             <input
               type="text"
-              className="grow input border-none focus:ring-0 focus-visible:outline-none"
+              className="grow input border-none  focus:ring-0 focus-visible:outline-none"
               placeholder="Usuario"
             />
           </label>
-          <label className="input input-bordered flex flex-row items-center gap-2  focus-within:outline-none">
+          <label className="input mb-3 input-bordered flex flex-row items-center gap-2  focus-within:outline-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -37,6 +39,7 @@ const Login = () => {
                 clipRule="evenodd"
               />
             </svg>
+            {/* INPUT PASSWORD */}
             <input
               type="password"
               placeholder="**********"
@@ -45,14 +48,15 @@ const Login = () => {
           </label>
           <div className="mt-2">
             <button className="w-full btn btn-primary rounded">
-              Inicia Sesión
+              Inicia Sesión{' '}
             </button>
           </div>
         </div>
         <div className="divider">o</div>
         <span className="label-text link flex flex-col gap-1 justify-center items-center">
-          <a>¿Olvidaste tu contraseña?</a>
-          <a>Registrarme</a>
+          <Link to="/auth/register">Registrarme</Link>
+
+          <Link to="/auth/forgotpswrd">Olvidé mi contraseña</Link>
         </span>
       </div>
     </div>

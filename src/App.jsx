@@ -6,6 +6,7 @@ import SprintView from './pages/SprintView/SprintView.jsx';
 import Settings from './pages/Settings.jsx';
 import Login from './pages/auth/Login.jsx';
 import Home from './pages/Home.jsx';
+import Register from './pages/auth/Register.jsx';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path="/:sprintId" element={<SprintView />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/auth/login" element={<Login />} />
+              <Route path="/auth/register" element={<Register />} />
             </Routes>
           </div>
         </div>
