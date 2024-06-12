@@ -11,15 +11,16 @@ export default {
   theme: {
     container: {
       padding: {
-        DEFAULT: '2rem',
-        lg: '3.5rem',
-        xl: '4rem',
+        DEFAULT: '1.5rem',
+        lg: '2rem',
+        md: '2.2rem',
+        xl: '2.5rem',
       },
     },
 
     screens: {
       sm: '640px',
-      md: '768px',
+      md: '860px',
       lg: '1080px',
       xl: '1280px',
     },

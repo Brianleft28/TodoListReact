@@ -79,7 +79,7 @@ const Header = () => {
         className=" fixed top-0 left-0 min-h-[130px]  w-full h-fit items-center flex flex-col z-[1000] "
       >
         <Navbar
-          className={`flex bg-base-100 z-30 transition-all ease-in-out duration-600 ${showNav ? 'md:opacity-100' : 'md:opacity-0'} `}
+          className={`flex bg-base-100/80  z-30 transition-all ease-in-out duration-600 ${showNav ? 'md:opacity-100' : 'md:opacity-0'} `}
         >
           <div className="flex-1 gap-5">
             <button

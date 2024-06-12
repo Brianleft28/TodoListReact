@@ -62,7 +62,7 @@ const Register = () => {
     // si hay espacios en blanco
     if (!username.trim() || !password.trim()) {
       createAlert(
-        'Todos los campos son obligatorios y no pueden estar vacíos o ser solo espacios en blanco',
+        'Los campos son no pueden estar vacíos o ser solo espacios en blanco',
         'error'
       );
       return;

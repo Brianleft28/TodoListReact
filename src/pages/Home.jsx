@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import useAuth from '../logic/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import FirstTime from '../components/Home/FirstTime';
+import AdminBoard from '../components/Home/AdminBoard';
 
 const Home = () => {
-  const { currentUser, loading } = useAuth();
+  const { currentUser, loading, user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,38 +16,27 @@ const Home = () => {
     navigate('/auth/register');
   };
 
-  /* Renderizado */
-  if (loading) {
-    return <div>Cargando...</div>;
-  }
-
-  if (!currentUser) {
+  if (currentUser.role === 'user') {
     return (
-      <div className="hero min-h-screen container mx-auto">
-        <div className="hero-content text-center  border-neutral-content/5 border-2">
-          <div className="max-w-lg flex flex-col">
-            <h1 className="text-5xl font-bold">Organizate con Task Manager</h1>
-            <p className="p-6">
-              {' '}
-              Organiza tus tareas y actividades mediante tableros. Puedes crear,
-              editar y eliminar tareas, así como analizar tu productividad
-              usando la pestaña de estadísticas. Para comenzar, por favor,
-              regístrate.
-            </p>
-            <button className="btn btn-primary " onClick={firstHanlder}>
-              COMENZAR
-            </button>
-          </div>
-        </div>
+      <div className="flex items-center justify-center h-screen text-2xl">
+        no sos admin capo
       </div>
     );
   }
 
-  return (
-    <div className="flex items-center justify-center h-screen text-2xl">
-      Bienvenid@, {currentUser ? currentUser.username : 'invitado'}
-    </div>
-  );
+  /* Renderizado */
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen text-2xl">
+        Cargando...
+      </div>
+    );
+  }
+
+  if (!currentUser) {
+    return <FirstTime firstHanlder={firstHanlder} />;
+  }
+  if (currentUser.role === 'admin') return <AdminBoard />;
 };
 
 export default Home;
