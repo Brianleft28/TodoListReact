@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
 
-const SelectOptions = ({ options, status, onChange, style }) => {
-  const [selectedOption, setSelectedOption] = useState(null);
+const SelectOptions = ({ options, onChange, style }) => {
+  const [selectedOption, setSelectedOption] = useState(() => {
+    // Recuperar el valor del localStorage al inicializar el estado
+    return localStorage.getItem('selectedSprintId') || null;
+  });
 
   const handleSelectChange = (e) => {
-    setSelectedOption(e.target.value);
-    onChange(e.target.value);
+    const newValue = e.target.value;
+    setSelectedOption(newValue);
+    onChange(newValue);
+    localStorage.setItem('selectedSprintId', newValue); // Guardar en localStorage
   };
 
   useEffect(() => {
@@ -18,7 +23,7 @@ const SelectOptions = ({ options, status, onChange, style }) => {
     <select
       value={selectedOption}
       onChange={handleSelectChange}
-      className={`select bordered  ${style}`}
+      className={`select border border-neutral-content/10  ${style}`}
     >
       {options.length > 0 ? (
         options.map((option) => (

@@ -5,6 +5,15 @@ export const SprintContext = createContext();
 
 export const SprintProvider = ({ children }) => {
   /* Definición de los estados de SPRINT */
+  const [selectedSprintId, setSelectedSprintId] = useState(() => {
+    // Recuperar el valor del localStorage al inicializar el estado
+    return localStorage.getItem('selectedSprintId') || null;
+  });
+
+  // Guardar el valor de selectedSprint en localStorage cuando cambie
+  useEffect(() => {
+    localStorage.setItem('selectedSprintId', selectedSprintId);
+  }, [selectedSprintId]);
 
   /* Controlares de modales y asides */
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,6 +25,8 @@ export const SprintProvider = ({ children }) => {
       value={{
         ...sprintService,
         isModalOpen,
+        setSelectedSprintId,
+        selectedSprintId,
         setIsModalOpen,
         isSprintOpen,
         setSprintOpen,
