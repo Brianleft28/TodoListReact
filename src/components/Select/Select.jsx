@@ -14,10 +14,10 @@ const SelectOptions = ({ options, onChange, style }) => {
   };
 
   useEffect(() => {
-    if (options.length >= 0 && options.length === 0 && options[0]) {
-      handleSelectChange({ target: { value: options[0].id } });
+    if (options.length > 0 && options.length === 0) {
+      setSelectedOption(options[0].id);
     }
-  }, [options, selectedOption]);
+  }, [options]);
 
   return (
     <select
