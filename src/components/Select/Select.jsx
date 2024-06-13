@@ -23,7 +23,7 @@ const SelectOptions = ({ options, onChange, style }) => {
     <select
       value={selectedOption}
       onChange={handleSelectChange}
-      className={`select border border-neutral-content/10  ${style}`}
+      className={`select select-ghost border border-neutral-content/10  ${style}`}
     >
       {options.length > 0 ? (
         options.map((option) => (

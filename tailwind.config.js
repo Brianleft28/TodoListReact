@@ -27,6 +27,7 @@ export default {
   },
   daisyui: {
     darkTheme: 'luxury',
+
     lightTheme: 'lemonade',
     themes: [
       'sunset',
@@ -54,6 +55,10 @@ export default {
       'cyberpunk',
     ],
     styled: true,
+    base: true,
+    utils: true,
+    logs: true,
+    rtl: false,
   },
   plugins: [require('flowbite/plugin'), require('daisyui')],
 };

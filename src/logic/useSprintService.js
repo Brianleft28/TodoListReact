@@ -8,20 +8,11 @@ export const useSprintService = () => {
     saveSprints(sprints);
   }, [sprints]);
 
-  const addSprint = async (
-    title,
-    responsable,
-    startDate,
-    endDate,
-    status,
-    priority,
-  ) => {
+  const addSprint = async (title, responsable, status, priority) => {
     return new Promise((resolve, reject) => {
       if (
         title === '' ||
         responsable === '' ||
-        !startDate ||
-        !endDate ||
         !status ||
         !priority ||
         status === '0' || // StatusOptionsSprint[0]
@@ -32,11 +23,9 @@ export const useSprintService = () => {
         try {
           setSprints((prevSprints) => {
             const newSprint = {
-              id: 'sprint-' + (prevSprints.length + 1),
+              id: 'sprint-' + (prevSprints.length + 1 + Math.random() / 1000),
               title,
               responsable,
-              startDate,
-              endDate,
               status,
               priority,
             };
@@ -51,9 +40,24 @@ export const useSprintService = () => {
       }
     });
   };
+  const deleteSprint = (sprintId) => {
+    setSprints((prevSprint) => {
+      const newSprint = prevSprint.filter((sprint) => sprint.id != sprintId);
+      if (newSprint.length === prevSprint.length) {
+        return prevSprint;
+      }
+      console.log('Sprint Eliminado: ' + sprintId);
+
+      saveSprints(newSprint);
+
+      return [...newSprint];
+    });
+  };
+
   return {
     sprints,
     addSprint,
+    deleteSprint,
     setSprints,
   };
 };

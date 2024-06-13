@@ -6,13 +6,14 @@ const SelectOptionsStatus = ({ options, status, onChange, style }) => {
   const handleSelectChange = (event) => {
     setSelectedStatus(event.target.value);
     onChange(event.target.value);
+    console.log('Status:', event.target.value);
   };
 
   return (
     <select
       value={selectedStatus || ''}
       onChange={handleSelectChange}
-      className={`select  ${style} select-bordered w-full max-w-xs`}
+      className={`select  ${style} select-ghost w-full`}
     >
       {options.length > 0
         ? options.map((option) => (

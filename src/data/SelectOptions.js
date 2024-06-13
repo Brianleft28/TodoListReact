@@ -1,8 +1,8 @@
 export const StatusOptionsSprint = [
   {
     id: '0',
-    value: 'Seleccione un estado',
-    title: 'Seleccione un estado',
+    value: 'Estado',
+    title: 'Estado',
   },
   {
     id: 'En progreso',
@@ -57,8 +57,8 @@ export const StatusTaskOptions = [
 export const priorityOptionsSprint = [
   {
     id: 0,
-    value: 'Seleccione una prioridad',
-    title: 'Seleccione una prioridad',
+    value: 'Prioridad',
+    title: 'Prioridad',
   },
   {
     id: 'Alta',

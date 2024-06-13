@@ -5,7 +5,7 @@ import FirstTime from '../components/Home/FirstTime';
 import AdminBoard from '../components/Home/AdminBoard';
 
 const Home = () => {
-  const { currentUser, loading, user } = useAuth();
+  const { currentUser, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {

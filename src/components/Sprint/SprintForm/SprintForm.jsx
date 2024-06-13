@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import SprintContext from '../../../context/SprintContext';
 import { Button } from 'react-daisyui';
-import Filter from '../DatePicker/Filter';
 import {
   StatusOptionsSprint,
   priorityOptionsSprint,
@@ -22,22 +21,10 @@ const SprintModal = () => {
   const { isModalOpen, setIsModalOpen, setSprintOpen, addSprint } =
     useContext(SprintContext);
 
-  const handleToggle = () => {
-    setIsModalOpen(false);
-  };
-
   const handleSave = async () => {
     try {
-      const newSprintId = await addSprint(
-        title,
-        responsable,
-        startDate,
-        endDate,
-        status,
-        priority,
-      );
+      await addSprint(title, responsable, status, priority);
       handleToggle();
-      navigate('/' + newSprintId);
     } catch (error) {
       setIsModalOpen(true);
       setSprintOpen(false);
