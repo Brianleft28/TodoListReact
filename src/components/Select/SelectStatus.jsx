@@ -15,13 +15,13 @@ const SelectOptionsStatus = ({ options, status, onChange, style }) => {
       onChange={handleSelectChange}
       className={`select  ${style} select-ghost w-full`}
     >
-      {options.length > 0
+      {options.length >= 0
         ? options.map((option) => (
             <option key={option.id} value={option.title}>
               {option.title}
             </option>
           ))
-        : null}
+        : ''}
     </select>
   );
 };

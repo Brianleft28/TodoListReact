@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 const SelectOptions = ({ options, onChange, style }) => {
   const [selectedOption, setSelectedOption] = useState(() => {
     // Recuperar el valor del localStorage al inicializar el estado
-    return localStorage.getItem('selectedSprintId') || null;
+    return localStorage.getItem('selectedSprintId') || '';
   });
 
   const handleSelectChange = (e) => {
@@ -14,7 +14,7 @@ const SelectOptions = ({ options, onChange, style }) => {
   };
 
   useEffect(() => {
-    if (options.length > 0 && selectedOption === null) {
+    if (options.length >= 0 && options.length === 0 && options[0]) {
       handleSelectChange({ target: { value: options[0].id } });
     }
   }, [options, selectedOption]);

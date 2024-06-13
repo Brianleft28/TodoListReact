@@ -23,6 +23,9 @@ const AdminBoard = () => {
 
   const handleSelectChange = (sprintId) => {
     setSelectedSprintId(sprintId);
+    if (sprints.length > 0 && sprints.length === 0) {
+      setSelectedSprintId(sprints[0].id);
+    }
   };
 
   const selectedSprint = sprints.find(
@@ -34,10 +37,19 @@ const AdminBoard = () => {
   );
 
   useEffect(() => {
-    if (sprints.length > 0 && selectedSprintId === null) {
+    console.log('modal true');
+    const e = localStorage.getItem('selectedSprintId');
+    if (e && e !== 'undefined' && sprints && sprints.length > 0) {
+      console.log('Estableciendo sprint inicial:', sprints[0].id);
       handleSelectChange(sprints[0].id);
     }
-  }, [sprints]);
+  }, [
+    sprints,
+    selectedSprintId,
+    handleSelectChange,
+    setSelectedSprintId,
+    handleShowModalSprint,
+  ]);
 
   useEffect(() => {
     setTheseTask(filteredTasks);
@@ -46,7 +58,7 @@ const AdminBoard = () => {
   const handleDelete = (sprintId) => {
     // Función para eliminar un sprint
     deleteSprint(sprintId);
-    setSelectedSprintId(null);
+    setSelectedSprintId(sprints[0].id);
   };
 
   return (

@@ -7,7 +7,7 @@ export const SprintProvider = ({ children }) => {
   /* Definición de los estados de SPRINT */
   const [selectedSprintId, setSelectedSprintId] = useState(() => {
     // Recuperar el valor del localStorage al inicializar el estado
-    return localStorage.getItem('selectedSprintId') || null;
+    return localStorage.getItem('selectedSprintId') || '';
   });
 
   // Guardar el valor de selectedSprint en localStorage cuando cambie
