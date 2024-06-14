@@ -1,3 +1,4 @@
+// @ts-check
 /* prettier-ignore */
 
 class User {

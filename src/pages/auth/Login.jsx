@@ -8,7 +8,7 @@ const Login = () => {
   useEffect(() => {
     document.title = 'Login';
   }, []);
-  const { login } = useAuth();
+  const { login, currentUser, setCurrentUser } = useAuth();
   const navigate = useNavigate();
   const userService = new UserService();
 
@@ -23,6 +23,8 @@ const Login = () => {
 
   /* Componente de alerta */
   const createAlert = (msg, style, src = null) => {
+    //
+    //
     setAlert(true);
     setStyleAlert(style || 'success');
     setAlertmsj(msg);
@@ -42,7 +44,6 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
     // Validaciones
     if (!username || !password) {
       createAlert('Todos los campos son obligatorios', 'error');
@@ -54,25 +55,17 @@ const Login = () => {
     }
 
     // autenticacion del usuario
-    const user = userService.authenticateUser(username, password);
-    if (!user) {
-      createAlert(
-        'Creedenciales invalidas, por favor, intente nuevamente',
-        'error'
-      );
-      return;
-    }
 
     // llamo a la función login del contexto de auth
     login(username, password);
+
+    createAlert('Bienvenido, ' + username, 'success', '/');
 
     // limpio despues de logear
     setUsername('');
     setPassword('');
 
     // redirijo a la pagina de tareas
-
-    createAlert('Bienvenido, ' + username, 'success', '/');
   };
 
   return (

@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Estadisticas from './pages/estadisticas';
 import Header from './components/Header.jsx';
 import React from 'react';
-import SprintView from './pages/SprintView/SprintView.jsx';
 import Settings from './pages/Settings.jsx';
 import Login from './pages/auth/Login.jsx';
 import Home from './pages/Home.jsx';
@@ -25,8 +23,6 @@ function App() {
           >
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/stats" element={<Estadisticas />} />
-              <Route path="/:sprintId" element={<SprintView />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/auth/login" element={<Login />} />
               <Route path="/auth/register" element={<Register />} />

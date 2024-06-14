@@ -27,7 +27,7 @@ const ModalCreateSprint = ({ onClose }) => {
     <>
       <form
         onSubmit={handleSaveSprint}
-        className="col-span-3 grid grid-cols-3 gap-2 mb-2"
+        className="col-span-3 grid grid-cols-3 gap-2"
       >
         <input
           type="text"
@@ -69,19 +69,19 @@ const ModalCreateSprint = ({ onClose }) => {
 
         <button
           type="submit"
-          className="col-span-3 w-full  btn btn-square btn-primary"
+          className="col-span-2 w-full  btn btn-square btn-primary"
         >
           {' '}
           Crear
         </button>
+        <button
+          onClick={onClose}
+          className="col-span-1 w-full  btn btn-square btn-error"
+        >
+          {' '}
+          Volver
+        </button>
       </form>
-      <button
-        onClick={onClose}
-        className="col-span-3 w-full  btn btn-square btn-error"
-      >
-        {' '}
-        Volver
-      </button>
     </>
   );
 };

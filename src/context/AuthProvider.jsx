@@ -5,30 +5,52 @@ import UserService from '../models/UserService';
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(() => {
-    const storedUser = localStorage.getItem('currentUser');
-    return storedUser ? JSON.parse(storedUser) : '';
-  });
+  const [currentUser, setCurrentUser] = useState('');
+
   const [loading, setLoading] = useState(null);
 
   // instancio useService
   const userService = new UserService();
 
-  // funcion para iniciar sesión
-  function login(username, password) {
-    const user = userService.findUserByUsername(username);
-    if (user && user.password === password) {
-      setCurrentUser(user);
-      console.log('Usuario ' + username + ' ha iniciado sesión.');
-      localStorage.setItem('currentUser', JSON.stringify(user));
-
-      setLoading(false);
-      return true;
-    } else {
-      console.log('Usuario o contraseña incorrectos.');
+  const dataFetch = async (legajo, password) => {
+    try {
+      const response = await fetch(
+        'http://intranet.ituzaingo.dns/auth/api/v2/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            legajo: legajo,
+            password: password,
+          }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error('Error en la autenticación');
+      }
+      const data = await response.json();
+      console.log(data);
+      return data.body.result;
+    } catch (error) {
+      console.error(error);
+      throw error;
     }
-    return false;
-  }
+  };
+
+  // funcion para iniciar sesión
+  const login = async (username, password) => {
+    try {
+      const user = await dataFetch(username, password); // Esperar la promesa
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      setCurrentUser(user); // Actualizar el estado del contexto de autenticación
+      console.log(user);
+    } catch (error) {
+      console.error(error);
+      throw new Error('Error en la autenticación');
+    }
+  };
 
   // función para cerrar sesión
   function logout() {

@@ -4,6 +4,7 @@ export const FilteredTaskContent = createContext();
 
 export const TaskContextProvider = ({ children }) => {
   const [theseTask, setTheseTask] = useState([]);
+
   return (
     <FilteredTaskContent.Provider
       value={{

@@ -7,8 +7,15 @@ import TaskCard from '../Task/TaskCard/TaskCard';
 import ModalCreateSprint from '../Modals/ModalCreateSprint';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { IoIosCreate } from 'react-icons/io';
+import TaskForm from '../Task/TaskForm/TaskForm';
 
 const AdminBoard = () => {
+  /* Controlador del boton para abrir el task form */
+  const [showTaskForm, setShowTaskForm] = useState(false);
+  const taskHandler = () => {
+    setShowTaskForm(!showTaskForm);
+  };
+
   const [showModalSprint, setShowModalSprint] = useState(false);
 
   const handleShowModalSprint = () => {
@@ -36,10 +43,9 @@ const AdminBoard = () => {
     (task) => task.sprintId === selectedSprintId
   );
 
+  /* UseEffect para establecer el valor de select en la primera opción si el array de sprints es menor que 2  */
   useEffect(() => {
-    console.log('modal true');
-    const e = localStorage.getItem('selectedSprintId');
-    if (e && e !== 'undefined' && sprints && sprints.length > 0) {
+    if (sprints[0] && sprints && sprints.length === 1) {
       console.log('Estableciendo sprint inicial:', sprints[0].id);
       handleSelectChange(sprints[0].id);
     }
@@ -55,16 +61,44 @@ const AdminBoard = () => {
     setTheseTask(filteredTasks);
   }, [selectedSprintId, tasks, setTheseTask]);
 
+  // Función para eliminar un sprint
   const handleDelete = (sprintId) => {
-    // Función para eliminar un sprint
-    deleteSprint(sprintId);
     setSelectedSprintId(sprints[0].id);
+
+    const totalTasks = localStorage.getItem('tasks');
+
+    const TaskDelete = (totalTasks, sprintId) => {
+      const tasks = JSON.parse(totalTasks);
+      const newTasks = tasks.filter((task) => task.sprintId !== sprintId);
+      localStorage.setItem('tasks', JSON.stringify(newTasks));
+    };
+
+    if (sprints.length === 1) {
+      console.log('No hay sprint actualmente');
+      setSelectedSprintId(null);
+    }
+
+    TaskDelete(totalTasks, sprintId);
+    deleteSprint(sprintId);
+  };
+
+  const [modalViewTask, setModalViewTask] = useState(false);
+
+  const handleModalViewTask = () => {
+    setModalViewTask(!modalViewTask);
   };
 
   return (
+    /*  */
+    /*  */
+    /*  */
     /* Div contenedor de tableros y tareas */
+
     <div className="mx-auto gap-2 grid grid-cols-1 md:grid-cols-2 pt-20 pb-5 container items-stretch">
       {/* Div de tableros */}
+
+      {modalViewTask ? <div>hola</div> : null}
+
       <div className="md:rounded-s-3xl h-fit border border-neutral-content/10 bg-gradient-to-r from-base-100 to-base-200 via-base-200/25 p-3 w-full">
         <h1 className="text-xl font-bold text-neutral-content text-center">
           {showModalSprint ? 'Crear Tablero' : 'Tableros'}
@@ -81,12 +115,12 @@ const AdminBoard = () => {
               />
               <button
                 onClick={handleShowModalSprint}
-                className="btn  col-span-1 flex items-center btn-primary shadow-sm"
+                className="btn col-span-1 flex items-center btn-primary shadow-sm"
               >
                 <div className="text-2xl">
                   <IoIosCreate />
                 </div>
-                Crear Tablero
+                <div className="hidden md:flex">Crear Tablero</div>
               </button>
               <button
                 onClick={() => handleDelete(selectedSprintId)}
@@ -105,10 +139,8 @@ const AdminBoard = () => {
                   <div className="col-span-2 bg-base-200 w-full text-center place-content-center p-2">
                     <p>Responsable: {selectedSprint.responsable}</p>
                   </div>
-                  <div className="col-span-1 bg-base-200 w-full p-2 text-center">
-                    <p>
-                      Estado <br /> {selectedSprint.status}
-                    </p>
+                  <div className="justify-center col-span-1 flex items-center  bg-base-200 w-full p-2">
+                    <p className="">{selectedSprint.status}</p>
                   </div>
                   <div className="col-span-1 bg-gradient-to-r from-base-200 via-base-200 to-base-200/20 w-full p-2 text-center place-content-center">
                     <p>
@@ -130,35 +162,59 @@ const AdminBoard = () => {
         {/*  */}
         {/*  */}
       </div>
+      {/*  */}
+      {/*  */}
+      {/*  */}
       {/* Div de tareas */}
       <div className="md:rounded-e-3xl flex flex-col gap-2  border border-neutral-content/10 bg-gradient-to-r to-base-100 from-base-200 via-base-200/50 p-4 w-full">
         <h1 className="text-xl font-bold text-neutral-content text-center ">
-          Tareas
+          {showTaskForm ? 'Agregar Tarea' : 'Tareas'}
         </h1>
-        <div className="h-[410px] grid grid-cols-1 overflow-y-scroll p-2">
-          <div className="w-full col-span-1 bg-gradient-to-r from-base-200 to-base-100 p-2">
-            <div className="flex flex-col gap-1">
-              {
-                // Tareas
-                theseTask.length === 0 || !theseTask ? ( // Si no hay tareas
-                  <div className="bg-gradient-to-l from-base-100 via-base-100/10 to-base-200 p-2 hover:bg-base-100  hover:shadow-sm flex flex-row justify-between items-center">
-                    Aún no hay tareas
+        {/* Div de contenido en tareas */}
+        {
+          // Task Form
+          showTaskForm ? (
+            <TaskForm onClose={taskHandler} sprintId={selectedSprint} />
+          ) : (
+            <>
+              <div className="h-[410px] grid grid-cols-1 overflow-y-scroll p-2">
+                <div className="w-full col-span-1 bg-gradient-to-r from-base-200 to-base-100 p-2">
+                  <div className="flex flex-col gap-1">
+                    {
+                      // Tareas
+                      theseTask.length === 0 || !theseTask ? ( // Si no hay tareas
+                        <div className="bg-gradient-to-l from-base-100 via-base-100/10 to-base-200 p-2 hover:bg-base-100  hover:shadow-sm flex flex-row justify-between items-center">
+                          Aún no hay tareas
+                        </div>
+                      ) : (
+                        <>
+                          {theseTask.map((task) => {
+                            return (
+                              <TaskCard
+                                onOpen={handleModalViewTask}
+                                task={task}
+                                key={task.id}
+                              />
+                            );
+                          })}
+                        </>
+                      )
+                    }
                   </div>
-                ) : (
-                  <>
-                    {theseTask.map((task) => {
-                      return <TaskCard task={task} key={task.id} />;
-                    })}
-                  </>
-                )
-              }
-            </div>
+                </div>
+              </div>
+            </>
+          )
+        }
+        {!showTaskForm ? (
+          <div>
+            <button onClick={taskHandler} className="w-full btn btn-primary">
+              Agregar Tarea
+            </button>
           </div>
-        </div>
-        <div>
-          <button className="w-full btn btn-primary">Agregar Tarea</button>
-        </div>
+        ) : null}
       </div>
+
       {/* Modal Sprint */}
     </div>
   );

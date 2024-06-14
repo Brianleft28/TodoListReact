@@ -15,7 +15,7 @@ const SprintCard = ({ sprint }) => {
         className="py-3 bg-base-300 [border-width:var(--tab-border)] border-base-300"
         to={`/${sprint.id}`}
       >
-        {sprint.title}
+        {sprint.title} asd
       </Link>
     </Menu.Item>
   );

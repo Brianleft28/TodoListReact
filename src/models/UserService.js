@@ -15,15 +15,11 @@ class UserService {
     // metodo para guardar usuarios en LS
     saveUsersToStorage(users){
         const userJson = JSON.stringify(users);
-        localStorage.setItem('users', userJson)
+        localStorage.setItem('users', userJson) 
     }
 
     // metodo para crear un nuevo usuario 
     createUser(username, password, role) {
-        if(!username || !password) return console.error('Username and password are required')
-        if(this.findUserByUsername(username)) return console.error('User already exists')
-        if(!role) role = 'user'
-        if(!username.trim() || !password.trim()) return console.error('Username and password are required')
         const newUser = new User(username, password, role) 
         this.users.push(newUser)
         this.saveUsersToStorage(this.users)

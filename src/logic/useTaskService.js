@@ -28,7 +28,7 @@ export const useTaskService = () => {
         (Array.isArray(sprints) && sprints.length === 0)
       ) {
         reject(
-          new Error('El título, la descripción y el tablero son obligatorios'),
+          new Error('El título, la descripción y el tablero son obligatorios')
         );
       } else {
         try {
@@ -36,7 +36,7 @@ export const useTaskService = () => {
             id: Date.now(),
             title,
             description,
-            status: '',
+            status: 'En proceso',
             isEditing: false,
             sprintId: sprintId,
           };
@@ -69,7 +69,7 @@ export const useTaskService = () => {
   // Función para actualizar una tarea existente
   const onEdit = (taskId, updatedTask) => {
     const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, ...updatedTask } : task,
+      task.id === taskId ? { ...task, ...updatedTask } : task
     );
     setTasks(updatedTasks);
   };
@@ -77,7 +77,7 @@ export const useTaskService = () => {
   // Función para marcar una tarea como completada
   const setStatus = (taskId, status) => {
     const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, status: status } : task,
+      task.id === taskId ? { ...task, status: status } : task
     );
     setTasks(updatedTasks);
     saveTasks(updatedTasks);
