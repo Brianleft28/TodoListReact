@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
-import { Button, Menu, Navbar } from 'react-daisyui';
+import { Menu, Navbar } from 'react-daisyui';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SprintContext from '../context/SprintContext';
 import useAuth from '../logic/hooks/useAuth';
-import { Divider } from 'antd';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -38,12 +37,6 @@ const Header = () => {
 
   useEffect(() => {
     switch (location.pathname) {
-      case '/stats':
-        setTitle('Estadísticas');
-        break;
-      case '/settings':
-        setTitle('Configuración');
-        break;
       case '/auth/login':
         setTitle('Iniciar Sesión');
         break;
@@ -101,7 +94,7 @@ const Header = () => {
               ) : (
                 <div className="glass flex gap-4 mx-3 border-2 p-2 border-neutral-content/10">
                   <span className="label-text text-sm hover:cursor-pointer selection:bg-none">
-                    Usuario: {currentUser.username}
+                    Usuario: {currentUser.legajo}
                   </span>
                   <span className="label-text text-sm hover:cursor-pointer selection:bg-none">
                     Rol: {currentUser.role}
@@ -204,7 +197,7 @@ const Header = () => {
                   ) : (
                     <div className="glass flex gap-4 mx-3 justify-evenly p-2 border-b-2 border-neutral-content/5 mb-5">
                       <span className="label-text text-sm hover:cursor-pointer selection:bg-none">
-                        Usuario: {currentUser.username}
+                        Usuario: {currentUser.legajo}
                       </span>
                       <span className="label-text text-sm hover:cursor-pointer selection:bg-none">
                         Rol: {currentUser.role}

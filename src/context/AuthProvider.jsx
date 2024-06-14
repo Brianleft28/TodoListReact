@@ -5,8 +5,10 @@ import UserService from '../models/UserService';
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState('');
-
+  const [currentUser, setCurrentUser] = useState(() => {
+    const storedUser = localStorage.getItem('currentUser');
+    return storedUser ? JSON.parse(storedUser) : '';
+  });
   const [loading, setLoading] = useState(null);
 
   // instancio useService

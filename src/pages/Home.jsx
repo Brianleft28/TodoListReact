@@ -10,6 +10,7 @@ const Home = () => {
 
   useEffect(() => {
     document.title = 'Inicio';
+    console.log(currentUser);
   }, []);
 
   const firstHanlder = () => {
@@ -36,7 +37,8 @@ const Home = () => {
   if (!currentUser) {
     return <FirstTime firstHanlder={firstHanlder} />;
   }
-  if (currentUser.role === 'admin') return <AdminBoard />;
+
+  if (currentUser.role === 'ADMIN') return <AdminBoard />;
 };
 
 export default Home;
