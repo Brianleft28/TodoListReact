@@ -91,7 +91,7 @@ const Login = () => {
               onChange={(e) => setUsername(e.target.value)}
               type="text"
               className="grow input border-none  focus:ring-0 focus-visible:outline-none"
-              placeholder="Usuario"
+              placeholder="Legajo"
             />
           </label>
           <label className="input mb-3 input-bordered flex flex-row items-center gap-2  focus-within:outline-none">
